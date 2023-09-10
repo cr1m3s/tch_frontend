@@ -7,7 +7,7 @@ function App() {
 
   useEffect(() => {
     // GET request to fetch posts
-    axios.get('https://hello-world-sije.onrender.com/author/')
+    axios.get('https://hello-backend-7125.onrender.com/author/')
       .then(response => {
         setPosts(response.data);
       })
@@ -16,7 +16,7 @@ function App() {
       });
 
     // POST request to create a comment
-    axios.post('https://hello-world-sije.onrender.com/comment/', {
+    axios.post('https://https://hello-backend-7125.onrender.com/comment/', {
       title: 'Hello world',
       rating: 5,
       author_id: 1,
