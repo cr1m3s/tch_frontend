@@ -7,7 +7,7 @@ function App() {
 
   useEffect(() => {
     // GET request to fetch posts
-    axios.get('https://hello-backend-7125.onrender.com/author/')
+    axios.get('http://localhost:8000/author/')
       .then(response => {
         setPosts(response.data);
       })
@@ -16,7 +16,7 @@ function App() {
       });
 
     // POST request to create a comment
-    axios.post('https://https://hello-backend-7125.onrender.com/comment/', {
+    axios.post('http://localhost:8000/comment/', {
       title: 'Hello world',
       rating: 5,
       author_id: 1,
