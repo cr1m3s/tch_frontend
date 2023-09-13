@@ -6,7 +6,7 @@ function App() {
     <>
       <GlobalStyles />
       <div style={{ padding: "120px" }}>
-        <Button variant="primary" disabled size="big" icon="arrow" iconPosition="right" >Button</Button>
+        <Button variant="secondary" size="fluid" icon="arrow" iconPosition="right" >Button</Button>
       </div>
     </>
   )

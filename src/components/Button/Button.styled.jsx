@@ -27,6 +27,7 @@ export const StyledButton = styled.button`
   ${inlineFlex('center', 'center')}
   &:disabled {
     cursor: not-allowed;
+    background-color: #C7C7C7;
   }
   ${(props) => {
     switch (props.variant) {
@@ -35,7 +36,7 @@ export const StyledButton = styled.button`
           background: ${props.theme.colors.lightBlue};
           border-radius: 10px;
           border: none;
-          transition: filter 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
           &:not(:disabled):hover {
             background: ${props.theme.colors.blue};
           }
@@ -54,6 +55,9 @@ export const StyledButton = styled.button`
           ${StyledIcon} {
             fill: ${props.theme.colors.white};
           }
+          ${StyledIcon} {
+              fill: ${props.theme.colors.white};
+            }
         `;
       case 'secondary':
         return css`
@@ -83,7 +87,6 @@ export const StyledButton = styled.button`
               fill: ${props.theme.colors.white};
             }
           }
-
           &:disabled {
             border-color: ${props.theme.colors.disabled};
             background-color: ${props.theme.colors.disabled};
@@ -95,10 +98,10 @@ export const StyledButton = styled.button`
             }
           }
           ${StyledText} {
-            color: ${props.theme.colors.white};
+            color: ${props.theme.colors.lightBlue};
           }
           ${StyledIcon} {
-            fill: ${props.theme.colors.white};
+            fill: ${props.theme.colors.lightBlue};
           }
         `;
     }
@@ -120,10 +123,10 @@ export const StyledButton = styled.button`
             height: 16px;
           }
         `;
-      case 'big':
+      case 'fluid':
         return css`
           height: 48px;
-          min-width: 242px;
+          min-width: 100%;
           ${StyledText} {
             font-size: 16px;
             font-weight: 500;
@@ -141,11 +144,8 @@ StyledButton.propTypes = {
   variant: PropTypes.oneOf([
     'primary',
     'secondary',
-    'subtle',
-    'white',
-    'secondary-inverted',
   ]),
-  size: PropTypes.oneOf(['standard', 'big']),
+  size: PropTypes.oneOf(['standard', 'fluid']),
 };
 
 StyledButton.defaultProps = {
