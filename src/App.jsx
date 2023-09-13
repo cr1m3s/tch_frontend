@@ -1,11 +1,13 @@
-import { Button } from "./components/Button"
 
+import { Button } from './components/Button/Button';
+import { GlobalStyles } from './styles/GlobalStyles.styled';
 function App() {
   return (
     <>
-      <Button onClick={() => { }} variant="subtle" size="standard" >
-        Button
-      </Button>
+      <GlobalStyles />
+      <div style={{ padding: "120px" }}>
+        <Button variant="primary" disabled size="big" icon="arrow" iconPosition="right" >Button</Button>
+      </div>
     </>
   )
 }

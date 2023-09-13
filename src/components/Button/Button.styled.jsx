@@ -7,19 +7,19 @@ export const StyledIcon = styled(Icon)`
   transition: fill 0.2s ease-in-out;
   flex-shrink: 0;
   ${(props) =>
-        props.position === 'right'
-            ? css`
+    props.position === 'right'
+      ? css`
           order: 2;
-          margin-left: 4px;
+          margin-left: 10px;
         `
-            : css`
-          margin-right: 4px;
+      : css`
+          margin-right: 10px;
         `}
 `;
 
 StyledIcon.propTypes = {
-    name: Icon.propTypes.name,
-    position: PropTypes.oneOf(['left', 'right']),
+  name: Icon.propTypes.name,
+  position: PropTypes.oneOf(['left', 'right']),
 };
 
 export const StyledButton = styled.button`
@@ -29,24 +29,23 @@ export const StyledButton = styled.button`
     cursor: not-allowed;
   }
   ${(props) => {
-        switch (props.variant) {
-            case 'primary':
-                return css`
-          background: ${props.theme.colors.gradientsButton};
+    switch (props.variant) {
+      case 'primary':
+        return css`
+          background: ${props.theme.colors.lightBlue};
           border-radius: 10px;
           border: none;
           transition: filter 0.2s ease-in-out;
           &:not(:disabled):hover {
-            filter: brightness(1.2);
+            background: ${props.theme.colors.blue};
           }
           &:not(:disabled):active {
-            filter: brightness(0.9);
+            background: ${props.theme.colors.darkBlue};
           }
           &:disabled {
-            background: none;
-            background-color: ${props.theme.colors.N3};
+            background-color: ${props.theme.colors.disabled};
             ${StyledText} {
-              color: ${props.theme.colors.N5};
+              color: ${props.theme.colors.white};
             }
           }
           ${StyledText} {
@@ -56,114 +55,43 @@ export const StyledButton = styled.button`
             fill: ${props.theme.colors.white};
           }
         `;
-            case 'white':
-                return css`
+      case 'secondary':
+        return css`
           background-color: ${props.theme.colors.white};
           border-radius: 10px;
-          border: none;
-          transition: transform 0.2s ease-in-out;
-          &:not(:disabled):hover {
-            transform: translateY(-2px);
-          }
-          &:not(:disabled):active {
-            transform: translateY(0px);
-          }
-          &:disabled {
-            background-color: ${props.theme.colors.N3};
-            ${StyledText} {
-              color: ${props.theme.colors.N5};
-            }
-          }
-          ${StyledText} {
-            color: ${props.theme.colors.Purple5};
-          }
-          ${StyledIcon} {
-            fill: ${props.theme.colors.Purple5};
-          }
-        `;
-            case 'secondary':
-                return css`
-          background-color: ${props.theme.colors.white};
-          border-radius: 10px;
-          border: 1px solid ${props.theme.colors.Purple5};
+          border: 1px solid ${props.theme.colors.lightBlue};
           transition-property: border-color, background-color;
           transition-duration: 0.2s;
           transition-timing-function: ease-in-out;
           &:not(:disabled):hover {
-            background-color: ${props.theme.colors.P1};
-            border-color: ${props.theme.colors.P5};
+            background-color: ${props.theme.colors.blue};
+            border-color: ${props.theme.colors.blue};
             ${StyledText} {
-              color: ${props.theme.colors.P5};
+              color: ${props.theme.colors.white};
             }
             ${StyledIcon} {
-              fill: ${props.theme.colors.P5};
+              fill: ${props.theme.colors.white};
             }
           }
           &:not(:disabled):active {
-            background-color: ${props.theme.colors.Purple1};
-            border-color: ${props.theme.colors.P6};
+            background-color: ${props.theme.colors.darkBlue};
+            border-color: ${props.theme.colors.darkBlue};
             ${StyledText} {
-              color: ${props.theme.colors.P6};
+              color: ${props.theme.colors.white};
             }
             ${StyledIcon} {
-              fill: ${props.theme.colors.P6};
+              fill: ${props.theme.colors.white};
             }
           }
 
           &:disabled {
-            border-color: ${props.theme.colors.N5};
-            background-color: ${props.theme.colors.N3};
+            border-color: ${props.theme.colors.disabled};
+            background-color: ${props.theme.colors.disabled};
             ${StyledText} {
-              color: ${props.theme.colors.N5};
+              color: ${props.theme.colors.white};
             }
             ${StyledIcon} {
-              fill: ${props.theme.colors.N5};
-            }
-          }
-          ${StyledText} {
-            color: ${props.theme.colors.Purple5};
-          }
-          ${StyledIcon} {
-            fill: ${props.theme.colors.Purple5};
-          }
-        `;
-            case 'secondary-inverted':
-                return css`
-          background-color: transparent;
-          border-radius: 10px;
-          border: 1px solid ${props.theme.colors.white};
-          transition-property: border-color, background-color;
-          transition-duration: 0.2s;
-          transition-timing-function: ease-in-out;
-          &:not(:disabled):hover {
-            background-color: ${props.theme.colors.white};
-            border-color: ${props.theme.colors.Purple5};
-            ${StyledText} {
-              color: ${props.theme.colors.Purple5};
-            }
-            ${StyledIcon} {
-              fill: ${props.theme.colors.Purple5};
-            }
-          }
-          &:not(:disabled):active {
-            background-color: ${props.theme.colors.white};
-            border-color: ${props.theme.colors.white};
-            ${StyledText} {
-              color: ${props.theme.colors.Purple5};
-            }
-            ${StyledIcon} {
-              fill: ${props.theme.colors.Purple5};
-            }
-          }
-
-          &:disabled {
-            border-color: ${props.theme.colors.N5};
-            background-color: ${props.theme.colors.N3};
-            ${StyledText} {
-              color: ${props.theme.colors.N5};
-            }
-            ${StyledIcon} {
-              fill: ${props.theme.colors.N5};
+              fill: ${props.theme.colors.white};
             }
           }
           ${StyledText} {
@@ -173,64 +101,27 @@ export const StyledButton = styled.button`
             fill: ${props.theme.colors.white};
           }
         `;
-            case 'subtle':
-                return css`
-          background-color: transparent;
-          text-decoration: none;
-          border: none;
-          ${StyledText} {
-            font-weight: 500;
-            font-size: 12px;
-            transition: color 0.2s ease-in-out;
-            color: ${props.theme.colors.Purple5};
-          }
-          ${StyledIcon} {
-            fill: ${props.theme.colors.Purple5};
-          }
-          &:not(:disabled):hover {
-            ${StyledText} {
-              color: ${props.theme.colors.P5};
-            }
-            ${StyledIcon} {
-              fill: ${props.theme.colors.P5};
-            }
-          }
-          &:not(:disabled):active {
-            ${StyledText} {
-              color: ${props.theme.colors.P6};
-            }
-            ${StyledIcon} {
-              fill: ${props.theme.colors.P6};
-            }
-          }
-          &:disabled {
-            ${StyledText} {
-              color: ${props.theme.colors.N7};
-            }
-            ${StyledIcon} {
-              fill: ${props.theme.colors.N7};
-            }
-          }
-        `;
-        }
-    }}
+    }
+  }}
+  
   ${(props) => {
-        switch (props.size) {
-            case 'standard':
-                return css`
-          height: 32px;
-          padding: 0 26px;
+    switch (props.size) {
+      case 'standard':
+        return css`
+          height: 56px;
+          min-width: 200px;
+          padding: 0 12px;
           ${StyledText} {
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 18px;
+            font-weight: 600;
           }
           ${StyledIcon} {
             width: 16px;
             height: 16px;
           }
         `;
-            case 'big':
-                return css`
+      case 'big':
+        return css`
           height: 48px;
           min-width: 242px;
           ${StyledText} {
@@ -238,28 +129,28 @@ export const StyledButton = styled.button`
             font-weight: 500;
           }
           ${StyledIcon} {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
           }
         `;
-        }
-    }}
+    }
+  }}
 `;
 
 StyledButton.propTypes = {
-    variant: PropTypes.oneOf([
-        'primary',
-        'secondary',
-        'subtle',
-        'white',
-        'secondary-inverted',
-    ]),
-    size: PropTypes.oneOf(['standard', 'big']),
+  variant: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'subtle',
+    'white',
+    'secondary-inverted',
+  ]),
+  size: PropTypes.oneOf(['standard', 'big']),
 };
 
 StyledButton.defaultProps = {
-    variant: 'primary',
-    size: 'standard',
+  variant: 'primary',
+  size: 'standard',
 };
 
 export const StyledText = styled.span`

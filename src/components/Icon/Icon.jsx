@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 
 export const ICON_TYPES = {
     arrow: "arrow",
-    arrow2: "arrow2",
 };
 
 export const Icon = ({ className, name, size, color }) => {
@@ -17,24 +16,6 @@ export const Icon = ({ className, name, size, color }) => {
         props.fill = color;
     }
     switch (name) {
-        case ICON_TYPES.arrow2:
-            return (
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={24}
-                    height={24}
-                    fill="none"
-                    {...props}
-                >
-                    <path
-                        stroke="#fff"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="m12 19-7-7 7-7M19 12H5"
-                    />
-                </svg>
-            );
         case ICON_TYPES.arrow:
             return (
                 <svg
