@@ -61,3 +61,46 @@ npm start
 ```
 
 В випадку успішного запуску ви зможете мати доступ до застосунку через ваш браузре за адресою http://localhost:3000
+
+# Tch_frontend
+
+description soon...
+
+## Documentation storybook + styled ⬇️
+
+[storybook + sc ](https://storybook.js.org/recipes/styled-components)
+
+## Run Locally
+
+Go to the project directory
+
+Install
+
+```bash
+  npm i
+```
+
+### Установка storybook
+
+```bash
+  npx storybook@latest init
+```
+
+### Установка storybook + styled comp
+
+```bash
+  npm i @storybook/addon-stylind --save-dev
+```
+
+## Следующий шаг
+
+#### .storybook/main.js
+
+add to addons
+"@storybook/addon-styling"
+
+#### Запуск
+
+```bash
+  npm run storybook
+```
