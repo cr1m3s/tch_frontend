@@ -10,7 +10,7 @@ export default defineConfig({
       google: {
         preconnect: false,
         families: [
-          'Montserrat', 'Noto Sans',
+          'Montserrat', 'Noto Sans', 'Inter',
         ],
       },
     }),
