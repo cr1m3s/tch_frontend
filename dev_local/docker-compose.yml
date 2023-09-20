@@ -1,0 +1,19 @@
+version: '3'
+services:
+  tch_frontend:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    container_name: tch_frontend
+    hostname: tch_frontend
+    volumes:
+      - ../:/var/www/app
+    ports:
+      - "3000:3000"
+    command: "bash"
+    tty: true
+
+networks:
+  default:
+    external:
+      name: tch_network
