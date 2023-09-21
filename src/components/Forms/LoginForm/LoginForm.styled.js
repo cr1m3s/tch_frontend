@@ -83,7 +83,7 @@ export const Error = styled(ErrorMessage)`
 
 export const InputIconShow = styled.span`
     position: absolute;
-    top: 40px;
+    top: 44px;
     right: 12px;
 `;
 
