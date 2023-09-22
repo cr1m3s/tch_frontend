@@ -9,6 +9,7 @@ import {
     AuthButton,
     AuthButtonText
 } from "./ButtonsAuthContainer.styled";
+import { Icon } from "../../Icon";
 
 
 const ButtonsAuthContainer = ({disabled, text}) => {
@@ -27,12 +28,14 @@ const ButtonsAuthContainer = ({disabled, text}) => {
             <AuthBtns>
                 <AuthButton>
                     <AuthButtonText>
-                        Continue with Google
+                        <Icon name="google" size={18} />
+                        <span>Continue with Google</span>
                     </AuthButtonText>
                 </AuthButton>
                 <AuthButton>
                     <AuthButtonText>
-                        Continue with Facebook
+                        <Icon name="facebook" size={18} />
+                        <span>Continue with Facebook</span>
                     </AuthButtonText>
                 </AuthButton>
             </AuthBtns>

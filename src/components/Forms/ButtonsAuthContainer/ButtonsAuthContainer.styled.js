@@ -54,6 +54,10 @@ export const AuthButtonText = styled.span`
     font-weight: 600;
     font-size: 20px;
     line-height: 132%;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 `;
 
 
