@@ -92,7 +92,7 @@ export const ConfirmationText = styled.p`
     line-height: 120%;
 `;
 
-export const PolicyLink = styled.a`
+export const PolicyLink = styled(Link)`
     color: ${props => props.theme.colors.link};
     text-decoration: underline;
 `;
