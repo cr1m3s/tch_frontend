@@ -26,7 +26,10 @@ export const Button = ({
 
 Button.propTypes = {
     ...StyledButton.propTypes,
-    children: PropTypes.string,
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string
+    ]).isRequired,
     onClick: PropTypes.func,
     isDisabled: PropTypes.bool,
     iconPosition: StyledIcon.propTypes.position,

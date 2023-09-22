@@ -6,7 +6,8 @@ const ICON_TYPES = {
     hidden: "hidden",
     checked: "checked",
     unchecked: "unchecked",
-    user: "user"
+    user: "user",
+    success: "success",
 };
 
 export default ICON_TYPES;

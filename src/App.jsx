@@ -6,6 +6,7 @@ import SharedLayout from "./components/SharedLayout";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import ConditionsPage from "./pages/ConditionsPage";
+import CongratsPage from "./pages/CongratsPage";
 
 
 
@@ -21,13 +22,9 @@ function App() {
           <Route path="/login" element={<LoginPage/>} />
           
           <Route path="/conditions" element={<ConditionsPage />} />
+          <Route path="/success" element={<CongratsPage />} />
         </Route>
-
       </Routes>
-
-
-        {/* <Button variant="secondary" size="fluid" icon="arrow" iconPosition="right" >Button</Button> */}
-
     </>
   )
 }
