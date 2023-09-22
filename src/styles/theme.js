@@ -11,7 +11,8 @@ export const light = {
     disabled: "#C7C7C7",
     link: "#0007B9",
     error: "#FF0000",
-    borderBtn: "#E0E0E0"
+    borderBtn: "#E0E0E0",
+    block: "#F9FAED",
   },
 
   sizes: {

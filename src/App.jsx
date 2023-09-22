@@ -5,6 +5,7 @@ import { GlobalStyles } from './styles/GlobalStyles.styled';
 import SharedLayout from "./components/SharedLayout";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+import ConditionsPage from "./pages/ConditionsPage";
 
 
 
@@ -18,6 +19,8 @@ function App() {
           <Route index element={<>home page</>} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage/>} />
+          
+          <Route path="/conditions" element={<ConditionsPage />} />
         </Route>
 
       </Routes>
