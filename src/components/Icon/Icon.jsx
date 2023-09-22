@@ -154,8 +154,26 @@ export const Icon = ({ className, name, size, color }) => {
                     </defs>
                 </svg>
             );
-
-
+        case ICON_TYPES.success: 
+            return (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    {...props}
+                >
+                    <path
+                        fill="#66BE50"
+                        d="M60 110c27.615 0 50-22.385 50-50S87.615 10 60 10 10 32.385 10 60s22.385 50 50 50Z"
+                        />
+                        <path
+                        stroke="#fff"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={10}
+                        d="m35 60.167 16.667 16.666L85 43.5"
+                    />
+                </svg>                
+            )
         default:
             return null;
     }
