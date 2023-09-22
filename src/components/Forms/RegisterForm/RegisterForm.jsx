@@ -186,7 +186,7 @@ const RegisterForm = () => {
                                     }
                                 </div>
                                 <ConfirmationText>
-                                    By checking this box, you are creating an account and you agree to the <PolicyLink target="_blank" to="/conditions">Terms & Conditions</PolicyLink> and <PolicyLink href="">Privacy Policy</PolicyLink>.
+                                    By checking this box, you are creating an account and you agree to the <PolicyLink target="_blank" to="/conditions">Terms & Conditions</PolicyLink> and <PolicyLink target="_blank" to="/policy">Privacy Policy</PolicyLink>.
                                 </ConfirmationText>
                             </CheckboxContainer>                            
 
