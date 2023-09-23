@@ -33,10 +33,11 @@ Button.propTypes = {
     onClick: PropTypes.func,
     isDisabled: PropTypes.bool,
     iconPosition: StyledIcon.propTypes.position,
-    icon: StyledIcon.propTypes.name,
+    icon: PropTypes.string,
 };
 
 Button.defaultProps = {
     ...StyledButton.defaultProps,
     iconPosition: 'left',
+    icon: null,
 };

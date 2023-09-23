@@ -1,10 +1,11 @@
 import { LinkHeader } from "../../components";
 import { StyledNavActions, StyledNavContainer, StyledNavPrimary, StyledNavSecondary, StyledNav } from "./Navigation.styled";
+import { PropTypes } from 'prop-types';
 
-export const Navigation = () => {
+export const Navigation = ({ ref }) => {
     return (
         <StyledNavContainer>
-            <StyledNav>
+            <StyledNav ref={ref}>
                 <LinkHeader to="/login" >Teachers</LinkHeader>
                 <LinkHeader to="/advertisements" >My advertisements</LinkHeader>
                 <LinkHeader to="/profile" >My profile</LinkHeader>
@@ -16,4 +17,8 @@ export const Navigation = () => {
         </StyledNavContainer>
     );
 }
+
+Navigation.propTypes = {
+    ref: PropTypes.func,
+};
 

@@ -5,7 +5,7 @@ export const LinkHeader = ({
   to, children, end, className, style
 }) => {
   return (
-    <StyledLink className={className} style={style} end={end} to={to} activeClassName="active">
+    <StyledLink className={className} style={style} end={end} to={to} activeclassname="active">
       {children}
     </StyledLink>
   );
