@@ -11,14 +11,13 @@ import {
     Input,
     Error,
     CheckboxContainer,
-    Checkbox,
     ConfirmationText,
     PolicyLink,
     InputIconShow
 } from "./RegisterForm.styled";
-import FormTitle from "../../../shared/FormTitle/FormTitle";
+import FormTitle from "../FormTitle/FormTitle";
 import ButtonsAuthContainer from "../ButtonsAuthContainer/ButtonsAuthContainer";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Icon } from "../../Icon";
 
 
 
@@ -42,7 +41,6 @@ const initialValues = {
     email: "",
     password: "",
     confirmPassword: "",
-    confirmation: false
 };
 
 
@@ -52,12 +50,16 @@ const RegisterForm = () => {
     const [passwordError, setPasswordError] = useState("");
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
-
+    const [isChecked, setIsChecked] = useState(false);
 
     const handleSubmit = ({ name, email, password }, { resetForm }) => {
-        setUserData({ name, email, password });
-        console.log(userData);
-        resetForm();
+        if (isChecked) {
+            setUserData({ name, email, password });
+            console.log(userData);
+
+            resetForm();
+            setIsChecked(false);
+        }
     };
 
     const handleTogglePassword = () => {
@@ -70,7 +72,11 @@ const RegisterForm = () => {
         (prevShowConfirmPassword) => !prevShowConfirmPassword
         );
         setConfirmPasswordError("");
-    };    
+    };  
+    
+    const handleToggleCheck = () => {
+        setIsChecked(!isChecked);
+    };
 
     return (
         <Section>
@@ -138,8 +144,8 @@ const RegisterForm = () => {
                                 <InputIconShow onClick={handleTogglePassword}>
                                     {
                                         showPassword
-                                            ? <AiOutlineEye size={"24px"} color={"#EEEEEE"} />
-                                            : <AiOutlineEyeInvisible size={"24px"} color={"#EEEEEE"} />
+                                            ? <Icon name="eye" size={24} color={"#EEEEEE"} />
+                                            : <Icon name="hidden" size={24} color={"#EEEEEE"} />
                                     }
                                 </InputIconShow>                                
                             </InputBox>
@@ -163,21 +169,24 @@ const RegisterForm = () => {
                                 />
                                 <InputIconShow onClick={handleToggleConfirmPassword}>
                                     {
-                                        showPassword
-                                            ? <AiOutlineEye size={"24px"} color={"#EEEEEE"} />
-                                            : <AiOutlineEyeInvisible size={"24px"} color={"#EEEEEE"} />
+                                        showConfirmPassword
+                                            ? <Icon name="eye" size={24} color={"#EEEEEE"} />
+                                            : <Icon name="hidden" size={24} color={"#EEEEEE"} />
                                     }
                                 </InputIconShow>  
                             </InputBox>
                             <Error name="confirmPassword" component="div" />   
-
+                                    
                             <CheckboxContainer>
-                                <Checkbox
-                                    type="checkbox"
-                                    name="confirmation"
-                                />
+                                <div onClick={handleToggleCheck}>
+                                    {
+                                        isChecked
+                                            ? <Icon name="checked" size={24} />
+                                            : <Icon name="unchecked" size={24} />
+                                    }
+                                </div>
                                 <ConfirmationText>
-                                    By checking this box, you are creating an account and you agree to the <PolicyLink href="">Terms & Conditions</PolicyLink> and <PolicyLink href="">Privacy Policy</PolicyLink>.
+                                    By checking this box, you are creating an account and you agree to the <PolicyLink target="_blank" to="/conditions">Terms & Conditions</PolicyLink> and <PolicyLink href="">Privacy Policy</PolicyLink>.
                                 </ConfirmationText>
                             </CheckboxContainer>                            
 
@@ -186,7 +195,6 @@ const RegisterForm = () => {
                                 disabled={isSubmitting}
                             />
                         </Form>
-                        
                     </RegisterFormContainer>
                 )}
             </Formik>        

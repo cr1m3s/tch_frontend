@@ -1,5 +1,4 @@
 import { withThemeFromJSXProvider } from '@storybook/addon-styling';
-
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
@@ -51,7 +50,7 @@ export const GlobalStyles = createGlobalStyle`
       line-height: 132%;
       display: block;
       cursor: pointer;
-      background-color: ##0D5D74;
+      background-color: #0D5D74;
       border:none;
       border-radius: 10px;
       padding: 12px;

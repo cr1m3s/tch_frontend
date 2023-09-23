@@ -78,13 +78,6 @@ export const CheckboxContainer = styled.div`
     margin-bottom: 34px;
 `;
 
-export const Checkbox = styled(Field)`
-    width: 32px;
-    height: 32px;
-    border-radius: 6px;
-    border: 2px solid ${props => props.theme.colors.primaryText};
-`;
-
 export const ConfirmationText = styled.p`
     font-family: 'Inter';
     font-weight: 400;
@@ -92,14 +85,14 @@ export const ConfirmationText = styled.p`
     line-height: 120%;
 `;
 
-export const PolicyLink = styled.a`
+export const PolicyLink = styled(Link)`
     color: ${props => props.theme.colors.link};
     text-decoration: underline;
 `;
 
 export const InputIconShow = styled.span`
     position: absolute;
-    top: 40px;
+    top: 44px;
     right: 12px;
 `;
 

@@ -128,8 +128,8 @@ export const StyledButton = styled.button`
           height: 48px;
           min-width: 100%;
           ${StyledText} {
-            font-size: 16px;
-            font-weight: 500;
+            font-size: 18px;
+            font-weight: 600;
           }
           ${StyledIcon} {
             width: 24px;

@@ -1,4 +1,5 @@
-import { Icon, ICON_TYPES } from './Icon';
+import ICON_TYPES from "../../shared/icon-types";
+import { Icon } from "./Icon";
 
 export default {
     title: 'components/Icon',

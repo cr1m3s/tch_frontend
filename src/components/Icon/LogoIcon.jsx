@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { ICON_TYPES } from "./IconsData";
+import ICON_TYPES from "../../shared/icon-types";
 
 
 

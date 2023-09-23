@@ -13,9 +13,9 @@ import {
     InputIconShow,
     ForgotPassword
 } from "./LoginForm.styled";
-import FormTitle from "../../../shared/FormTitle/FormTitle";
+import FormTitle from "../FormTitle/FormTitle";
 import ButtonsAuthContainer from "../ButtonsAuthContainer/ButtonsAuthContainer";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Icon } from "../../Icon";
 
 
 
@@ -102,8 +102,16 @@ const LoginForm = () => {
                                     <InputIconShow onClick={handleTogglePassword}>
                                         {
                                             showPassword
-                                                ? <AiOutlineEye size={"24px"} color={"#EEEEEE"} />
-                                                : <AiOutlineEyeInvisible size={"24px"} color={"#EEEEEE"} />
+                                                ? <Icon 
+                                                    name="eye"
+                                                    size={24}
+                                                    color={"#EEE"}
+                                                />
+                                                : <Icon 
+                                                    name="hidden"
+                                                    size={24}
+                                                    color={"#EEE"}
+                                                />
                                         }
                                     </InputIconShow>  
                                     <Error name="password" component="div" />  

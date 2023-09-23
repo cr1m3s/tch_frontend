@@ -7,7 +7,7 @@ export default {
 
 function Template(args) {
   const { variant } = args;
-  const darkStyle = { backgroundColor: '#07063D', padding: '32px' };
+  const darkStyle = { backgroundColor: '#0D5D74', padding: '32px' };
   return (
     <div style={variant === 'footer' ? darkStyle : null}>
       <Logo {...args} />
