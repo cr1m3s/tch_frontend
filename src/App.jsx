@@ -14,16 +14,16 @@ function App() {
       <GlobalStyles />
 
       <Routes>
-        <Route path="/" element={<SharedLayout/>}>
-          <Route index element={<>home page</>} />
+        <Route path="/" element={<SharedLayout />}>
+          {/* <Route index element={<>home page</>} /> */}
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage/>} />
+          <Route path="/login" element={<LoginPage />} />
         </Route>
 
       </Routes>
 
 
-        {/* <Button variant="secondary" size="fluid" icon="arrow" iconPosition="right" >Button</Button> */}
+      {/* <Button variant="secondary" size="fluid" icon="arrow" iconPosition="right" >Button</Button> */}
 
     </>
   )

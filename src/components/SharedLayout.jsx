@@ -8,15 +8,15 @@ import { Outlet } from "react-router-dom";
 const SharedLayout = () => {
     return (
         <>
-            <Header/>
             <ResponsiveContainer>
+                <Header />
                 <Suspense fallback={<div>Loading...</div>}>
-                    <Outlet/>
+                    <Outlet />
                 </Suspense>
             </ResponsiveContainer>
         </>
-        
+
     );
 }
- 
+
 export default SharedLayout;

@@ -119,8 +119,8 @@ export const StyledButton = styled.button`
             font-weight: 600;
           }
           ${StyledIcon} {
-            width: 16px;
-            height: 16px;
+            width: 24px;
+            height: 24px;
           }
         `;
       case 'fluid':

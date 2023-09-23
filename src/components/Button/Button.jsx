@@ -30,7 +30,7 @@ Button.propTypes = {
     onClick: PropTypes.func,
     isDisabled: PropTypes.bool,
     iconPosition: StyledIcon.propTypes.position,
-    // icon: StyledIcon.propTypes.name,
+    icon: StyledIcon.propTypes.name,
 };
 
 Button.defaultProps = {
