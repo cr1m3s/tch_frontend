@@ -9,7 +9,7 @@ function Template(args) {
   return <Navigation {...args} />;
 }
 
-export const Default = Template.bind({});
-Default.args = {
+export const Desktop = Template.bind({});
+Desktop.args = {
 
 };

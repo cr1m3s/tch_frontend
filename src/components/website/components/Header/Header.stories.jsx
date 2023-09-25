@@ -1,7 +1,7 @@
 import { Header } from './Header';
 
 export default {
-    title: 'components/',
+    title: 'components/website/components/Header',
     component: Header,
 };
 
@@ -9,7 +9,8 @@ function Template(args) {
     return <Header {...args} />;
 }
 
-export const Default = Template.bind({});
-Default.args = {
+export const Desktop = Template.bind({});
+Desktop.args = {
 
 };
+

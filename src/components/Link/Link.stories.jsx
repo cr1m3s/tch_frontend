@@ -1,16 +1,22 @@
-import { Link } from './Link';
+import { LinkHeader, ButtonLink } from './Link';
 
 export default {
   title: 'components/Link',
-  component: Link,
+  component: LinkHeader,
 };
 
-function Template(args) {
-  return <Link {...args} />;
-}
+const LinkHeaderTemplate = (args) => <LinkHeader {...args} />;
+export const LinkHeaderStory = LinkHeaderTemplate.bind({});
 
-export const Default = Template.bind({});
-Default.args = {
-  to: '/',
-  children: 'Link',
+LinkHeaderStory.args = {
+  to: '/your-path',
+  children: 'Your LinkHeader Text',
+};
+
+const ButtonLinkTemplate = (args) => <ButtonLink {...args} />;
+export const ButtonLinkStory = ButtonLinkTemplate.bind({});
+
+ButtonLinkStory.args = {
+  to: '/your-path',
+  children: 'Your ButtonLink Text',
 };

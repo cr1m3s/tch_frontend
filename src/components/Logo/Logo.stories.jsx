@@ -19,7 +19,3 @@ export function LogoComponent(args) {
   return <Template {...args} />;
 }
 
-export const Footer = Template.bind({});
-Footer.args = {
-  variant: 'footer',
-};
