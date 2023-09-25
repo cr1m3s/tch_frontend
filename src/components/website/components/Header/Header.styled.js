@@ -9,14 +9,7 @@ export const StyledContainer = styled.div`
   right: 0;
   left: 0;
   z-index: 100;
-  height: 120px;
-  transition: height 0.2s ease, background-color 0.2s ease, padding 0.2s ease;
-  &.scroll {
-    padding: 0px 0px;
-    height: 100px;
-    background-color: ${(props) => props.theme.colors.block};
-    border-radius: 0 0 6px 6px;
-  }
+
   /* @media (max-width: 768px) {
     height: 72px;
     z-index: 2;
@@ -30,8 +23,17 @@ export const StyledFixed = styled.div`
   padding-left: 16px;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #aeacac;
+  box-shadow: 0px 2px 0px -1px rgba(199, 199, 199, 1);
   position: relative;
+  height: 120px;
+  transition: height 0.2s ease, background-color 0.2s ease, padding 0.2s ease;
+  &.scroll {
+    height: 90px;
+    border-bottom: none;
+    background-color: ${(props) => props.theme.colors.white};
+    border-radius: 0 0 6px 6px;
+    box-shadow: -1px 8px 44px -16px rgba(199, 199, 199, 1);
+  }
   @media (max-width: 768px) {
     flex-direction: column;
     min-height: 100vh;

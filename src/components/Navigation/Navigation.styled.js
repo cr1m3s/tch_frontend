@@ -15,9 +15,7 @@ export const StyledNav = styled.div`
   align-items: center;
   justify-content: center;
   gap: 30px;
-  top: 0;
-  right: 0;
-  left: 0;
+
   z-index: 100;
   height: 120px;
   transition: height 0.2s ease, background-color 0.2s ease, padding 0.2s ease;
