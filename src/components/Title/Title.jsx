@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 
 const Title = ({ children, indent }) => {
     return (
-        <StyledTitle
-            $indent={indent}
-        >
+        <StyledTitle $indent={indent} >
             {children}
         </StyledTitle>
     );
