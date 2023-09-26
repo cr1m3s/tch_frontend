@@ -20,7 +20,8 @@ export const light = {
     tablet: '768px',
     desk: '1440px',
     large: '1920px'
-  }  
+  },
+
 };
 
 export const dark = {

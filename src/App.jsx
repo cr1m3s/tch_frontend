@@ -9,7 +9,6 @@ import PolicyPage from "./pages/PolicyPage";
 import ChangeEmailPage from "./pages/ChangeEmailPage";
 
 
-
 function App() {
   return (
     <>
@@ -30,5 +29,6 @@ function App() {
     </>
   )
 }
+
 
 export default App;

@@ -11,6 +11,7 @@ export default defineConfig({
         preconnect: false,
         families: [
           'Montserrat', 'Noto Sans', 'Inter',
+
         ],
       },
     }),
