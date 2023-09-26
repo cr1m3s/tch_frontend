@@ -8,7 +8,6 @@ import CongratsPage from "./pages/CongratsPage";
 import PolicyPage from "./pages/PolicyPage";
 
 
-
 function App() {
   return (
     <>
@@ -28,5 +27,6 @@ function App() {
     </>
   )
 }
+
 
 export default App;

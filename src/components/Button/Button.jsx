@@ -16,7 +16,8 @@ export const Button = ({
             onClick={onClick}
             size={size}
             variant={variant}
-            type='submit'
+            type={type}
+
         >
             {icon && <StyledIcon position={iconPosition} name={icon} />}
             <StyledText>{children}</StyledText>

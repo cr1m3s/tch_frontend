@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import ICON_TYPES from "../../shared/icon-types";
 
 
-
 export const Icon = ({ className, name, size, color }) => {
     const props = {
         className,
