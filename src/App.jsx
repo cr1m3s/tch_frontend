@@ -1,18 +1,22 @@
 import { Routes, Route } from "react-router-dom";
 import { GlobalStyles } from './styles/GlobalStyles.styled';
+import { FontStyles } from "./styles/FontStyles";
 import SharedLayout from "./components/SharedLayout";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import ConditionsPage from "./pages/ConditionsPage";
 import CongratsPage from "./pages/CongratsPage";
 import PolicyPage from "./pages/PolicyPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import ChangeEmailPage from "./pages/ChangeEmailPage";
+
 
 
 function App() {
   return (
     <>
       <GlobalStyles />
+      <FontStyles />
 
       <Routes>
         <Route path="/" element={<SharedLayout/>}>
@@ -24,6 +28,8 @@ function App() {
           <Route path="/conditions" element={<ConditionsPage />} />
           <Route path="/policy" element={<PolicyPage />} />
           <Route path="/success" element={<CongratsPage />} />
+
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </>
