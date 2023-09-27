@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-export const StyledMessage = styled.p`
+export const StyledMessage = styled.span`
     font-family: 'Nunito Sans';
     font-weight: 400;
     font-size: 20px;
