@@ -9,6 +9,7 @@ export const Button = ({
     size,
     onClick,
     iconPosition,
+    type
 }) => {
     return (
         <StyledButton
