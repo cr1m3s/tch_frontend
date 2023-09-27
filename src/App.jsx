@@ -7,6 +7,7 @@ import ConditionsPage from "./pages/ConditionsPage";
 import CongratsPage from "./pages/CongratsPage";
 import PolicyPage from "./pages/PolicyPage";
 import ChangeEmailPage from "./pages/ChangeEmailPage";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/change-email" element={<ChangeEmailPage />} />
+          <Route path="/change-password" element={<ChangePasswordPage />} />
 
           <Route path="/conditions" element={<ConditionsPage />} />
           <Route path="/policy" element={<PolicyPage />} />

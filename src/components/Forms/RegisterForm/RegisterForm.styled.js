@@ -39,7 +39,6 @@ export const LoginLinkBox = styled.div`
     margin-top: 34px;
     margin-bottom: 24px;
     color: ${props => props.theme.colors.primaryText};
-    font-family: 'Noto Sans';
     font-weight: 400;
     font-size: 20px;
     line-height: 120%    
