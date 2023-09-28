@@ -10,9 +10,27 @@ export default defineConfig({
       google: {
         preconnect: false,
         families: [
-          'Montserrat', 'Noto Sans', 'Inter',
+          'Montserrat', 'Nunito Sans', 'Inter',
+
         ],
       },
+      custom: {
+        families: [{
+          name: 'Neue Machina',
+          local: 'Neue Machina',
+          src: './src/styles/fonts/*.ttf',
+          transform(font) {
+            if (font.basename === 'NeueMachina-Bold') {
+              font.weight = 700
+            }
+            return font;
+          }
+        }],
+        display: 'auto',
+        preload: true,
+        prefetch: false,
+        injectTo: 'head-prepend',
+      }
     }),
   ],
   server: {

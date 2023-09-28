@@ -9,6 +9,7 @@ export const Button = ({
     size,
     onClick,
     iconPosition,
+    type
 }) => {
     return (
         <StyledButton
@@ -16,7 +17,7 @@ export const Button = ({
             onClick={onClick}
             size={size}
             variant={variant}
-            type='submit'
+            type={type}
         >
             {icon && <StyledIcon position={iconPosition} name={icon} />}
             <StyledText>{children}</StyledText>
@@ -33,6 +34,7 @@ Button.propTypes = {
     onClick: PropTypes.func,
     isDisabled: PropTypes.bool,
     iconPosition: StyledIcon.propTypes.position,
+    type: PropTypes.string.isRequired,
     icon: PropTypes.string,
 };
 

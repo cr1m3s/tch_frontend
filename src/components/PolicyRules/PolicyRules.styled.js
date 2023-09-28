@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
     padding: 40px 20px 40px 20px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
 
     @media screen and (min-width: 768px) {
         width: 736px;
@@ -41,4 +41,14 @@ export const Item = styled.li`
     font-size: 18px;
     line-height: 140%;
     color: ${props => props.theme.colors.primaryText};    
+
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }    
+`;
+
+export const ItemTitle = styled.span`
+    font-weight: 700;
+    font-size: 18px; 
+    line-height: 120%;   
 `;

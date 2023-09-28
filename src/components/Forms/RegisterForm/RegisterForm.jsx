@@ -30,7 +30,6 @@ const userSchema = Yup.object().shape({
         .required("Password is required"),
     confirmPassword: Yup.string()
         .required("Conformation is required")
-        .min(4)
         .oneOf([Yup.ref("password"), null], "Passwords must match"),
     confirmation: Yup.bool().oneOf([true], "Confirmation is required")
 });
@@ -186,7 +185,7 @@ const RegisterForm = () => {
                                     }
                                 </div>
                                 <ConfirmationText>
-                                    By checking this box, you are creating an account and you agree to the <PolicyLink target="_blank" to="/conditions">Terms & Conditions</PolicyLink> and <PolicyLink href="">Privacy Policy</PolicyLink>.
+                                    By checking this box, you are creating an account and you agree to the <PolicyLink target="_blank" to="/conditions">Terms & Conditions</PolicyLink> and <PolicyLink target="_blank" to="/policy">Privacy Policy</PolicyLink>.
                                 </ConfirmationText>
                             </CheckboxContainer>                            
 

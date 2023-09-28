@@ -4,7 +4,7 @@ import Title from "../Title/Title";
 import { Button } from "../Button/Button";
 import { Link, useLocation } from "react-router-dom";
 import { useRef } from "react";
-import { Section, SuccessWrapper, } from "./Congratulations.styled";
+import { Section, SuccessWrapper } from "./Congratulations.styled";
 
 
 
