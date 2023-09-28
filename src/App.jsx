@@ -10,7 +10,7 @@ import PolicyPage from "./pages/PolicyPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ChangeEmailPage from "./pages/ChangeEmailPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
-
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 
 
 function App() {
@@ -26,6 +26,7 @@ function App() {
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/change-email" element={<ChangeEmailPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/change-password" element={<ChangePasswordPage />} />
 
           <Route path="/conditions" element={<ConditionsPage />} />
           <Route path="/policy" element={<PolicyPage />} />

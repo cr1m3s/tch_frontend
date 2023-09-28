@@ -23,7 +23,6 @@ export const Line = styled.div`
 `;
 
 export const OrText = styled.span`
-    font-family: 'Noto Sans';
     font-weight: 400;
     font-size: 18px;
     line-height: 120%;

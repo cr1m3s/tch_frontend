@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Title = styled.h1`
     font-family: 'Montserrat';
     font-weight: 700;
-    font-size: 36px;
+    font-size: 32px;
     line-height: 120%;
     color: ${props => props.theme.colors.primaryText};
     margin-bottom: 32px;
