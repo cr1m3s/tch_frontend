@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import { Navigation } from "../../../Navigation";
 
 export const StyledContainer = styled.div`
   min-width: 100%;
@@ -9,12 +10,8 @@ export const StyledContainer = styled.div`
   right: 0;
   left: 0;
   z-index: 100;
-
-  /* @media (max-width: 768px) {
-    height: 72px;
-    z-index: 2;
-  } */
 `;
+
 export const StyledFixed = styled.div`
   max-width: 1440px;
   display: flex;
@@ -34,15 +31,21 @@ export const StyledFixed = styled.div`
     border-radius: 0 0 6px 6px;
     box-shadow: -1px 8px 44px -16px rgba(199, 199, 199, 1);
   }
-  @media (max-width: 768px) {
-    flex-direction: column;
+  @media (max-width: 1230px) {
+    border-bottom: 1px solid #aeacac;
+  }
+`;
+
+export const StyledNavigation = styled(Navigation)`
+  @media (max-width: 1230px) {
     min-height: 100vh;
     transform: ${({ isOpen }) =>
       isOpen ? "translateX(0)" : "translateX(-100vw)"};
     position: absolute;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-around;
     top: 0;
     left: 0;
     right: 0;
@@ -51,7 +54,7 @@ export const StyledFixed = styled.div`
     z-index: 1;
     width: 100%;
     /* padding-top: ${({ isLogin }) => (isLogin ? "80px" : "60px")}; */
-    /* padding-bottom: 30px; */
-    /* background: ${(props) => props.theme.colors.white}; */
+    padding-bottom: 50px;
+    background: ${(props) => props.theme.colors.blue};
   }
 `;

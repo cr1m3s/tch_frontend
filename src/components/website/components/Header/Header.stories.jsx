@@ -5,12 +5,9 @@ export default {
     component: Header,
 };
 
-function Template(args) {
-    return <Header {...args} />;
-}
+const Template = (args) => <Header {...args} />;
 
 export const Desktop = Template.bind({});
 Desktop.args = {
 
 };
-

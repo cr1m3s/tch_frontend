@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export const LogoHeader = styled(Link)`
   display: block;
@@ -13,10 +13,13 @@ export const LogoHeader = styled(Link)`
 `;
 
 export const LogoFooter = styled(Link)`
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   width: 224px;
-  height: 120px;
+  height: 70px;
+  z-index: 101;
   svg {
     width: 224px;
     height: 70px;

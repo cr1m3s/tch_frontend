@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
-import { Logo, Navigation } from "../../../../components";
-import { StyledContainer, StyledFixed } from "./Header.styled";
+import { useEffect, useRef, useState } from "react";
+import { Logo } from "../../../../components";
+import { StyledContainer, StyledFixed, StyledNavigation } from "./Header.styled";
+import { Burger } from "../../../Burger/Burger";
 
 
 
@@ -24,13 +25,28 @@ export const Header = () => {
         };
     }, []);
 
+    // Burger
+    const [isOpen, setIsOpen] = useState(false);
+    const handleBurgerClick = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
-        <StyledContainer >
-            <StyledFixed ref={headerRef}>
-                <Logo variant="header" />
-                <Navigation />
-            </StyledFixed>
-        </StyledContainer>
+        <>
+            <StyledContainer >
+                <StyledFixed ref={headerRef}>
+                    <Logo variant="header" />
+                    {/* {isOpen ? (
+                        <Logo variant="footer" />
+                    ) : (
+                        <Logo variant="header" />
+                    )} */}
+                    <StyledNavigation className="navigation" isOpen={isOpen} />
+                </StyledFixed>
+            </StyledContainer>
+            <Burger onClick={handleBurgerClick} isOpen={isOpen} />
+        </>
+
     );
 }
 

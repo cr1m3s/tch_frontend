@@ -18,6 +18,9 @@ export const StyledLink = styled(NavLink)`
     text-decoration: underline;
     font-weight: 700;
   }
+  @media (max-width: 1230px) {
+    color: ${(props) => props.theme.colors.white};
+  }
   /* @media (max-width: 768px) {
     font-size: ${({ isOpen }) => (isOpen ? "32px" : "12px")};
   }
