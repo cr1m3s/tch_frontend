@@ -1,22 +1,24 @@
 import { Suspense } from "react";
 import { ResponsiveContainer } from "../styles/ResponsiveContainer";
-import Header from "./Header/Header";
 import { Outlet } from "react-router-dom";
+import { Header } from "./website/components/Header/Header";
 
 
 
 const SharedLayout = () => {
     return (
         <>
-            <Header/>
             <ResponsiveContainer>
-                <Suspense fallback={<div>Loading...</div>}>
-                    <Outlet/>
-                </Suspense>
+                <Header />
+                <div style={{ minHeight: "300vh" }}>
+                    <Suspense fallback={<div>Loading...</div>} >
+                        <Outlet />
+                    </Suspense>
+                </div>
             </ResponsiveContainer>
         </>
-        
+
     );
 }
- 
+
 export default SharedLayout;

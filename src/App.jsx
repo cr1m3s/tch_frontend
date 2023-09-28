@@ -12,13 +12,11 @@ import ChangeEmailPage from "./pages/ChangeEmailPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import CreateNewPasswordPage from "./pages/CreateNewPasswordPage";
 
-
 function App() {
   return (
     <>
       <GlobalStyles />
       <FontStyles />
-
       <Routes>
         <Route path="/" element={<SharedLayout/>}>
           <Route index element={<>home page</>} />
@@ -31,7 +29,6 @@ function App() {
           <Route path="/conditions" element={<ConditionsPage />} />
           <Route path="/policy" element={<PolicyPage />} />
           <Route path="/success" element={<CongratsPage />} />
-
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
