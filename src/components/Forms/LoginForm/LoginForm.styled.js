@@ -85,7 +85,7 @@ export const InputIconShow = styled.span`
     right: 12px;
 `;
 
-export const ForgotPassword = styled.p`
+export const ForgotPassword = styled(Link)`
     color: ${props => props.theme.colors.link};
     font-weight: 400;
     font-size: 14px;
