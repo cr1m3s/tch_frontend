@@ -83,6 +83,7 @@ const LoginForm = () => {
                                         placeholder="Enter email"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
+                                        error={errors.email}
                                         border={errors.email && touched.email && "1px solid red"}
                                     />
                                     <Error name="email" component="div" />
@@ -119,7 +120,7 @@ const LoginForm = () => {
                             </div>
 
 
-                            <ForgotPassword href="#">Forgot password?</ForgotPassword>
+                            <ForgotPassword to="/reset-password">Forgot password?</ForgotPassword>
 
                             <ButtonsAuthContainer
                                 text={"Log in"}

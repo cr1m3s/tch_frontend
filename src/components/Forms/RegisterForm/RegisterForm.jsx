@@ -30,7 +30,6 @@ const userSchema = Yup.object().shape({
         .required("Password is required"),
     confirmPassword: Yup.string()
         .required("Conformation is required")
-        .min(4)
         .oneOf([Yup.ref("password"), null], "Passwords must match"),
     confirmation: Yup.bool().oneOf([true], "Confirmation is required")
 });

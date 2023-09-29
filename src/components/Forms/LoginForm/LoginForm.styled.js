@@ -26,7 +26,7 @@ export const LoginFormContainer = styled.div`
     align-items: center;
 `;
 
-export const LoginLinkBox = styled.div`
+export const LoginLinkBox = styled.p`
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -34,7 +34,6 @@ export const LoginLinkBox = styled.div`
     margin-top: 34px;
     margin-bottom: 24px;
     color: ${props => props.theme.colors.primaryText};
-    font-family: 'Noto Sans';
     font-weight: 400;
     font-size: 20px;
     line-height: 120%    
@@ -54,7 +53,6 @@ export const FormBox = styled(Form)`
 export const InputsGroup = styled.div`
     margin-bottom: 50px;
 `;
-
 
 export const InputBox = styled.div`
     position: relative;
@@ -87,7 +85,7 @@ export const InputIconShow = styled.span`
     right: 12px;
 `;
 
-export const ForgotPassword = styled.p`
+export const ForgotPassword = styled(Link)`
     color: ${props => props.theme.colors.link};
     font-weight: 400;
     font-size: 14px;
