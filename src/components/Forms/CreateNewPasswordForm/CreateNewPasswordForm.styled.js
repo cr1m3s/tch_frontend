@@ -1,22 +1,22 @@
 import styled from 'styled-components';
-import { Field, ErrorMessage, Form } from 'formik';
+import { Field, Form, ErrorMessage } from 'formik';
 
 
 export const Section = styled.div`
     padding-top: 100px;
-    padding-bottom: 150px;
+    padding-bottom: 150px; 
 
     @media screen and (min-width: ${props => props.theme.sizes.tablet}) {
-        padding-top: 80px; 
-    }
+        padding-top: 80px;
+    };    
 
     @media screen and (min-width: ${props => props.theme.sizes.desk}) {
         padding-top: 100px;
-        padding-bottom: 200px;
-    }
+        padding-bottom: 200px; 
+    };  
 `;
 
-export const ChangePasswordFormContainer = styled.div`
+export const CreatePasswordFormContainer = styled.div`
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -25,27 +25,25 @@ export const ChangePasswordFormContainer = styled.div`
     width: 408px;
 
     @media screen and (min-width: ${props => props.theme.sizes.tablet}) {
-        width: 578px;
-    }    
+        width: 543px;
+    }
 `;
 
-export const FormDescr = styled.p`
+export const MessageWrapper = styled.div`
     text-align: center;
     margin-bottom: 24px;
-    width: 358px;
-    
-    @media screen and (min-width: ${props => props.theme.sizes.tablet}) {
-        width: 408px;
+    width: 408px;
+
+    @media screen and (min-width: 768px) {
+        width: 358px;
     }    
 `;
 
 export const FormBox = styled(Form)`
-    display: flex;
-    flex-direction: column;
-    width: 358px;
+    width: 408px;
 
     @media screen and (min-width: ${props => props.theme.sizes.tablet}) {
-        width: 408px;
+        width: 358px;
     }    
 `;
 
@@ -57,7 +55,7 @@ export const InputBoxesWrapper = styled.div`
 
     @media screen and (min-width: ${props => props.theme.sizes.tablet}) {
         margin-bottom: 48px;
-    }    
+    }
 `;
 
 export const InputBox = styled.div`
@@ -76,17 +74,17 @@ export const Label = styled.label`
 export const Input = styled(Field)`
     height: 48px;
     border: 1px solid ${props => props.theme.colors.disabled};
-    border-radius: 6px; 
+    border-radius: 6px;
     padding-left: 16px;
     font-size: 18px;
 `;
 
 export const Error = styled(ErrorMessage)`
-    color: ${props => props.theme.colors.error};
+    color: ${props => props.theme.colors.error}
 `;
 
 export const InputIconShow = styled.span`
     position: absolute;
-    top: 44px;
+    top: 32px;
     right: 12px;
 `;
