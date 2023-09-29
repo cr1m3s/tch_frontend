@@ -9,5 +9,6 @@ export const StyledMessage = styled.span`
     color: ${props => props.theme.colors.primaryText};  
     margin-top: ${props => `${props.$indentTop}px`};
     margin-bottom: ${props => `${props.$indentBottom}px`};
-    text-align: ${props => props.$position}
-`; 
+    text-align: ${props => props.$position};
+    width: ${props => `${props.$width}px`};
+`;

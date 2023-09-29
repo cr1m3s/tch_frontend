@@ -16,7 +16,7 @@ const PolicyRules = () => {
             <Wrapper>
                 <Title>Privacy Policy</Title>
                 <AccentText>
-                    `${'You consent to SKILL STREAM for the storage and processing of your personal data in accordance with the Law of Ukraine "On the Protection of Personal Data." We undertake to protect your data and not to transfer it to third parties without your consent.'}`                
+                    You consent to SKILL STREAM for the storage and processing of your personal data in accordance with the Law of Ukraine "On the Protection of Personal Data." We undertake to protect your data and not to transfer it to third parties without your consent.               
                 </AccentText>
                 <Text>
                     This page informs you of our policies regarding the collection, use and disclosure of Personal Information when you use our Service.                
@@ -60,7 +60,7 @@ const PolicyRules = () => {
                     </Text>                
                 </div> 
                 <Text>
-                    `${"Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data."}`
+                    Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data.
                 </Text>    
                 <Text>
                     When You access the Service by or through a mobile device, We may collect certain information automatically, including, but not limited to, the type of mobile device You use, Your mobile device unique ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet browser You use, unique device identifiers and other diagnostic data.
@@ -81,10 +81,10 @@ const PolicyRules = () => {
                     <Item>Facebook</Item>
                 </ul>       
                 <Text>
-                    `${"If You decide to register through or otherwise grant us access to a Third-Party Social Media Service, We may collect Personal data that is already associated with Your Third-Party Social Media Service's account, such as Your name, Your email address, Your activities or Your contact list associated with that account."}`
+                    If You decide to register through or otherwise grant us access to a Third-Party Social Media Service, We may collect Personal data that is already associated with Your Third-Party Social Media Service's account, such as Your name, Your email address, Your activities or Your contact list associated with that account.
                 </Text>  
                 <Text>
-                    `${"You may also have the option of sharing additional information with the Company through Your Third-Party Social Media Service's account. If You choose to provide such information and Personal Data, during registration or otherwise, You are giving the Company permission to use, share, and store it in a manner consistent with this Privacy Policy."}`
+                    You may also have the option of sharing additional information with the Company through Your Third-Party Social Media Service's account. If You choose to provide such information and Personal Data, during registration or otherwise, You are giving the Company permission to use, share, and store it in a manner consistent with this Privacy Policy.
                 </Text>             
                 <div>
                     <Subtitle>
@@ -113,7 +113,7 @@ const PolicyRules = () => {
                     <Item>
                         <ItemTitle>
                             To contact You:                  
-                        </ItemTitle> `${"To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates, when necessary or reasonable for their implementation."}`               
+                        </ItemTitle> To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates, when necessary or reasonable for their implementation.
                     </Item>    
                     <Item>
                         <ItemTitle>
@@ -187,7 +187,7 @@ const PolicyRules = () => {
                         Transfer of Your Personal Data                 
                     </Subtitle>
                     <Text>
-                        `${"Your information, including Personal Data, is processed at the Company's operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of Your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from Your jurisdiction."}`
+                        Your information, including Personal Data, is processed at the Company's operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of Your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from Your jurisdiction.
                     </Text>                
                 </div>
                 <Text>
@@ -209,22 +209,22 @@ const PolicyRules = () => {
                         Log Data               
                     </Subtitle>
                     <Text>
-                        `${"We collect information that your browser sends whenever you visit our Service ('Log Data'). This Log Data may include information such as your computer's Internet Protocol ('IP') address, browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages and other statistics."}`
+                        We collect information that your browser sends whenever you visit our Service ('Log Data'). This Log Data may include information such as your computer's Internet Protocol ('IP') address, browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages and other statistics.
                     </Text>                
                 </div>    
                 <Text>
-                    `${"In addition, we may use third party services such as Google Analytics that collect, monitor and analyze this type of information in order to increase our Service's functionality. These third party service providers have their own privacy policies addressing how they use such information."}`
+                    In addition, we may use third party services such as Google Analytics that collect, monitor and analyze this type of information in order to increase our Service's functionality. These third party service providers have their own privacy policies addressing how they use such information.
                 </Text>   
                 <div>
                     <Subtitle>
                         Cookies              
                     </Subtitle>
                     <Text>
-                        `${"Cookies are files with small amount of data, which may include an anonymous unique identifier. Cookies are sent to your browser from a web site and stored on your computer's hard drive."}`
+                        Cookies are files with small amount of data, which may include an anonymous unique identifier. Cookies are sent to your browser from a web site and stored on your computer's hard drive.
                     </Text>                
                 </div>         
                 <Text>
-                    `${"We use 'cookies' to collect information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service."}`
+                    We use 'cookies' to collect information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.
                 </Text>      
                 <div>
                     <Subtitle>
@@ -270,7 +270,7 @@ const PolicyRules = () => {
                         Links To Other Sites              
                     </Subtitle>
                     <Text>
-                        `${"Our Service may contain links to other sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit."}`
+                        Our Service may contain links to other sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.
                     </Text>                
                 </div> 
                 <Text>
@@ -286,10 +286,10 @@ const PolicyRules = () => {
                 </div>
                 <div>
                     <Subtitle>
-                        `${"Children's Privacy"}`              
+                        Children's Privacy
                     </Subtitle>
                     <Text>
-                        `${"Our Service does not address anyone under the age of 13 ('Children')."}`
+                        Our Service does not address anyone under the age of 13 ('Children').
                     </Text>                
                 </div>   
                 <Text>
