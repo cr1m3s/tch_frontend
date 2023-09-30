@@ -10,11 +10,9 @@ const SharedLayout = () => {
         <>
             <ResponsiveContainer>
                 <Header />
-                <div style={{ minHeight: "300vh" }}>
-                    <Suspense fallback={<div>Loading...</div>} >
-                        <Outlet />
-                    </Suspense>
-                </div>
+                <Suspense fallback={<div>Loading...</div>} >
+                    <Outlet />
+                </Suspense>
             </ResponsiveContainer>
         </>
 

@@ -4,8 +4,8 @@ import { ButtonLink } from "../Link";
 export const StyledNavContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 310px;
-  @media (min-width: 1440px) {
+  grid-template-columns: 1fr 410px;
+  @media (min-width: ${(props) => props.theme.sizes.desk}) {
     grid-template-columns: 1fr 410px;
   }
 `;
@@ -34,9 +34,12 @@ export const StyledNavActions = styled.div`
   gap: 10px;
   justify-self: end;
   font-family: Nunito Sans;
-  @media (max-width: 1230px) {
+  @media (max-width: 1440px) {
     min-width: 100%;
     justify-content: center;
+  }
+  @media (max-width: 1230px) {
+    padding-bottom: 50px;
   }
 `;
 

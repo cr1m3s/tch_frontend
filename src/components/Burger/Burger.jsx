@@ -13,7 +13,6 @@ export const Burger = ({ onClick, isOpen }) => {
 }
 
 Burger.propTypes = {
-  ref: PropTypes.func,
   isOpen: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 }

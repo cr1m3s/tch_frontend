@@ -4,13 +4,13 @@ import { NavLink } from "react-router-dom";
 export const StyledLink = styled(NavLink)`
   font-family: Montserrat;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 150%;
-  letter-spacing: 3.6px;
+  letter-spacing: 2.6px;
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
-  color: ${(props) => props.theme.colors.primaryText};
+  color: ${(props) => props.theme.colors.white};
   &:hover {
     text-decoration-line: underline;
   }
@@ -18,17 +18,10 @@ export const StyledLink = styled(NavLink)`
     text-decoration: underline;
     font-weight: 700;
   }
-  @media (max-width: 1230px) {
-    color: ${(props) => props.theme.colors.white};
+  @media (min-width: ${(props) => props.theme.sizes.laptopLarge}) {
+    font-size: 18px;
+    color: ${(props) => props.theme.colors.primaryText};
   }
-  /* @media (max-width: 768px) {
-    font-size: ${({ isOpen }) => (isOpen ? "32px" : "12px")};
-  }
-  @media (any-hover: hover) {
-    &:hover {
-      color: ${(props) => props.theme.colors.P5};
-    }
-  } */
 `;
 export const StyledButtonLink = styled(NavLink)`
   font-family: Montserrat;
@@ -48,9 +41,10 @@ export const StyledButtonLink = styled(NavLink)`
   &:hover {
     text-decoration-line: none;
   }
-  @media (min-width: 1440px) {
+  @media (min-width: ${(props) => props.theme.sizes.desk}) {
     min-width: 200px;
   }
+
   /* @media (max-width: 768px) {
     font-size: ${({ isOpen }) => (isOpen ? "32px" : "12px")};
   }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Burger } from './Burger';
 
 export default {
@@ -12,6 +11,6 @@ function Template(args) {
 
 export const Default = Template.bind({});
 Default.args = {
-  onClick: () => {},
+  onClick: () => { },
   isOpen: false,
 };

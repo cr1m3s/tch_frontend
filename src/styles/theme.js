@@ -17,12 +17,13 @@ export const light = {
   },
 
   sizes: {
-    mobile:'440px',
-    tablet: '768px',
-    desk: '1440px',
-    large: '1920px'
+    mobile: "440px",
+    tablet: "768px",
+    laptop: "1024px",
+    laptopLarge: "1230px",
+    desk: "1440px",
+    large: "1920px",
   },
-
 };
 
 export const dark = {

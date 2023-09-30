@@ -3,6 +3,7 @@ import { StyledNavActions, StyledNavContainer, StyledNavPrimary, StyledNavSecond
 import { PropTypes } from 'prop-types';
 
 export const Navigation = ({ className }) => {
+
     return (
         <StyledNavContainer className={className}>
             <StyledNav className="nav-list" >
@@ -14,7 +15,7 @@ export const Navigation = ({ className }) => {
                 <StyledNavPrimary to="/login" >Log in</StyledNavPrimary>
                 <StyledNavSecondary to="/register" >Sing up</StyledNavSecondary>
             </StyledNavActions>
-        </StyledNavContainer>
+        </StyledNavContainer >
     );
 }
 

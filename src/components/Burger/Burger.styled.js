@@ -24,9 +24,7 @@ export const StyledBurger = styled.div`
       height: 0.2rem;
       ${(props) => css`
         background-color: ${({ isOpen }) =>
-          isOpen
-            ? props.theme.colors.secondBlack
-            : props.theme.colors.secondBlack};
+          isOpen ? props.theme.colors.white : props.theme.colors.secondBlack};
         &:nth-child(1) {
           transform: ${({ isOpen }) =>
             isOpen ? "rotate(45deg) translate(10px,5px)" : "rotate(0)"};

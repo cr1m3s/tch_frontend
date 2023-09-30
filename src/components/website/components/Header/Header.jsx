@@ -26,25 +26,24 @@ export const Header = () => {
     }, []);
 
     // Burger
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpened, setIsOpen] = useState(false);
     const handleBurgerClick = () => {
-        setIsOpen(!isOpen);
+        setIsOpen(!isOpened);
     };
 
     return (
         <>
             <StyledContainer >
                 <StyledFixed ref={headerRef}>
-                    <Logo variant="header" />
-                    {/* {isOpen ? (
+                    {isOpened ? (
                         <Logo variant="footer" />
                     ) : (
                         <Logo variant="header" />
-                    )} */}
-                    <StyledNavigation className="navigation" isOpen={isOpen} />
+                    )}
+                    <StyledNavigation className="navigation" isOpen={isOpened} />
                 </StyledFixed>
             </StyledContainer>
-            <Burger onClick={handleBurgerClick} isOpen={isOpen} />
+            <Burger onClick={handleBurgerClick} isOpen={isOpened} />
         </>
 
     );
