@@ -15,7 +15,11 @@ import { Icon } from "../../Icon";
 const ButtonsAuthContainer = ({disabled, text}) => {
     return (
         <BtnWrapper>
-            <Button size="fluid" isDisabled={disabled}>
+            <Button
+                size="fluid"
+                type="submit"
+                isDisabled={disabled}
+            >
                 {text}
             </Button>
 

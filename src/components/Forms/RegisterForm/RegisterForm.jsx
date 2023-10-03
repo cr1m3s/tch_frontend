@@ -18,7 +18,7 @@ import {
 import FormTitle from "../FormTitle/FormTitle";
 import ButtonsAuthContainer from "../ButtonsAuthContainer/ButtonsAuthContainer";
 import { Icon } from "../../Icon";
-
+import { register } from "../../../services/auth-api";
 
 
 const userSchema = Yup.object().shape({
@@ -44,17 +44,15 @@ const initialValues = {
 
 
 const RegisterForm = () => {
-    const [userData, setUserData] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState("");
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
     const [isChecked, setIsChecked] = useState(false);
 
-    const handleSubmit = ({ name, email, password }, { resetForm }) => {
+    const handleSubmit = (values, { resetForm }) => {
         if (isChecked) {
-            setUserData({ name, email, password });
-            console.log(userData);
+            register(values);
 
             resetForm();
             setIsChecked(false);
