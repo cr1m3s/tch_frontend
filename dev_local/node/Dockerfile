@@ -1,3 +1,3 @@
-FROM node:20.6.0-bullseye
+FROM node:20.8.0-bookworm
 USER node
 WORKDIR /var/www/app

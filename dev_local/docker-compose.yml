@@ -10,6 +10,7 @@ services:
       - ../:/var/www/app
     ports:
       - "3000:3000"
+      - "6006:6006"
     command: "bash"
     tty: true
 
