@@ -21,7 +21,7 @@ export const register = async (values) => {
         );
 
         if (response.status === 201) {
-            return response.data.data;
+            return response.data.Data;
         }
     } catch(error) {
         console.log(error.message);
@@ -40,7 +40,7 @@ export const login = async (values) => {
         );
         
         if (response.status === 200) {
-            const token = response.data.data;
+            const token = response.data.Data;
             setDataToLocalStorage('token', token)
             return token;
         }
@@ -55,14 +55,18 @@ export const login = async (values) => {
  * headers: Authorization: Bearer token
  */
 export const refreshUser = async () => {
-    try {
-        const response = await axios.get(
-            `/protected/userinfo`
-        );
+    const writtenToken = getDataFromLocalStorage("token");
 
-        return response;
+    if (typeof writtenToken === "string") {
+        try {
+            const response = await axios.get(
+                `/protected/userinfo`
+            );
 
-    } catch(error) {
-        console.log(error.message);
+            return response.data.Data;
+
+        } catch(error) {
+            console.log(error.message);
+        }
     }
 }

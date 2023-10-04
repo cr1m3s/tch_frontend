@@ -22,10 +22,13 @@ import { register } from "../../../services/authAPI";
 
 
 const userSchema = Yup.object().shape({
-    name: Yup.string().min(2).max(16).required("Name is required"),
+    name: Yup.string()
+        .min(2, "Name must have at least 2 characters")
+        .max(16, "Name can not have more then 16 characters")
+        .required("Name is required"),
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
-        .min(6, "Password mast be at least 6 characters")
+        .min(6, "Password must be at least 6 characters")
         .max(16, "Password can not have more then 16 characters")
         .required("Password is required"),
     confirmPassword: Yup.string()
