@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Navigation } from "../../../Navigation";
+import { Navigation } from "../../../common";
 
 export const StyledContainer = styled.header`
   min-width: 100%;

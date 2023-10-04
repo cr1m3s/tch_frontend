@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Logo } from "../../../../components";
 import { StyledContainer, StyledFixed, StyledNavigation } from "./Header.styled";
-import { Burger } from "../../../Burger/Burger";
+import { Logo, Burger } from "../../../common";
 
 
 
