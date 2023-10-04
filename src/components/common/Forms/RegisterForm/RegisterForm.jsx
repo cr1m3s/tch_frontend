@@ -15,8 +15,8 @@ import {
     PolicyLink,
     InputIconShow
 } from "./RegisterForm.styled";
-import { FormTitle } from "../FormTitle/";
-import { ButtonsAuthContainer } from "../ButtonsAuthContainer/";
+import FormTitle from "../FormTitle/FormTitle";
+import ButtonsAuthContainer from "../ButtonsAuthContainer/ButtonsAuthContainer";
 import { Icon } from "../../Icon";
 
 
@@ -43,7 +43,7 @@ const initialValues = {
 };
 
 
-export const RegisterForm = () => {
+const RegisterForm = () => {
     const [userData, setUserData] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState("");
@@ -64,15 +64,15 @@ export const RegisterForm = () => {
     const handleTogglePassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
         setPasswordError("");
-    };
-
+    }; 
+    
     const handleToggleConfirmPassword = () => {
         setShowConfirmPassword(
-            (prevShowConfirmPassword) => !prevShowConfirmPassword
+        (prevShowConfirmPassword) => !prevShowConfirmPassword
         );
         setConfirmPasswordError("");
-    };
-
+    };  
+    
     const handleToggleCheck = () => {
         setIsChecked(!isChecked);
     };
@@ -82,7 +82,7 @@ export const RegisterForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userSchema}
+                validationSchema={userSchema}        
             >
                 {({
                     errors,
@@ -90,7 +90,7 @@ export const RegisterForm = () => {
                     values,
                     handleChange,
                     handleBlur,
-                    isSubmitting,
+                    isSubmitting,                
                 }) => (
                     <RegisterFormContainer>
                         <FormTitle>Sign up</FormTitle>
@@ -108,12 +108,12 @@ export const RegisterForm = () => {
                                     value={values.name}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    border={errors.name && touched.name && "1px solid red"}
+                                    border={errors.name && touched.name && "1px solid red"}                            
                                 />
                                 <Error name="name" component="div" />
                             </InputBox>
 
-
+                            
                             <InputBox>
                                 <label>Email</label>
                                 <Input
@@ -138,7 +138,7 @@ export const RegisterForm = () => {
                                     placeholder="Password"
                                     onBlur={handleBlur}
                                     error={errors.password || passwordError}
-                                    border={errors.password && touched.password && "1px solid red"}
+                                    border={errors.password && touched.password && "1px solid red"}                            
                                 />
                                 <InputIconShow onClick={handleTogglePassword}>
                                     {
@@ -146,7 +146,7 @@ export const RegisterForm = () => {
                                             ? <Icon name="eye" size={24} color={"#EEEEEE"} />
                                             : <Icon name="hidden" size={24} color={"#EEEEEE"} />
                                     }
-                                </InputIconShow>
+                                </InputIconShow>                                
                             </InputBox>
                             <Error name="password" component="div" />
 
@@ -172,10 +172,10 @@ export const RegisterForm = () => {
                                             ? <Icon name="eye" size={24} color={"#EEEEEE"} />
                                             : <Icon name="hidden" size={24} color={"#EEEEEE"} />
                                     }
-                                </InputIconShow>
+                                </InputIconShow>  
                             </InputBox>
-                            <Error name="confirmPassword" component="div" />
-
+                            <Error name="confirmPassword" component="div" />   
+                                    
                             <CheckboxContainer>
                                 <div onClick={handleToggleCheck}>
                                     {
@@ -187,7 +187,7 @@ export const RegisterForm = () => {
                                 <ConfirmationText>
                                     By checking this box, you are creating an account and you agree to the <PolicyLink target="_blank" to="/conditions">Terms & Conditions</PolicyLink> and <PolicyLink target="_blank" to="/policy">Privacy Policy</PolicyLink>.
                                 </ConfirmationText>
-                            </CheckboxContainer>
+                            </CheckboxContainer>                            
 
                             <ButtonsAuthContainer
                                 text={"Sign up"}
@@ -196,8 +196,9 @@ export const RegisterForm = () => {
                         </Form>
                     </RegisterFormContainer>
                 )}
-            </Formik>
+            </Formik>        
         </Section>
     )
 };
 
+export default RegisterForm;

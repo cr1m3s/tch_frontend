@@ -40,5 +40,9 @@ export const Item = styled.li`
     font-weight: 400;
     font-size: 18px;
     line-height: 140%;
-    color: ${props => props.theme.colors.primaryText};    
+    color: ${props => props.theme.colors.primaryText};
+
+    &:not(:last-child) {
+        margin-bottom: 16px;
+    }
 `;
