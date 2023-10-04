@@ -16,6 +16,7 @@ import {
 import FormTitle from "../FormTitle/FormTitle";
 import ButtonsAuthContainer from "../ButtonsAuthContainer/ButtonsAuthContainer";
 import { Icon } from "../../Icon";
+import { login } from "../../../services/authAPI";
 
 
 
@@ -35,14 +36,12 @@ const initialValues = {
 
 
 const LoginForm = () => {
-    const [userData, setUserData] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState("");
 
 
-    const handleSubmit = ({ email, password }, { resetForm }) => {
-        setUserData({ email, password });
-        console.log(userData);
+    const handleSubmit = (values, { resetForm }) => {
+        login(values);
         resetForm();
     };
 
@@ -123,7 +122,7 @@ const LoginForm = () => {
                             <ForgotPassword to="/reset-password">Forgot password?</ForgotPassword>
 
                             <ButtonsAuthContainer
-                                text={"Log in"}
+                                text="Log in"
                                 disabled={isSubmitting}
                             />
                         </FormBox>

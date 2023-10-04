@@ -18,7 +18,7 @@ import {
 import FormTitle from "../FormTitle/FormTitle";
 import ButtonsAuthContainer from "../ButtonsAuthContainer/ButtonsAuthContainer";
 import { Icon } from "../../Icon";
-import { register } from "../../../services/auth-api";
+import { register } from "../../../services/authAPI";
 
 
 const userSchema = Yup.object().shape({
