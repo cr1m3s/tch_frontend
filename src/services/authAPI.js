@@ -3,6 +3,7 @@ import {
     setDataToLocalStorage,
     getDataFromLocalStorage
 } from "./localStorage";
+import { STATUS_CODES } from "../shared";
 
 
 axios.defaults.baseURL = "https://dev-backend-b4vo.onrender.com";
@@ -20,8 +21,8 @@ export const register = async (values) => {
             values
         );
 
-        if (response.status === 201) {
-            return response.data.Data;
+        if (response.status === STATUS_CODES.created) {
+            return response.data.data;
         }
     } catch(error) {
         console.log(error.message);
@@ -39,8 +40,8 @@ export const login = async (values) => {
             values
         );
         
-        if (response.status === 200) {
-            const token = response.data.Data;
+        if (response.status === STATUS_CODES.success) {
+            const token = response.data.data;
             setDataToLocalStorage('token', token)
             return token;
         }
@@ -63,8 +64,7 @@ export const refreshUser = async () => {
                 `/protected/userinfo`
             );
 
-            return response.data.Data;
-
+            return response.data.data;
         } catch(error) {
             console.log(error.message);
         }

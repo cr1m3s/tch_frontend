@@ -19,17 +19,18 @@ import FormTitle from "../FormTitle/FormTitle";
 import ButtonsAuthContainer from "../ButtonsAuthContainer/ButtonsAuthContainer";
 import { Icon } from "../../Icon";
 import { register } from "../../../services/authAPI";
+import { FORMS_VALIDATION } from "../../../shared";
 
 
 const userSchema = Yup.object().shape({
     name: Yup.string()
-        .min(2, "Name must have at least 2 characters")
-        .max(16, "Name can not have more then 16 characters")
+        .min(FORMS_VALIDATION.minName, "Name must have at least 2 characters")
+        .max(FORMS_VALIDATION.maxName, "Name can not have more then 16 characters")
         .required("Name is required"),
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
-        .min(6, "Password must be at least 6 characters")
-        .max(16, "Password can not have more then 16 characters")
+        .min(FORMS_VALIDATION.minPassword, "Password must be at least 6 characters")
+        .max(FORMS_VALIDATION.maxPassword, "Password can not have more then 16 characters")
         .required("Password is required"),
     confirmPassword: Yup.string()
         .required("Conformation is required")
