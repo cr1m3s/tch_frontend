@@ -177,6 +177,19 @@ export const Icon = ({ className, name, size, color }) => {
                     />
                 </svg>
             )
+        case ICON_TYPES.flagUa:
+            return (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={size}
+                    height={size}
+                    fill="none"
+                    {...props}
+                >
+                    <path fill="#FFDA44" d="M0 0h24v16H0V0Z" />
+                    <path fill="#338AF3" d="M0 0h24v8H0V0Z" />
+                </svg>
+            );
         default:
             return null;
     }

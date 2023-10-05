@@ -92,7 +92,7 @@ export const Subtitle = styled.p`
 export const SorryText = styled.p`
     font-size: 16px;
     line-height: 23px;
-    color: ${props => props.theme.colors.gray};
+    color: ${props => props.theme.colors.grey};
     margin-bottom: 16px;
 
     @media screen and (min-width: ${props => props.theme.sizes.tablet}) {
@@ -114,7 +114,7 @@ export const SorryText = styled.p`
 export const GoBackText = styled.p`
     font-size: 16px;
     line-height: 12px;
-    color: ${props => props.theme.colors.gray};
+    color: ${props => props.theme.colors.grey};
     margin-bottom: 40px;
 
     @media screen and (min-width: ${props => props.theme.sizes.tablet}) {

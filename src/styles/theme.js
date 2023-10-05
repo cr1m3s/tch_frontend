@@ -3,7 +3,7 @@ export const light = {
     background: "#f5f7fa",
     primaryText: "#000000",
     secondBlack: "#1D1C2B",
-    gray: "#8B8B8B",
+    grey: "#8B8B8B",
     white: "#ffffff",
     darkBlue: "#061F3E",
     blue: "#063E55",
@@ -14,6 +14,7 @@ export const light = {
     error: "#FF0000",
     borderBtn: "#E0E0E0",
     block: "#F9FAED",
+    lightGrey: "#F4F4F4",
   },
 
   sizes: {
