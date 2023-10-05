@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { StyledMessage } from "./Message.styled";
 
 
-const Message = ({ children, indentTop, indentBottom, position, width }) => {
+export const Message = ({ children, indentTop, indentBottom, position, width }) => {
 
     return (
         <StyledMessage
@@ -25,4 +25,3 @@ Message.propTypes = {
 };
 
 
-export default Message;

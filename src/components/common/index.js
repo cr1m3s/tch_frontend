@@ -1,6 +1,4 @@
 export * from "./Link";
-export * from "./Button";
-export * from "./Burger";
 export * from "./Logo";
 export * from "./Navigation";
 export * from "./NotFound";
@@ -10,3 +8,5 @@ export * from "./Conditions";
 export * from "./Forms";
 export * from "./Icon";
 export * from "./Texts";
+export * from "./Button";
+export * from "./Burger";

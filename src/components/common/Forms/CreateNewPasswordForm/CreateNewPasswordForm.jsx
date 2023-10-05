@@ -13,11 +13,7 @@ import {
     Error,
     InputIconShow
 } from "./CreateNewPasswordForm.styled";
-import FormTitle from "../FormTitle/FormTitle";
-import { Icon } from "../../Icon";
-import { Button } from "../../Button/Button";
-import Message from "../../Message/Message";
-
+import { FormTitle, Button, Message, Icon } from "../../../common";
 
 const userSchema = Yup.object().shape({
     password: Yup.string()
@@ -36,7 +32,7 @@ const initialValues = {
 };
 
 
-const CreateNewPasswordForm = () => {
+export const CreateNewPasswordForm = () => {
     const [userData, setUserData] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState("");
@@ -53,7 +49,7 @@ const CreateNewPasswordForm = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
         setPasswordError("");
     };
-    
+
     const handleToggleConfirmPassword = () => {
         setShowConfirmPassword(
             (prevShowConfirmPassword) => !prevShowConfirmPassword
@@ -75,7 +71,7 @@ const CreateNewPasswordForm = () => {
                         <MessageWrapper>
                             <Message indentBottom={24} position="center">
                                 Enter a new password for account: a.salute@gmail.com
-                            </Message>                          
+                            </Message>
                         </MessageWrapper>
 
                         <FormBox>
@@ -125,7 +121,7 @@ const CreateNewPasswordForm = () => {
                                         }
                                     </InputIconShow>
                                     <Error name="confirmPassword" component="div" />
-                                </InputBox>                            
+                                </InputBox>
                             </InputBoxesWrapper>
 
                             <Button
@@ -144,4 +140,3 @@ const CreateNewPasswordForm = () => {
 };
 
 
-export default CreateNewPasswordForm;

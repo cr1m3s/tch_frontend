@@ -10,39 +10,30 @@ import {
     Input,
     Error
 } from "./ResetPasswordForm.styled";
-import FormTitle from "../FormTitle/FormTitle";
-import { Button } from "../../Button/Button";
-import Message from "../../Message/Message";
-
-
-
-
+import { FormTitle, Button, Message } from "../../../common";
 
 const userSchema = Yup.object().shape({
     email: Yup.string().required("Enter current email is required").email("Email is invalid"),
 });
 
-
 const initialValues = {
     email: "",
 };
 
-
-
-const ResetPasswordForm = () => {
-    const [ userData, setUserData ] = useState({});
+export const ResetPasswordForm = () => {
+    const [userData, setUserData] = useState({});
 
     const handleSubmit = ({ email }, { resetForm }) => {
         setUserData({ email });
         resetForm();
     };
-    
+
     return (
         <Section>
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userSchema}        
+                validationSchema={userSchema}
             >
                 {({ errors, touched, values, handleChange, handleBlur, isSubmitting }) => (
                     <ResetPasswordFormContainer>
@@ -76,9 +67,8 @@ const ResetPasswordForm = () => {
                         </FormBox>
                     </ResetPasswordFormContainer>
                 )}
-            </Formik>        
+            </Formik>
         </Section>
     )
 };
 
-export default ResetPasswordForm;
