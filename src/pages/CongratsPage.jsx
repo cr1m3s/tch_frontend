@@ -1,10 +1,10 @@
-import Congratulations from "../components/Congratulations/Congratulations";
+import { Congratulations } from "../components/common";
 
 
 const CongratsPage = () => {
     return (
         <>
-            <Congratulations/>
+            <Congratulations />
         </>
     );
 };

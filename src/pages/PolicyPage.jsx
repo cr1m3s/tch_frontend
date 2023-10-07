@@ -1,9 +1,9 @@
-import PolicyRules from "../components/PolicyRules/PolicyRules";
+import { PolicyRules } from "../components/common";
 
 
 const PolicyPage = () => {
     return (
-        <PolicyRules/>
+        <PolicyRules />
     );
 };
 
