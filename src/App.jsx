@@ -12,8 +12,15 @@ import ChangeEmailPage from "./pages/ChangeEmailPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import CreateNewPasswordPage from "./pages/CreateNewPasswordPage";
+import { refreshUser } from "./services/authAPI";
+import { useEffect } from "react";
 
-function App() {
+
+const App = () => {
+  useEffect(() => {
+    refreshUser();
+  }, [])
+
   return (
     <>
       <GlobalStyles />
