@@ -15,8 +15,7 @@ import {
     PolicyLink,
     InputIconShow
 } from "./RegisterForm.styled";
-import { FormTitle } from "../../../common";
-import { ButtonsAuthContainer } from "../../../common";
+import { Button, ExternalAuth, FormTitle } from "../../../common";
 import { Icon } from "../../Icon";
 
 
@@ -95,7 +94,7 @@ export const RegisterForm = () => {
                     <RegisterFormContainer>
                         <FormTitle>Sign up</FormTitle>
                         <LoginLinkBox>
-                            <p>Already have an account?</p>
+                            Already have an account?
                             <LoginLink to="/login">Log in</LoginLink>
                         </LoginLinkBox>
                         <Form>
@@ -189,10 +188,14 @@ export const RegisterForm = () => {
                                 </ConfirmationText>
                             </CheckboxContainer>
 
-                            <ButtonsAuthContainer
-                                text={"Sign up"}
-                                disabled={isSubmitting}
-                            />
+                            <Button
+                                size="fluid"
+                                type="submit"
+                                isDisabled={isSubmitting}
+                            >
+                                Sign up
+                            </Button>       
+                            <ExternalAuth/>
                         </Form>
                     </RegisterFormContainer>
                 )}
