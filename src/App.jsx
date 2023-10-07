@@ -1,6 +1,9 @@
 import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 import { GlobalStyles } from './styles/GlobalStyles.styled';
 import { FontStyles } from "./styles/FontStyles";
+import { refreshUser, setDataToLocalStorage } from "./services";
+
 import SharedLayout from "./components/SharedLayout";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
@@ -16,6 +19,17 @@ import HomePage from "./pages/HomePage";
 
 
 const App = () => {
+  useEffect(() => {
+    refreshUser();
+
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const googleToken = urlSearchParams.get('token');
+
+    if (googleToken) {
+      setDataToLocalStorage("token", googleToken)
+    }
+  }, []);
+
   return (
     <>
       <GlobalStyles />

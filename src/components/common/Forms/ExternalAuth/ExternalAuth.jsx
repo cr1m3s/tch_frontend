@@ -19,7 +19,7 @@ export const ExternalAuth = () => {
             </Separator>
 
             <AuthBtns>
-                <AuthLink href="https://dev-backend-b4vo.onrender.com/api/auth/login-google" target="_blank" rel="noreferrer">
+                <AuthLink href="https://dev-backend-b4vo.onrender.com/api/auth/login-google" >
                     <Icon name="google" size={18} />
                     Continue with Google
                 </AuthLink>

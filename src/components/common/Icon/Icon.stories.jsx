@@ -1,4 +1,4 @@
-import ICON_TYPES from "../../../shared/icon-types";
+import ICON_TYPES from "../../../shared";
 import { Icon } from "./Icon";
 
 export default {

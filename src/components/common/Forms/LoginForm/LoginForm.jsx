@@ -15,8 +15,9 @@ import {
 } from "./LoginForm.styled";
 import { FormTitle } from "../FormTitle";
 import { Icon } from "../../Icon";
-import { Button } from "../../Button";
 import { ExternalAuth } from "../ExternalAuth";
+import { Button } from "../../Button";
+import { login } from "../../../../services";
 
 
 const userSchema = Yup.object().shape({
@@ -34,15 +35,13 @@ const initialValues = {
 };
 
 
-export const LoginForm = () => {
-    const [userData, setUserData] = useState({});
+const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState("");
 
 
-    const handleSubmit = ({ email, password }, { resetForm }) => {
-        setUserData({ email, password });
-        console.log(userData);
+    const handleSubmit = (values, { resetForm }) => {
+        login(values);
         resetForm();
     };
 
@@ -127,8 +126,8 @@ export const LoginForm = () => {
                                 type="submit"
                                 isDisabled={isSubmitting}
                             >
-                                Login
-                            </Button> 
+                                Sign up
+                            </Button>       
                             <ExternalAuth/>
                         </FormBox>
                     </LoginFormContainer>
@@ -138,3 +137,4 @@ export const LoginForm = () => {
     )
 };
 
+export default LoginForm;
