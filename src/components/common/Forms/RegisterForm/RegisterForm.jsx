@@ -15,12 +15,10 @@ import {
     PolicyLink,
     InputIconShow
 } from "./RegisterForm.styled";
-import { FormTitle } from "../../../common";
-import { ButtonsAuthContainer } from "../../../common";
+import { Button, ExternalAuth, FormTitle } from "../../../common";
 import { Icon } from "../../Icon";
-import { register } from "../../../services/authAPI";
-import { FORMS_VALIDATION } from "../../../shared";
-
+import { FORMS_VALIDATION } from "../../../../shared";
+import { register } from "../../../../services";
 
 
 const userSchema = Yup.object().shape({
@@ -49,17 +47,15 @@ const initialValues = {
 
 
 export const RegisterForm = () => {
-    const [userData, setUserData] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState("");
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
     const [isChecked, setIsChecked] = useState(false);
 
-    const handleSubmit = ({ name, email, password }, { resetForm }) => {
+    const handleSubmit = (values, { resetForm }) => {
         if (isChecked) {
-            setUserData({ name, email, password });
-            console.log(userData);
+            register(values)
 
             resetForm();
             setIsChecked(false);
@@ -100,7 +96,7 @@ export const RegisterForm = () => {
                     <RegisterFormContainer>
                         <FormTitle>Sign up</FormTitle>
                         <LoginLinkBox>
-                            <p>Already have an account?</p>
+                            Already have an account?
                             <LoginLink to="/login">Log in</LoginLink>
                         </LoginLinkBox>
                         <Form>
@@ -194,10 +190,14 @@ export const RegisterForm = () => {
                                 </ConfirmationText>
                             </CheckboxContainer>
 
-                            <ButtonsAuthContainer
-                                text={"Sign up"}
-                                disabled={isSubmitting}
-                            />
+                            <Button
+                                size="fluid"
+                                type="submit"
+                                isDisabled={isSubmitting}
+                            >
+                                Sign up
+                            </Button>       
+                            <ExternalAuth/>
                         </Form>
                     </RegisterFormContainer>
                 )}

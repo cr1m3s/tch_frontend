@@ -1,4 +1,4 @@
-export * from "./ButtonsAuthContainer";
+export * from "./ExternalAuth";
 export * from "./ChangeEmailForm";
 export * from "./ChangePasswordForm";
 export * from "./CreateNewPasswordForm";

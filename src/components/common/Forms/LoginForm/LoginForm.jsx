@@ -14,10 +14,10 @@ import {
     ForgotPassword
 } from "./LoginForm.styled";
 import { FormTitle } from "../FormTitle";
-import { ButtonsAuthContainer } from "../ButtonsAuthContainer";
 import { Icon } from "../../Icon";
-import { login } from "../../../services/authAPI";
-
+import { ExternalAuth } from "../ExternalAuth";
+import { Button } from "../../Button";
+import { login } from "../../../../services";
 
 
 const userSchema = Yup.object().shape({
@@ -33,7 +33,6 @@ const initialValues = {
     email: "",
     password: "",
 };
-
 
 
 const LoginForm = () => {
@@ -122,10 +121,14 @@ const LoginForm = () => {
 
                             <ForgotPassword to="/reset-password">Forgot password?</ForgotPassword>
 
-                            <ButtonsAuthContainer
-                                text="Log in"
-                                disabled={isSubmitting}
-                            />
+                            <Button
+                                size="fluid"
+                                type="submit"
+                                isDisabled={isSubmitting}
+                            >
+                                Sign up
+                            </Button>       
+                            <ExternalAuth/>
                         </FormBox>
                     </LoginFormContainer>
                 )}

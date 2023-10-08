@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const BtnWrapper = styled.div`
+export const Wrapper = styled.div`
     width: 410px;
     display: flex;
     flex-direction: column;
@@ -8,6 +8,7 @@ export const BtnWrapper = styled.div`
     gap: 24px;
     padding-left: 0;
     padding-right: 0;
+    margin-top: 24px; 
 `;
 
 export const Separator = styled.div`
@@ -35,29 +36,27 @@ export const AuthBtns = styled.div`
     gap: 16px;
 `;
 
-export const AuthButton = styled.button`
-    background-color: ${props => props.theme.colors.white};
+export const AuthLink = styled.a`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 132%;    
     width: 408px;
     height: 48px;
     border: 1px solid ${props => props.theme.colors.disabled};
-    border-radius: 6px;
+    border-radius: 10px;
+    transition-property: border-color, background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
 
     &:hover,
     &:focus {
         color: ${props => props.theme.colors.white};
         background-color: ${props => props.theme.colors.blue};
-    }
+    }    
 `;
-
-export const AuthButtonText = styled.span`
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 132%;   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-`;
-
 
 
