@@ -1,10 +1,10 @@
-import Conditions from "../components/Conditions/Conditions";
+import { Conditions } from "../components/common";
 
 
 
 const ConditionsPage = () => {
     return (
-        <Conditions/>
+        <Conditions />
     );
 }
 

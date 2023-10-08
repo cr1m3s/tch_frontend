@@ -1,4 +1,4 @@
-import ChangeEmailForm from "../components/Forms/ChangeEmailForm/ChangeEmailForm";
+import { ChangeEmailForm } from "../components/common";
 
 
 const ChangeEmailPage = () => {

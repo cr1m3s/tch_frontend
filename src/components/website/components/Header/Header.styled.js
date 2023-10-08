@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Navigation } from "../../../Navigation";
+import { Navigation } from "../../../common";
 
-export const StyledContainer = styled.div`
+export const StyledContainer = styled.header`
   min-width: 100%;
   padding: 0px 0px;
   background-color: ${(props) => props.theme.colors.white};

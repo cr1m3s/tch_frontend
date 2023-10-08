@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import { ResponsiveContainer } from "../styles/ResponsiveContainer";
 import { Outlet } from "react-router-dom";
+import { ResponsiveContainer } from '../styles/ResponsiveContainer';
 import { Header } from "./website/components/Header/Header";
 
 
@@ -10,11 +10,9 @@ const SharedLayout = () => {
         <>
             <ResponsiveContainer>
                 <Header />
-                <div style={{ minHeight: "300vh" }}>
-                    <Suspense fallback={<div>Loading...</div>} >
-                        <Outlet />
-                    </Suspense>
-                </div>
+                <Suspense fallback={<div>Loading...</div>} >
+                    <Outlet />
+                </Suspense>
             </ResponsiveContainer>
         </>
 

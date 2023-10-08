@@ -1,6 +1,9 @@
 import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 import { GlobalStyles } from './styles/GlobalStyles.styled';
 import { FontStyles } from "./styles/FontStyles";
+import { refreshUser, setDataToLocalStorage } from "./services";
+
 import SharedLayout from "./components/SharedLayout";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
@@ -12,15 +15,28 @@ import ChangeEmailPage from "./pages/ChangeEmailPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import CreateNewPasswordPage from "./pages/CreateNewPasswordPage";
+import HomePage from "./pages/HomePage";
 
-function App() {
+
+const App = () => {
+  useEffect(() => {
+    refreshUser();
+
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const googleToken = urlSearchParams.get('token');
+
+    if (googleToken) {
+      setDataToLocalStorage("token", googleToken)
+    }
+  }, []);
+
   return (
     <>
       <GlobalStyles />
       <FontStyles />
       <Routes>
         <Route path="/" element={<SharedLayout/>}>
-          <Route index element={<>home page</>} />
+          <Route index element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/change-email" element={<ChangeEmailPage />} />
