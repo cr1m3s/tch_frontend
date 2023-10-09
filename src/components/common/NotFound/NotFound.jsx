@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 import { useRef } from "react";
-import { Button } from "../Button/Button";
 import {
     Section,
     NotFoundWrapper,
@@ -9,6 +8,7 @@ import {
     SorryText,
     GoBackText
 } from "./NotFound.styled";
+import { Button } from "../common";
 
 
 

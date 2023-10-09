@@ -1,7 +1,6 @@
 export * from "./Link";
 export * from "./Logo";
 export * from "./Navigation";
-export * from "./NotFound";
 export * from "./PolicyRules";
 export * from "./Congratulations";
 export * from "./Conditions";

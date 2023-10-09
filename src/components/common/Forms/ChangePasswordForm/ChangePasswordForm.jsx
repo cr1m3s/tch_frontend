@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { FormTitle } from "../FormTitle";
-import { Icon, Button, Message, AccentText } from "../../../common";
+import { useState } from 'react';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { FormTitle } from '../FormTitle';
+import { Icon, Button, Message, AccentText } from '../../../common';
 import {
     Section,
     ChangePasswordFormContainer,
@@ -13,60 +13,59 @@ import {
     Input,
     Error,
     InputIconShow
-} from "./ChangePasswordForm.styled";
+} from './ChangePasswordForm.styled';
+import { FORMS_VALIDATION } from '../../../../shared';
 
 
 const userSchema = Yup.object().shape({
     currentPassword: Yup.string()
-        .min(6, "Your password has at least 6 characters")
-        .max(16, "Your password can not have more then 16 characters")
-        .required("Enter current password is required"),
+        .min(FORMS_VALIDATION.minPassword, 'Your password has at least 6 characters')
+        .max(FORMS_VALIDATION.maxPassword, 'Your password can not have more then 16 characters')
+        .required('Enter current password is required'),
     newPassword: Yup.string()
-        .min(6, "Password mast be at least 6 characters")
-        .max(16, "Password can not have more then 16 characters")
-        .required("Password is required"),
+        .min(FORMS_VALIDATION.minPassword, 'Password mast be at least 6 characters')
+        .max(FORMS_VALIDATION.maxPassword, 'Password can not have more then 16 characters')
+        .required('Password is required'),
     confirmPassword: Yup.string()
-        .required("Conformation is required")
-        .oneOf([Yup.ref("password"), null], "Passwords must match"),
+        .required('Conformation is required')
+        .oneOf([Yup.ref('password'), null], 'Passwords must match'),
 });
 
 
 const initialValues = {
-    currentPassword: "",
-    newPassword: "",
-    confirmPassword: ""
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: ''
 };
 
 
 export const ChangePasswordForm = () => {
-    const [formData, setFormData] = useState();
     const [showCurrentPassword, setShowCurrentPassword] = useState(false);
-    const [currentPasswordError, setCurrentPasswordError] = useState("");
+    const [currentPasswordError, setCurrentPasswordError] = useState('');
     const [showNewPassword, setShowNewPassword] = useState(false);
-    const [newPasswordError, setNewPasswordError] = useState("");
+    const [newPasswordError, setNewPasswordError] = useState('');
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [confirmPasswordError, setConfirmPasswordError] = useState("");
+    const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
-    const handleSubmit = ({ currentPassword, newPassword }, { resetForm }) => {
-        console.log("New Password:", newPassword);
-        setFormData({ currentPassword, newPassword });
+    const handleSubmit = ({ newPassword }, { resetForm }) => {
+        console.log('New Password:', newPassword);
 
         resetForm();
     };
 
     const handleToggleShowCurrentPassword = () => {
         setShowCurrentPassword((prevShowCurrentPassword) => !prevShowCurrentPassword);
-        setCurrentPasswordError("");
+        setCurrentPasswordError('');
     };
 
     const handleToggleShowNewPassword = () => {
         setShowNewPassword((prevShowNewPassword) => !prevShowNewPassword);
-        setNewPasswordError("");
+        setNewPasswordError('');
     };
 
     const handleToggleShowConfirmPassword = () => {
         setShowConfirmPassword((prevShowConfirmPassword) => !prevShowConfirmPassword);
-        setConfirmPasswordError("");
+        setConfirmPasswordError('');
     };
 
 
@@ -88,97 +87,97 @@ export const ChangePasswordForm = () => {
                                 <InputBox>
                                     <label>Current password</label>
                                     <Input
-                                        type={showCurrentPassword ? "text" : "password"}
-                                        name="currentPassword"
+                                        type={showCurrentPassword ? 'text' : 'password'}
+                                        name='currentPassword'
                                         value={values.currentPassword}
-                                        placeholder="Enter your password"
+                                        placeholder='Enter your password'
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         error={errors.currentPassword || currentPasswordError}
-                                        border={errors.currentPassword && touched.currentPassword && "1px solid red"}
+                                        border={errors.currentPassword && touched.currentPassword && '1px solid red'}
                                     />
                                     <InputIconShow onClick={handleToggleShowCurrentPassword}>
                                         {
                                             showCurrentPassword
                                                 ? <Icon
-                                                    name="eye"
+                                                    name='eye'
                                                     size={24}
-                                                    color={"#EEE"}
+                                                    color={'#EEE'}
                                                 />
                                                 : <Icon
-                                                    name="hidden"
+                                                    name='hidden'
                                                     size={24}
-                                                    color={"#EEE"}
+                                                    color={'#EEE'}
                                                 />
                                         }
                                     </InputIconShow>
-                                    <Error name="currentPassword" component="div" />
+                                    <Error name='currentPassword' component='div' />
                                 </InputBox>
 
                                 <InputBox>
                                     <label>New password</label>
                                     <Input
-                                        type={showNewPassword ? "text" : "password"}
-                                        name="newPassword"
+                                        type={showNewPassword ? 'text' : 'password'}
+                                        name='newPassword'
                                         value={values.newPassword}
-                                        placeholder="Enter your password"
+                                        placeholder='Enter your password'
                                         onBlur={handleBlur}
                                         error={errors.newPassword || newPasswordError}
-                                        border={errors.newPassword && touched.newPassword && "1px solid red"}
+                                        border={errors.newPassword && touched.newPassword && '1px solid red'}
                                     />
                                     <InputIconShow onClick={handleToggleShowNewPassword}>
                                         {
                                             showNewPassword
                                                 ? <Icon
-                                                    name="eye"
+                                                    name='eye'
                                                     size={24}
-                                                    color={"#EEE"}
+                                                    color={'#EEE'}
                                                 />
                                                 : <Icon
-                                                    name="hidden"
+                                                    name='hidden'
                                                     size={24}
-                                                    color={"#EEE"}
+                                                    color={'#EEE'}
                                                 />
                                         }
                                     </InputIconShow>
-                                    <Error name="newPassword" component="div" />
+                                    <Error name='newPassword' component='div' />
                                 </InputBox>
 
                                 <InputBox>
                                     <label>Confirm password</label>
                                     <Input
-                                        type={showConfirmPassword ? "text" : "password"}
-                                        name="confirmPassword"
+                                        type={showConfirmPassword ? 'text' : 'password'}
+                                        name='confirmPassword'
                                         value={values.confirmPassword}
-                                        placeholder="Enter your password"
+                                        placeholder='Enter your password'
                                         onBlur={handleBlur}
                                         error={errors.confirmPassword || confirmPasswordError}
-                                        border={errors.confirmPassword && touched.confirmPassword && "1px solid red"}
+                                        border={errors.confirmPassword && touched.confirmPassword && '1px solid red'}
                                     />
                                     <InputIconShow onClick={handleToggleShowConfirmPassword}>
                                         {
                                             showConfirmPassword
                                                 ? <Icon
-                                                    name="eye"
+                                                    name='eye'
                                                     size={24}
-                                                    color={"#EEE"}
+                                                    color={'#EEE'}
                                                 />
                                                 : <Icon
-                                                    name="hidden"
+                                                    name='hidden'
                                                     size={24}
-                                                    color={"#EEE"}
+                                                    color={'#EEE'}
                                                 />
                                         }
                                     </InputIconShow>
-                                    <Error name="confirmPassword" component="div" />
+                                    <Error name='confirmPassword' component='div' />
                                 </InputBox>
                             </InputBoxesWrapper>
 
 
                             <Button
                                 isDisabled={isSubmitting}
-                                type="submit"
-                                size="fluid"
+                                type='submit'
+                                size='fluid'
                             >Submit
                             </Button>
                         </FormBox>

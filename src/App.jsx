@@ -15,7 +15,7 @@ import ChangeEmailPage from "./pages/ChangeEmailPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import CreateNewPasswordPage from "./pages/CreateNewPasswordPage";
-import HomePage from "./pages/HomePage";
+import CoursesPage from "./pages/CoursesPage";
 
 
 const App = () => {
@@ -36,7 +36,7 @@ const App = () => {
       <FontStyles />
       <Routes>
         <Route path="/" element={<SharedLayout/>}>
-          <Route index element={<HomePage />} />
+          <Route index element={<CoursesPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/change-email" element={<ChangeEmailPage />} />
