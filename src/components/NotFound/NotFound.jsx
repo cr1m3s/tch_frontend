@@ -12,7 +12,7 @@ import { Button } from "../common";
 
 
 
-export const NotFound = () => {
+const NotFound = () => {
     const location = useLocation();
     const goBackHome = useRef(location.state?.from ?? "/");
 
@@ -37,3 +37,4 @@ export const NotFound = () => {
     );
 }
 
+export default NotFound;
