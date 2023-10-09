@@ -1,6 +1,6 @@
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { useState } from "react";
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { useState } from 'react';
 import {
     Section,
     LoginFormContainer,
@@ -12,32 +12,34 @@ import {
     Error,
     InputIconShow,
     ForgotPassword
-} from "./LoginForm.styled";
-import { FormTitle } from "../FormTitle";
-import { Icon } from "../../Icon";
-import { ExternalAuth } from "../ExternalAuth";
-import { Button } from "../../Button";
-import { login } from "../../../../services";
+} from './LoginForm.styled';
+import { FormTitle } from '../FormTitle';
+import { Icon } from '../../Icon';
+import { ExternalAuth } from '../ExternalAuth';
+import { Button } from '../../Button';
+import { login } from '../../../../services';
+import { FORMS_VALIDATION } from '../../../../shared';
+
 
 
 const userSchema = Yup.object().shape({
-    email: Yup.string().required("Email is required").email("Email is invalid"),
+    email: Yup.string().required('Email is required').email('Email is invalid'),
     password: Yup.string()
-        .min(6, "Password mast be at least 6 characters")
-        .max(16, "Password can not have more then 16 characters")
-        .required("Password is required"),
+        .min(FORMS_VALIDATION.minPassword, 'Password mast be at least 6 characters')
+        .max(FORMS_VALIDATION.maxPassword, 'Password can not have more then 16 characters')
+        .required('Password is required'),
 });
 
 
 const initialValues = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
 };
 
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const [passwordError, setPasswordError] = useState("");
+    const [passwordError, setPasswordError] = useState('');
 
 
     const handleSubmit = (values, { resetForm }) => {
@@ -47,7 +49,7 @@ const LoginForm = () => {
 
     const handleTogglePassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
-        setPasswordError("");
+        setPasswordError('');
     };
 
     return (
@@ -69,61 +71,61 @@ const LoginForm = () => {
                         <FormTitle>Log in</FormTitle>
                         <LoginLinkBox>
                             <p>Don’t have an account?</p>
-                            <LoginLink to="/register">Sign up</LoginLink>
+                            <LoginLink to='/register'>Sign up</LoginLink>
                         </LoginLinkBox>
                         <FormBox>
                             <div>
                                 <InputBox>
                                     <label>Email</label>
                                     <Input
-                                        type="text"
-                                        name="email"
+                                        type='text'
+                                        name='email'
                                         value={values.email}
-                                        placeholder="Enter email"
+                                        placeholder='Enter email'
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         error={errors.email}
-                                        border={errors.email && touched.email && "1px solid red"}
+                                        border={errors.email && touched.email && '1px solid red'}
                                     />
-                                    <Error name="email" component="div" />
+                                    <Error name='email' component='div' />
                                 </InputBox>
 
                                 <InputBox>
                                     <label>Password</label>
                                     <Input
-                                        type={showPassword ? "text" : "password"}
-                                        name="password"
+                                        type={showPassword ? 'text' : 'password'}
+                                        name='password'
                                         value={values.password}
-                                        placeholder="Password"
+                                        placeholder='Password'
                                         onBlur={handleBlur}
                                         error={errors.password || passwordError}
-                                        border={errors.password && touched.password && "1px solid red"}
+                                        border={errors.password && touched.password && '1px solid red'}
                                     />
                                     <InputIconShow onClick={handleTogglePassword}>
                                         {
                                             showPassword
                                                 ? <Icon
-                                                    name="eye"
+                                                    name='eye'
                                                     size={24}
-                                                    color={"#EEE"}
+                                                    color={'#EEE'}
                                                 />
                                                 : <Icon
-                                                    name="hidden"
+                                                    name='hidden'
                                                     size={24}
-                                                    color={"#EEE"}
+                                                    color={'#EEE'}
                                                 />
                                         }
                                     </InputIconShow>
-                                    <Error name="password" component="div" />
+                                    <Error name='password' component='div' />
                                 </InputBox>
                             </div>
 
 
-                            <ForgotPassword to="/reset-password">Forgot password?</ForgotPassword>
+                            <ForgotPassword to='/reset-password'>Forgot password?</ForgotPassword>
 
                             <Button
-                                size="fluid"
-                                type="submit"
+                                size='fluid'
+                                type='submit'
                                 isDisabled={isSubmitting}
                             >
                                 Sign up
