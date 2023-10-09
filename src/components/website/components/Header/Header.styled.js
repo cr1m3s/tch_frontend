@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { Navigation } from "../../../common";
 
 export const StyledContainer = styled.header`
+  position: sticky;
   min-width: 100%;
   padding: 0px 0px;
   background-color: ${(props) => props.theme.colors.white};
-  position: fixed;
   top: 0;
   right: 0;
   left: 0;

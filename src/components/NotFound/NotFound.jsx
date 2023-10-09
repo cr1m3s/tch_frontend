@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 import { useRef } from "react";
-import { Button } from "../Button/Button";
 import {
     Section,
     NotFoundWrapper,
@@ -9,10 +8,11 @@ import {
     SorryText,
     GoBackText
 } from "./NotFound.styled";
+import { Button } from "../common";
 
 
 
-export const NotFound = () => {
+const NotFound = () => {
     const location = useLocation();
     const goBackHome = useRef(location.state?.from ?? "/");
 
@@ -37,3 +37,4 @@ export const NotFound = () => {
     );
 }
 
+export default NotFound;
