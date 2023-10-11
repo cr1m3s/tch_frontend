@@ -3,20 +3,14 @@ import styled from 'styled-components';
 export const Card = styled.li`
     background-color: ${props => props.theme.colors.card};
     padding: 25px 16px 45px 16px;
-    border-radius: 8px 8px 0px 0px;
-    border-top: 1px solid ${props => props.theme.colors.primaryText};
-    border-right: 1px solid ${props => props.theme.colors.primaryText};
-    border-left: 1px solid ${props => props.theme.colors.primaryText};
-    width: 408px;
+    border-bottom: 1px solid ${props => props.theme.colors.primaryText};
 
     @media screen and (min-width: ${props => props.theme.sizes.tablet}) {
-        width: 736px;
         padding-left: 18,5px;
         padding-right: 18,5px; 
     }
 
     @media screen and (min-width: ${props => props.theme.sizes.desk}) {
-        width: 860px;
         padding-left: 20px;
         padding-right: 20px; 
     }
@@ -71,6 +65,7 @@ export const Avatar = styled.img`
     width: 140px;
     height: 140px;
     border-radius: 8px;
+    object-fit: cover;
 `;
 
 export const AboutTitle = styled.div`
