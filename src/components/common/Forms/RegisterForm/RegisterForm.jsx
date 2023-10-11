@@ -1,7 +1,7 @@
-import { Formik } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { Form } from "formik";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     Section,
     RegisterFormContainer,
@@ -34,7 +34,7 @@ const userSchema = Yup.object().shape({
     confirmPassword: Yup.string()
         .required("Conformation is required")
         .oneOf([Yup.ref("password"), null], "Passwords must match"),
-    confirmation: Yup.bool().oneOf([true], "Confirmation is required")
+    confirmation: Yup.bool().oneOf([true], "Field must be checked")
 });
 
 
@@ -52,13 +52,17 @@ export const RegisterForm = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
     const [isChecked, setIsChecked] = useState(false);
+    const navigate = useNavigate();
+
 
     const handleSubmit = (values, { resetForm }) => {
         if (isChecked) {
-            register(values)
+            register(values);
 
             resetForm();
             setIsChecked(false);
+
+            handleNavigateToLogin();
         }
     };
 
@@ -76,6 +80,10 @@ export const RegisterForm = () => {
 
     const handleToggleCheck = () => {
         setIsChecked(!isChecked);
+    };
+
+    const handleNavigateToLogin = () => {
+        navigate('/login');
     };
 
     return (

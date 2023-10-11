@@ -19,6 +19,7 @@ import { ExternalAuth } from '../ExternalAuth';
 import { Button } from '../../Button';
 import { login } from '../../../../services';
 import { FORMS_VALIDATION } from '../../../../shared';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -40,16 +41,22 @@ const initialValues = {
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState('');
+    const navigate = useNavigate();
 
 
     const handleSubmit = (values, { resetForm }) => {
         login(values);
         resetForm();
+        handleNavigateToCourses();
     };
 
     const handleTogglePassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
         setPasswordError('');
+    };
+
+    const handleNavigateToCourses = () => {
+        navigate('/')
     };
 
     return (

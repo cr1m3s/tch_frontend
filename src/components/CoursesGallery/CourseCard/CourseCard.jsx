@@ -23,7 +23,7 @@ const CourseCard = () => {
                     <TitleBox>
                         <Title indent={10} size={[24, 32]} weight={600} >Chinese mastery course</Title>
                         <Message>
-                            <span>Provider:</span> <span>Huram Algargni</span>
+                            Provider: Huram Algargni
                         </Message>
                         {
                             !isMobileScreenSize &&
