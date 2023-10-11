@@ -55,18 +55,13 @@ export const login = async (values) => {
  * GET @ /protected/userinfo
  * headers: Authorization: Bearer token
  */
-export const refreshUser = async () => {
-    const writtenToken = getDataFromLocalStorage("token");
-
-    if (typeof writtenToken === "string") {
-        try {
-            const response = await axios.get(
-                `/protected/userinfo`
-            );
-
-            return response.data.data;
-        } catch(error) {
-            console.log(error.message);
-        }
+export const getUser = async () => {
+    try {
+        const response = await axios.get(`/protected/userinfo`);
+        
+        return response.data.data;
+    } catch (error) {
+        const faildStatus = error.response.data.status;
+        return faildStatus;
     }
 }
