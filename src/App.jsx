@@ -30,7 +30,6 @@ const App = () => {
 
   useEffect(() => {
     if ((typeof getDataFromLocalStorage("token")) === "string") {
-      console.log((typeof getDataFromLocalStorage("token")) === "string");
       setIsloggedIn(true);
       return;
     }
