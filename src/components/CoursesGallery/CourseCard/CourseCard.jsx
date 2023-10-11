@@ -1,5 +1,5 @@
-import defaultAvatar from '../../../assets/images/default-avatar.png'
 import { Icon, Message, Title } from '../../common';
+import PropTypes from 'prop-types'
 import {
     Card,
     CardHeader,
@@ -13,7 +13,19 @@ import {
 } from './CourseCard.styled';
 
 
-const CourseCard = () => {
+const CourseCard = ({
+    title,
+    author,
+    experience,
+    duration,
+    price,
+    lessonFormat,
+    category,
+    subcategory,
+    lessonLenguage,
+    content,
+    avatar    
+}) => {
     const isMobileScreenSize = window.matchMedia('(max-width: 768px)').matches;
 
     return (
@@ -21,26 +33,26 @@ const CourseCard = () => {
             <CardHeader>
                 <CardTitleWrapper>
                     <TitleBox>
-                        <Title indent={10} size={[24, 32]} weight={600} >Chinese mastery course</Title>
+                        <Title indent={10} size={[24, 32]} weight={600} >{title}</Title>
                         <Message>
-                            Provider: Huram Algargni
+                            <span>Provider:</span> <span>{author}</span>
                         </Message>
                         {
                             !isMobileScreenSize &&
                                 <TimeInfo $isRow={isMobileScreenSize}>
-                                    <Message>10 years of experience</Message>
+                                    <Message>{experience} of experience</Message>
                                     <Message>1 day ago</Message>
                                 </TimeInfo> 
                         }                        
                     </TitleBox>
 
-                    <Avatar src={defaultAvatar} alt='avatar' width='140px' />
+                    <Avatar src={avatar} alt='avatar' width='140px'/>
                 </CardTitleWrapper>
 
                 {
                     isMobileScreenSize &&
                         <TimeInfo $isRow={isMobileScreenSize}>
-                            <Message>5 years of experience</Message>
+                            <Message>{experience} years of experience</Message>
                             <Message>1 day ago</Message>
                         </TimeInfo> 
                 }
@@ -55,17 +67,31 @@ const CourseCard = () => {
             </AboutTitle>
 
             <CourseDetails>
-                <Message>45 minutes</Message>
-                <Message>$10 per lesson</Message>
-                <Message>Online</Message>
-                <Message>Lesson in english</Message>
+                <Message>{duration}</Message>
+                <Message>${price} per lesson</Message>
+                <Message>{lessonFormat}</Message>
+                <Message>Lesson in {lessonLenguage}</Message>
             </CourseDetails> 
             
             <CourseDescr>
-                <Message>Embark on a transformative linguistic journey with our Chinese Mastery Course, a comprehensive and immersive learning experience that will empower you to master the rich and captivating Mandarin language. Whether you're a complete beginner or looking to enhance yo... </Message>
+                <Message>{content}</Message>
             </CourseDescr>
         </Card>
     );
 };
+
+CourseCard.propTypes = {
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    experience: PropTypes.string.isRequired,
+    duration: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    lessonFormat: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    subcategory: PropTypes.string.isRequired,
+    lessonLenguage: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    }
 
 export default CourseCard;
