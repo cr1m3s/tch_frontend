@@ -14,7 +14,7 @@ export const StyledFixed = styled.div`
   max-width: 1440px;
   display: flex;
   margin: 0 auto;
-  padding: 50px 16px 16px 50px;
+  padding: 50px 16px 50px 16px;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;

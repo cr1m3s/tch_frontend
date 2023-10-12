@@ -53,7 +53,6 @@ export const StyledNavigation = styled(Navigation)`
     transition: transform 0.3s ease-in-out;
     z-index: 1;
     width: 100%;
-    /* padding-top: ${({ isLogin }) => (isLogin ? "80px" : "60px")}; */
     padding-bottom: 50px;
     background: ${(props) => props.theme.colors.blue};
   }

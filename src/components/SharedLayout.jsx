@@ -12,6 +12,7 @@ const SharedLayout = () => {
             <ResponsiveContainer>
                 <Header />
                 <Suspense fallback={<div>Loading...</div>} >
+
                     <Outlet />
                 </Suspense>
                 <Footer />

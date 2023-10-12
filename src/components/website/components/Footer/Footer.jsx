@@ -10,7 +10,7 @@ export const Footer = () => {
         <StyledContainer>
             <StyledFixed className="footer">
                 <StyledFooterTop className="footer-top">
-                    {/* <Logo variant="footer" /> */}
+                    <Logo variant="footer" />
                     <StyledNav>
                         <li>
                             <StyledFooterLink to="/">Teachers</StyledFooterLink>
@@ -32,7 +32,7 @@ export const Footer = () => {
                     </StyledPolicy>
                 </StyledFooterTop>
                 <StyledFooterBottom className="footer-bottom">
-                    <p>© Skill Stream | All rights reserved</p>
+                    <p> {new Date().getFullYear()} &copy; Skill Stream | All rights reserved</p>
                     <p>Proudly made in Ukraine <span>
                         <Icon name="flag-ua" size={24} />
                     </span> </p>
