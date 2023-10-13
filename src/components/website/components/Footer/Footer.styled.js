@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { Logo } from "../../../common";
 
 export const StyledContainer = styled.footer`
   min-width: 100%;
@@ -14,23 +15,30 @@ export const StyledFixed = styled.div`
   max-width: 1440px;
   display: flex;
   margin: 0 auto;
-  padding: 50px 16px 50px 16px;
+  padding: 40px 16px 0px 16px;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: 0px 2px 0px -1px rgba(199, 199, 199, 1);
   position: relative;
-  transition: height 0.2s ease, background-color 0.2s ease, padding 0.2s ease;
+  @media screen and (min-width: ${(props) => props.theme.sizes.tablet}) {
+    padding: 50px 16px 50px 16px;
+  }
 `;
 
 export const StyledFooterTop = styled.div`
   min-width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 30px;
+  row-gap: 30px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  @media screen and (min-width: ${(props) => props.theme.sizes.laptop}) {
+    flex-direction: row;
+    row-gap: 0px;
+  }
 `;
 
 export const StyledNav = styled.ul`
@@ -45,10 +53,13 @@ export const StyledFooterBottom = styled.div`
   min-width: 100%;
   display: flex;
   gap: 30px;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 30px 0px;
+  @media screen and (min-width: ${(props) => props.theme.sizes.tablet}) {
+    flex-direction: row;
+  }
   p {
     font-size: 14px;
     font-style: normal;

@@ -1,17 +1,12 @@
 import PropTypes from 'prop-types';
 import { LogoIcon } from '../Icon';
-import { LogoHeader, LogoFooter } from './Logo.styled';
+import { LogoFooter, } from './Logo.styled';
 
 export const Logo = ({ variant }) => {
   return (
     <>
-      {variant === 'header' && (
-        <LogoHeader to="/">
-          <LogoIcon name='logo-header-text' />
-        </LogoHeader>
-      )}
       {variant === 'footer' && (
-        <LogoFooter to="/">
+        <LogoFooter to="/" variant={variant}>
           <LogoIcon name="logo-footer" />
         </LogoFooter>
       )}
@@ -20,5 +15,5 @@ export const Logo = ({ variant }) => {
 }
 
 Logo.propTypes = {
-  variant: PropTypes.oneOf(['header', 'footer']).isRequired,
+  variant: PropTypes.oneOf(['header', 'footer', 'text']).isRequired,
 };

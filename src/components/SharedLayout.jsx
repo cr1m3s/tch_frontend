@@ -9,10 +9,9 @@ import { Footer } from "./website/components/Footer";
 const SharedLayout = () => {
     return (
         <>
+            <Header />
             <ResponsiveContainer>
-                <Header />
                 <Suspense fallback={<div>Loading...</div>} >
-
                     <Outlet />
                 </Suspense>
                 <Footer />

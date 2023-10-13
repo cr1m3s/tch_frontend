@@ -10,7 +10,7 @@ const ICON_TYPES = {
   success: "success",
   logoHeader: "logo-header",
   logoFooter: "logo-footer",
-  logoHeaderText: "logo-header-text",
+  logoText: "logo-text",
   info: "info",
   flagUa: "flag-ua",
 };

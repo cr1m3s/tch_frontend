@@ -1,23 +1,74 @@
-import styled from "styled-components";
-import { ButtonLink } from "../Link";
+import styled, { css } from "styled-components";
+import { ButtonLink } from "../../../components/common";
 
-export const StyledNavContainer = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 410px;
-  @media (min-width: ${(props) => props.theme.sizes.desk}) {
-    grid-template-columns: 1fr 410px;
+export const StyledContainer = styled.header`
+  position: fixed;
+  max-width: 1440px;
+  display: flex;
+  height: 120px;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0px 16px;
+  background-color: ${(props) => props.theme.colors.white};
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  box-shadow: 0px 2px 0px -1px rgba(199, 199, 199, 1);
+  & > *:first-child {
+    z-index: 100;
+  }
+  @media screen and (min-width: ${(props) => props.theme.sizes.laptopLarge}) {
+    ${(isOpen) =>
+      isOpen &&
+      css`
+        position: relative;
+      `}
   }
 `;
-export const StyledNav = styled.nav`
+
+export const StyledNavContainer = styled.nav`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 364px;
+  @media screen and (min-width: ${(props) => props.theme.sizes.desk}) {
+    grid-template-columns: 1fr 464px;
+    /* ${(isLogin) =>
+      isLogin &&
+      css`
+        grid-template-columns: auto;
+        justify-content: flex-end;
+      `} */
+  }
+  @media (max-width: 1230px) {
+    min-height: 100vh;
+    transform: ${({ isOpen }) =>
+      isOpen ? "translateX(0)" : "translateX(-200vw)"};
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1;
+    width: 100%;
+    padding-bottom: 50px;
+    background: ${(props) => props.theme.colors.blue};
+  }
+`;
+
+export const StyledNav = styled.ul`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 30px;
   z-index: 100;
-  height: 120px;
-  transition: height 0.2s ease, background-color 0.2s ease, padding 0.2s ease;
   @media (max-width: 1230px) {
     flex-direction: column;
     justify-content: flex-start;
@@ -32,20 +83,20 @@ export const StyledNavActions = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  justify-self: end;
+  justify-content: center;
+  width: 100%;
   font-family: Nunito Sans;
-  @media (max-width: 1440px) {
+  padding-bottom: 50px;
+  @media screen and (min-width: ${(props) => props.theme.sizes.laptopLarge}) {
     min-width: 100%;
-    justify-content: center;
-  }
-  @media (max-width: 1230px) {
-    padding-bottom: 50px;
+    justify-content: flex-end;
+    padding-bottom: 0px;
   }
 `;
 
 export const StyledNavPrimary = styled(ButtonLink)`
-  background: ${(props) => props.theme.colors.lightBlue};
-  color: ${(props) => props.theme.colors.white};
+  background: ${(props) => props.theme.colors.golden};
+  color: ${(props) => props.theme.colors.lightBlue};
   &:hover {
     background: ${(props) => props.theme.colors.blue};
     text-decoration-line: none;
@@ -53,16 +104,17 @@ export const StyledNavPrimary = styled(ButtonLink)`
   &:active {
     background: ${(props) => props.theme.colors.darkBlue};
   }
-  @media (max-width: 1230px) {
-    background: ${(props) => props.theme.colors.golden};
-    color: ${(props) => props.theme.colors.lightBlue};
+  @media screen and (min-width: ${(props) => props.theme.sizes.laptopLarge}) {
+    background: ${(props) => props.theme.colors.lightBlue};
+    color: ${(props) => props.theme.colors.white};
   }
 `;
 
 export const StyledNavSecondary = styled(ButtonLink)`
-  background-color: ${(props) => props.theme.colors.white};
-  color: ${(props) => props.theme.colors.lightBlue};
-  border: 1px solid ${(props) => props.theme.colors.lightBlue};
+  background: inherit;
+  border-color: ${(props) => props.theme.colors.golden};
+  border: 1px solid ${(props) => props.theme.colors.golden};
+  color: ${(props) => props.theme.colors.golden};
   &:hover {
     background-color: ${(props) => props.theme.colors.blue};
     border-color: ${(props) => props.theme.colors.blue};
@@ -72,12 +124,9 @@ export const StyledNavSecondary = styled(ButtonLink)`
     background-color: ${(props) => props.theme.colors.darkBlue};
     border-color: ${(props) => props.theme.colors.darkBlue};
   }
-  @media (min-width: 1440px) {
-    min-width: 200px;
-  }
-  @media (max-width: 1230px) {
-    background: inherit;
-    border-color: ${(props) => props.theme.colors.golden};
-    color: ${(props) => props.theme.colors.golden};
+  @media screen and (min-width: ${(props) => props.theme.sizes.laptopLarge}) {
+    background-color: ${(props) => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.lightBlue};
+    border: 1px solid ${(props) => props.theme.colors.lightBlue};
   }
 `;

@@ -1,4 +1,5 @@
 // import { useEffect, useRef, useState } from "react";
+import { NAV_LINK } from "../../../../shared";
 import { Icon, Logo } from "../../../common";
 import { StyledContainer, StyledFixed, StyledFooterTop, StyledNav, StyledPolicy, StyledFooterLink, StyledFooterBottom } from "./Footer.styled";
 
@@ -12,15 +13,11 @@ export const Footer = () => {
                 <StyledFooterTop className="footer-top">
                     <Logo variant="footer" />
                     <StyledNav>
-                        <li>
-                            <StyledFooterLink to="/">Teachers</StyledFooterLink>
-                        </li>
-                        <li>
-                            <StyledFooterLink to="/">My advertisements</StyledFooterLink>
-                        </li>
-                        <li>
-                            <StyledFooterLink to="/">My profile</StyledFooterLink>
-                        </li>
+                        {NAV_LINK.map((link, index) => (
+                            <li key={index} >
+                                <StyledFooterLink to={link.to}>{link.text}</StyledFooterLink>
+                            </li>
+                        ))}
                     </StyledNav>
                     <StyledPolicy>
                         <li>
