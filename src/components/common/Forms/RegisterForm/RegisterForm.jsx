@@ -1,7 +1,7 @@
-import { Formik } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { Form } from "formik";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     Section,
     RegisterFormContainer,
@@ -15,23 +15,26 @@ import {
     PolicyLink,
     InputIconShow
 } from "./RegisterForm.styled";
-import { FormTitle } from "../../../common";
-import { ButtonsAuthContainer } from "../../../common";
+import { Button, ExternalAuth, FormTitle } from "../../../common";
 import { Icon } from "../../Icon";
-
+import { FORMS_VALIDATION } from "../../../../shared";
+import { register } from "../../../../services";
 
 
 const userSchema = Yup.object().shape({
-    name: Yup.string().min(2).max(16).required("Name is required"),
+    name: Yup.string()
+        .min(FORMS_VALIDATION.minName, "Name must have at least 2 characters")
+        .max(FORMS_VALIDATION.maxName, "Name can not have more then 16 characters")
+        .required("Name is required"),
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
-        .min(6, "Password mast be at least 6 characters")
-        .max(16, "Password can not have more then 16 characters")
+        .min(FORMS_VALIDATION.minPassword, "Password must be at least 6 characters")
+        .max(FORMS_VALIDATION.maxPassword, "Password can not have more then 16 characters")
         .required("Password is required"),
     confirmPassword: Yup.string()
         .required("Conformation is required")
         .oneOf([Yup.ref("password"), null], "Passwords must match"),
-    confirmation: Yup.bool().oneOf([true], "Confirmation is required")
+    confirmation: Yup.bool().oneOf([true], "Field must be checked")
 });
 
 
@@ -44,20 +47,22 @@ const initialValues = {
 
 
 export const RegisterForm = () => {
-    const [userData, setUserData] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState("");
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
     const [isChecked, setIsChecked] = useState(false);
+    const navigate = useNavigate();
 
-    const handleSubmit = ({ name, email, password }, { resetForm }) => {
+
+    const handleSubmit = (values, { resetForm }) => {
         if (isChecked) {
-            setUserData({ name, email, password });
-            console.log(userData);
+            register(values);
 
             resetForm();
             setIsChecked(false);
+
+            handleNavigateToLogin();
         }
     };
 
@@ -75,6 +80,10 @@ export const RegisterForm = () => {
 
     const handleToggleCheck = () => {
         setIsChecked(!isChecked);
+    };
+
+    const handleNavigateToLogin = () => {
+        navigate('/login');
     };
 
     return (
@@ -95,7 +104,7 @@ export const RegisterForm = () => {
                     <RegisterFormContainer>
                         <FormTitle>Sign up</FormTitle>
                         <LoginLinkBox>
-                            <p>Already have an account?</p>
+                            Already have an account?
                             <LoginLink to="/login">Log in</LoginLink>
                         </LoginLinkBox>
                         <Form>
@@ -189,10 +198,14 @@ export const RegisterForm = () => {
                                 </ConfirmationText>
                             </CheckboxContainer>
 
-                            <ButtonsAuthContainer
-                                text={"Sign up"}
-                                disabled={isSubmitting}
-                            />
+                            <Button
+                                size="fluid"
+                                type="submit"
+                                isDisabled={isSubmitting}
+                            >
+                                Sign up
+                            </Button>       
+                            <ExternalAuth/>
                         </Form>
                     </RegisterFormContainer>
                 )}

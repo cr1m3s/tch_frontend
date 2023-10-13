@@ -13,7 +13,7 @@ export const Section = styled.div`
     };    
 
     @media screen and (min-width: 1440px) {
-        padding-top: 170px;
+        padding-top: 60px;
         padding-bottom: 170px; 
     };     
 `;

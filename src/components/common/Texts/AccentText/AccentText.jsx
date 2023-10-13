@@ -1,4 +1,4 @@
-import { StyledAccentText } from "./AccentText.styled";
+import { StyledAccentText } from './AccentText.styled';
 import PropTypes from 'prop-types';
 
 

@@ -11,6 +11,7 @@ const ICON_TYPES = {
   logoHeader: "logo-header",
   logoFooter: "logo-footer",
   logoHeaderText: "logo-header-text",
+  info: "info",
   flagUa: "flag-ua",
 };
 
