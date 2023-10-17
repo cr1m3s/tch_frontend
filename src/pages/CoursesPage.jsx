@@ -5,7 +5,7 @@ const CoursesPage = ({ isLoggedIn }) => {
     return (
         <>  
             {
-                isLoggedIn && <h1 style={{ marginTop: '50px', fontSize: '50px' }}>You are Logged In</h1>
+                isLoggedIn && <h1 style={{ marginTop: '50px', marginBottom: '50px', fontSize: '50px' }}>You are Logged In</h1>
             }
             
             <Gallery />

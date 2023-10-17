@@ -104,6 +104,47 @@ export const StyledButton = styled.button`
             fill: ${props.theme.colors.lightBlue};
           }
         `;
+      case "tertiary":
+        return css`
+          background-color: ${props.theme.colors.golden};
+          border-radius: 10px;
+          transition-property: background-color;
+          transition-duration: 0.2s;
+          transition-timing-function: ease-in-out;
+          &:not(:disabled):hover {
+            background-color: ${props.theme.colors.lightGolden};
+            ${StyledText} {
+              color: ${props.theme.colors.blue};
+            }
+            ${StyledIcon} {
+              fill: ${props.theme.colors.white};
+            }
+          }
+          &:not(:disabled):active {
+            background-color: ${props.theme.colors.clickedYellow};
+            ${StyledText} {
+              color: ${props.theme.colors.white};
+            }
+            ${StyledIcon} {
+              fill: ${props.theme.colors.white};
+            }
+          }
+          &:disabled {
+            background-color: ${props.theme.colors.disabledBgn};
+            ${StyledText} {
+              color: ${props.theme.colors.disabled};
+            }
+            ${StyledIcon} {
+              fill: ${props.theme.colors.disabled};
+            }
+          }
+          ${StyledText} {
+            color: ${props.theme.colors.blue};
+          }
+          ${StyledIcon} {
+            fill: ${props.theme.colors.blue};
+          }               
+        `;
     }
   }}
 
@@ -115,6 +156,7 @@ export const StyledButton = styled.button`
           min-width: 200px;
           padding: 0 12px;
           ${StyledText} {
+            font-family: Nunito Sans;
             font-size: 18px;
             font-weight: 600;
           }
@@ -128,6 +170,7 @@ export const StyledButton = styled.button`
           height: 48px;
           min-width: 100%;
           ${StyledText} {
+            font-family: Nunito Sans;
             font-size: 18px;
             font-weight: 600;
           }
@@ -136,13 +179,28 @@ export const StyledButton = styled.button`
             height: 24px;
           }
         `;
+      case "filter":
+        return css`
+          height: 35px;
+          max-width: 100%;
+          padding: 5px 10px;
+          ${StyledText} {
+            font-family: Nunito Sans;
+            font-size: 18px;
+            font-weight: 400;
+          }
+          ${StyledIcon} {
+            width: 24px;
+            height: 24px;
+          }
+        `;      
     }
   }}
 `;
 
 StyledButton.propTypes = {
   variant: PropTypes.oneOf(["primary", "secondary"]),
-  size: PropTypes.oneOf(["standard", "fluid"]),
+  size: PropTypes.oneOf(["standard", "fluid", "filter"]),
 };
 
 StyledButton.defaultProps = {

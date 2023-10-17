@@ -194,6 +194,21 @@ export const Icon = ({ className, name, size, color }) => {
                     />
                 </svg>
             );
+        case ICON_TYPES.filter:
+            return (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={25}
+                    fill="none"
+                    {...props}
+                >
+                    <path
+                        fill="#fff"
+                        d="M10 7.89H4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2ZM8 14.66a2.23 2.23 0 0 0-2 1.23H4a1 1 0 0 0 0 2h2a2.22 2.22 0 1 0 2-3.23ZM13.72 10.96a2.21 2.21 0 0 0 1.89-1.07H20a1 1 0 1 0 0-2h-4.22a2.23 2.23 0 1 0-2.06 3.07ZM20 15.89h-8a1 1 0 0 0 0 2h8a1 1 0 1 0 0-2Z"
+                    />
+                </svg>
+            )
         default:
             return null;
     }
