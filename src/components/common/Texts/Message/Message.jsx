@@ -17,10 +17,7 @@ export const Message = ({ children, indentTop, indentBottom, position, width }) 
 };
 
 Message.propTypes = {
-    children: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string
-    ]).isRequired,
+    children: PropTypes.string.isRequired,
     indentTop: PropTypes.number,
     indentBottom: PropTypes.number,
     position: PropTypes.string,

@@ -4,7 +4,6 @@ import { List } from './CoursesList.styled';
 
 
 const CoursesList = () => {
-    console.log(courses);
     return (
         <List>
             {

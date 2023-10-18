@@ -34,13 +34,11 @@ const CourseCard = ({
                 <CardTitleWrapper>
                     <TitleBox>
                         <Title indent={10} size={[24, 32]} weight={600} >{title}</Title>
-                        <Message>
-                            <span>Provider:</span> <span>{author}</span>
-                        </Message>
+                        <Message>Provider:</Message> <Message>{author}</Message>
                         {
                             !isMobileScreenSize &&
-                                <TimeInfo $isRow={isMobileScreenSize}>
-                                    <Message>{experience} of experience</Message>
+                            <TimeInfo $isRow={isMobileScreenSize}>
+                                    <Message>{experience}</Message> <Message>of experience</Message>
                                     <Message>1 day ago</Message>
                                 </TimeInfo> 
                         }                        
@@ -52,7 +50,7 @@ const CourseCard = ({
                 {
                     isMobileScreenSize &&
                         <TimeInfo $isRow={isMobileScreenSize}>
-                            <Message>{experience} years of experience</Message>
+                            <Message>{experience}</Message> <Message>of experience</Message>
                             <Message>1 day ago</Message>
                         </TimeInfo> 
                 }
@@ -85,7 +83,7 @@ CourseCard.propTypes = {
     author: PropTypes.string.isRequired,
     experience: PropTypes.string.isRequired,
     duration: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    price: PropTypes.string.isRequired,
     lessonFormat: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     subcategory: PropTypes.string.isRequired,
