@@ -18,7 +18,7 @@ import {
 import { Button, ExternalAuth, FormTitle } from "../../../common";
 import { Icon } from "../../Icon";
 import { FORMS_VALIDATION } from "../../../../shared";
-import { register } from "../../../../services";
+import { useAuthStore } from "../../../../store/auth";
 
 
 const userSchema = Yup.object().shape({
@@ -52,12 +52,13 @@ export const RegisterForm = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
     const [isChecked, setIsChecked] = useState(false);
+
+    const register = useAuthStore((state) => state.register);
     const navigate = useNavigate();
 
-
-    const handleSubmit = (values, { resetForm }) => {
+    const handleSubmit = async (values, { resetForm }) => {
         if (isChecked) {
-            register(values);
+            await register(values);
 
             resetForm();
             setIsChecked(false);
