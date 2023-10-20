@@ -2,6 +2,10 @@ import { useState } from "react";
 import CoursesList from "../CoursesList/CoursesList";
 import FiltersBtn from "../FiltersBtn/FiltersBtn";
 import FiltersContainer from "../Filters/FiltersContainer/FiltersContainer";
+import {
+    Section,
+    Wrapper
+} from "./Gallery.styled";
 
 
 const Gallery = () => {
@@ -13,17 +17,32 @@ const Gallery = () => {
         setIsFiltersShown(!isFiltersShown);
     };
 
+    
     return (
-        <>
+        <Section>
             {
-                !isDescktopScreenSize && < FiltersBtn onClick={handleToggleFiltersList}/>
+                isDescktopScreenSize
+                    ? (
+                        <>
+                            < FiltersContainer /> 
+                            < CoursesList />
+                        </>
+                    )
+                    : (
+                        <>
+                            <Wrapper>
+                                < FiltersBtn onClick={handleToggleFiltersList} />
+                            </Wrapper>
+                            
+                            {
+                                isFiltersShown 
+                                    ? < FiltersContainer onClick={handleToggleFiltersList} />
+                                    : < CoursesList />  
+                            }
+                        </>
+                    )
             }
-            {
-                isFiltersShown
-                    ? < FiltersContainer onClick={handleToggleFiltersList} />
-                    : < CoursesList />
-            }
-        </>
+        </Section>
     );
 };
 

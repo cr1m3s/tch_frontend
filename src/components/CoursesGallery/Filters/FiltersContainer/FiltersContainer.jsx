@@ -1,18 +1,23 @@
 import PropTypes from 'prop-types';
 import { Button } from "../../../common";
 import FiltersList from "../FiltersList/FiltersList";
-import { Section } from "./FiltersContainer.styled";
+import {
+    Section
+} from "./FiltersContainer.styled";
 
 
 const FiltersContainer = ({ onClick }) => {
+    const isDescktopScreenSize = window.matchMedia('(min-width: 1440px)').matches;
+
     return (
-        <Section>
+        <Section $desktop={isDescktopScreenSize}>
             <FiltersList />
             <Button
                 variant="tertiary"
                 size="standard"
                 onClick={onClick}
-            >Apply filtering</Button>
+                >Apply filtering
+            </Button>                
         </Section>
     );
 };

@@ -153,7 +153,7 @@ export const StyledButton = styled.button`
       case "standard":
         return css`
           height: 56px;
-          min-width: 200px;
+          width: 200px;
           padding: 0 12px;
           ${StyledText} {
             font-family: Nunito Sans;
@@ -182,7 +182,7 @@ export const StyledButton = styled.button`
       case "filter":
         return css`
           height: 35px;
-          max-width: 100%;
+          min-width: auto;
           padding: 5px 10px;
           ${StyledText} {
             font-family: Nunito Sans;

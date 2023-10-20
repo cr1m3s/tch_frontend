@@ -9,7 +9,11 @@ const FiltersBtn = ({ onClick }) => {
         <Button size="filter" onClick={onClick}>
             <FilterChildrens>
                 <span>Filters</span>
-                <Icon name="filter" />
+                <Icon
+                    name="filter"
+                    size={24}
+                    color='#FFFFFF'
+                />
             </FilterChildrens>
         </Button>
     );
