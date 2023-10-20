@@ -157,8 +157,9 @@ export const RegisterForm = () => {
                                             : <Icon name="hidden" size={24} color={"#EEEEEE"} />
                                     }
                                 </InputIconShow>
+                                <Error name="password" component="div" />
                             </InputBox>
-                            <Error name="password" component="div" />
+                            
 
                             <InputBox>
                                 <label>Confirm password</label>
@@ -183,8 +184,9 @@ export const RegisterForm = () => {
                                             : <Icon name="hidden" size={24} color={"#EEEEEE"} />
                                     }
                                 </InputIconShow>
+                                <Error name="confirmPassword" component="div" />
                             </InputBox>
-                            <Error name="confirmPassword" component="div" />
+                            
 
                             <CheckboxContainer>
                                 <div onClick={handleToggleCheck}>
