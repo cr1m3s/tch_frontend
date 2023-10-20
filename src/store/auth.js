@@ -28,7 +28,7 @@ export const useAuthStore = create(
             setToken: (token) =>
                 set(() => ({
                     token,
-                    // isAuth: !!token,
+                    isAuth: !!token,
             })),
             register: async (values) => {
                 set(() => ({ loading: true }));
