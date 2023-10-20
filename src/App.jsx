@@ -1,13 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import { PublicRoute, PrivatRoute } from "./routes";
-import { useEffect, useState } from "react";
+import { PublicRoute } from "./routes";
+import { useEffect } from "react";
 import { GlobalStyles } from './styles/GlobalStyles.styled';
 import { FontStyles } from "./styles/FontStyles";
-import {
-  getUser,
-  setDataToLocalStorage,
-  getDataFromLocalStorage
-} from "./services";
+import { useAuthStore } from "./store/auth";
 
 import SharedLayout from "./components/SharedLayout";
 import RegisterPage from "./pages/RegisterPage";
@@ -23,41 +19,30 @@ import CreateNewPasswordPage from "./pages/CreateNewPasswordPage";
 import CoursesPage from "./pages/CoursesPage";
 
 
-
 const App = () => {
-  const [isLoggedIn, setIsloggedIn] = useState(false);
+  const isAuth = useAuthStore((state) => state.isAuth);
+  const refresh = useAuthStore((state) => state.refresh);
+  const setToken = useAuthStore((state) => state.setToken);
+  const token = useAuthStore((state) => state.token);
   
 
   useEffect(() => {
-    if ((typeof getDataFromLocalStorage("token")) === "string") {
-      setIsloggedIn(true);
-      return;
-    }
-
-    setIsloggedIn(false);
-  }, []);
-
-  useEffect(() => {
     const fetchUserData = async () => {
-      const response = await getUser();
+      await refresh();
+    };
 
-      if (response === "failed") {
-        setIsloggedIn(false);
-      }
-    }
-
-    fetchUserData();
-  }, []);
+    if (token) fetchUserData();
+  }, [refresh, token]);
 
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const googleToken = urlSearchParams.get('token');
-
+    console.log('googleToken:', googleToken);
 
     if (googleToken) {
-      setDataToLocalStorage("token", googleToken);
+      setToken(googleToken);
     }
-  }, [])
+  }, [setToken])
 
   return (
     <>
@@ -65,16 +50,7 @@ const App = () => {
       <FontStyles />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route
-            index
-            element={
-              <PrivatRoute
-                isAuthenticated={isLoggedIn}
-                redirectTo="/login"
-                component={<CoursesPage isLoggedIn={isLoggedIn} />}
-              />
-            }
-          />
+          <Route index element={<CoursesPage />} />
           
           <Route
             path="/register"
@@ -93,7 +69,7 @@ const App = () => {
             element={
               <PublicRoute
                 redirectTo='/'
-                isAuthenticated={isLoggedIn}
+                isAuthenticated={isAuth}
                 component={<LoginPage />}
                 restricted
               />
