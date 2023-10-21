@@ -137,7 +137,7 @@ const LoginForm = () => {
                                 type='submit'
                                 isDisabled={isSubmitting}
                             >
-                                Sign up
+                                Log In
                             </Button>       
                             <ExternalAuth/>
                         </FormBox>
