@@ -1,20 +1,18 @@
 import axios from "axios";
 import {
-    setDataToLocalStorage,
     getDataFromLocalStorage
 } from "./localStorage";
 import { STATUS_CODES } from "../shared";
 
 
 axios.defaults.baseURL = "https://dev-backend-b4vo.onrender.com";
-axios.defaults.headers.common["Authorization"] = `Bearer ${getDataFromLocalStorage("token")}`;
 
 
 /*
  * POST @ /api/auth/register
  * body: { name, email, password }
  */
-export const register = async (values) => {
+export const fetchRegister = async (values) => {
     try {
         const response = await axios.post(
             `/api/auth/register`,
@@ -33,18 +31,14 @@ export const register = async (values) => {
  * POST @ /api/auth/login
  * body: { email, password }
  */
-export const login = async (values) => {
+export const fetchLogin = async (values) => {
     try {
         const response = await axios.post(
             `/api/auth/login`,
             values
         );
-        
-        if (response.status === STATUS_CODES.success) {
-            const token = response.data.data;
-            setDataToLocalStorage('token', token)
-            return token;
-        }
+
+        return response;
     } catch(error) {
         console.log(error.message);
     }
@@ -55,9 +49,13 @@ export const login = async (values) => {
  * GET @ /protected/userinfo
  * headers: Authorization: Bearer token
  */
-export const getUser = async () => {
+export const fetchRefresh = async () => {
+    const token = getDataFromLocalStorage("auth").state.token;
     try {
-        const response = await axios.get(`/protected/userinfo`);
+        const response = await axios.get(
+            `/protected/userinfo`,
+            { headers: {'Authorization': `Bearer ${token}`} }
+        );
         
         return response.data.data;
     } catch (error) {

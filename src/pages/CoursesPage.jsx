@@ -1,21 +1,32 @@
 import { Gallery } from "../components/CoursesGallery/Gallery";
-import PropTypes from 'prop-types';
+import { Button } from "../components/common";
+import { useAuthStore } from "../store/auth";
 
-const CoursesPage = ({ isLoggedIn }) => {
+
+const CoursesPage = () => {
+    const isAuth = useAuthStore((state) => state.isAuth);
+    const logout = useAuthStore((state) => state.logout);
+  
     return (
-        <>  
+        <>
             {
-                isLoggedIn && <h1 style={{ marginTop: '50px', fontSize: '50px' }}>You are Logged In</h1>
+                isAuth &&
+                    <div style={{  marginTop: '50px', display: 'flex', gap: '16px', alignItems: 'center' }}>
+                        <h1 style={{ fontSize: '50px' }}>You are Logged In</h1>
+                        <Button
+                            variant='secondary'
+                            size='standard'
+                            type='button'
+                            onClick={logout}
+                        >
+                            Logout
+                        </Button>
+                    </div>
             }
-            
             <Gallery />
         </>
         
     );
-}
-
-CoursesPage.propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default CoursesPage;

@@ -18,7 +18,7 @@ import {
 import { Button, ExternalAuth, FormTitle } from "../../../common";
 import { Icon } from "../../Icon";
 import { FORMS_VALIDATION } from "../../../../shared";
-import { register } from "../../../../services";
+import { useAuthStore } from "../../../../store/auth";
 
 
 const userSchema = Yup.object().shape({
@@ -52,12 +52,13 @@ export const RegisterForm = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
     const [isChecked, setIsChecked] = useState(false);
+
+    const register = useAuthStore((state) => state.register);
     const navigate = useNavigate();
 
-
-    const handleSubmit = (values, { resetForm }) => {
+    const handleSubmit = async (values, { resetForm }) => {
         if (isChecked) {
-            register(values);
+            await register(values);
 
             resetForm();
             setIsChecked(false);
@@ -156,8 +157,9 @@ export const RegisterForm = () => {
                                             : <Icon name="hidden" size={24} color={"#EEEEEE"} />
                                     }
                                 </InputIconShow>
+                                <Error name="password" component="div" />
                             </InputBox>
-                            <Error name="password" component="div" />
+                            
 
                             <InputBox>
                                 <label>Confirm password</label>
@@ -182,8 +184,9 @@ export const RegisterForm = () => {
                                             : <Icon name="hidden" size={24} color={"#EEEEEE"} />
                                     }
                                 </InputIconShow>
+                                <Error name="confirmPassword" component="div" />
                             </InputBox>
-                            <Error name="confirmPassword" component="div" />
+                            
 
                             <CheckboxContainer>
                                 <div onClick={handleToggleCheck}>

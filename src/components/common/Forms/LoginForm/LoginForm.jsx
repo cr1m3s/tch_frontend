@@ -17,9 +17,9 @@ import { FormTitle } from '../FormTitle';
 import { Icon } from '../../Icon';
 import { ExternalAuth } from '../ExternalAuth';
 import { Button } from '../../Button';
-import { login } from '../../../../services';
 import { FORMS_VALIDATION } from '../../../../shared';
 import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../../../../store/auth';
 
 
 
@@ -41,11 +41,13 @@ const initialValues = {
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState('');
+
+    const login = useAuthStore((state) => state.login)
     const navigate = useNavigate();
 
 
-    const handleSubmit = (values, { resetForm }) => {
-        login(values);
+    const handleSubmit = async(values, { resetForm }) => {
+        await login(values);
         resetForm();
         handleNavigateToCourses();
     };
@@ -135,7 +137,7 @@ const LoginForm = () => {
                                 type='submit'
                                 isDisabled={isSubmitting}
                             >
-                                Sign up
+                                Log In
                             </Button>       
                             <ExternalAuth/>
                         </FormBox>
