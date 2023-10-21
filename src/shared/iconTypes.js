@@ -12,6 +12,9 @@ const ICON_TYPES = {
   logoFooter: 'logo-footer',
   logoHeaderText: 'logo-header-text',
   info: 'info',
+  filter: 'filter',
+  plus: 'plus',
+  minus: 'minus'
 };
 
 export default ICON_TYPES;

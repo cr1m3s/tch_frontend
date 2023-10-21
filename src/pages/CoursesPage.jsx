@@ -6,6 +6,7 @@ import { useAuthStore } from "../store/auth";
 const CoursesPage = () => {
     const isAuth = useAuthStore((state) => state.isAuth);
     const logout = useAuthStore((state) => state.logout);
+  
     return (
         <>
             {
@@ -22,7 +23,6 @@ const CoursesPage = () => {
                         </Button>
                     </div>
             }
-            
             <Gallery />
         </>
         
