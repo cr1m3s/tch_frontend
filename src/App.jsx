@@ -24,7 +24,8 @@ const App = () => {
   const refresh = useAuthStore((state) => state.refresh);
   const setToken = useAuthStore((state) => state.setToken);
   const token = useAuthStore((state) => state.token);
-  
+  console.log(isAuth);
+  console.log(token);
 
   useEffect(() => {
     const fetchUserData = async () => {
