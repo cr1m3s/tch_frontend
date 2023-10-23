@@ -3,7 +3,8 @@ import { persist } from "zustand/middleware";
 import {
     fetchLogin,
     fetchRegister,
-    fetchRefresh
+    fetchRefresh,
+    fetchResetPassword
 } from '../services';
 
 
@@ -60,7 +61,7 @@ export const useAuthStore = create(
                         loading: false
                     }));
                 }
-            },        
+            },
             refresh: async () => {
                 try {
                     const response = await fetchRefresh();
@@ -75,6 +76,22 @@ export const useAuthStore = create(
                     }
                 }
 
+            },
+            resetPassword: async (values) => {
+                set(() => ({ loading: true }));
+
+                try {
+                    await fetchResetPassword(values);
+
+                    set(() => ({
+                        loading: false
+                    }))
+                } catch (error) {
+                    set(() => ({
+                        errors: error.response.data.status,
+                        loading: false
+                    }));                    
+                }
             },
             logout: () => set(() => ({
                 token: null,

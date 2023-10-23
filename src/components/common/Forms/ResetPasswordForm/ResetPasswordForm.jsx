@@ -10,6 +10,9 @@ import {
     Error
 } from './ResetPasswordForm.styled';
 import { FormTitle, Button, Message } from '../../../common';
+import { useAuthStore } from '../../../../store/auth';
+import { useNavigate } from 'react-router';
+
 
 const userSchema = Yup.object().shape({
     email: Yup.string()
@@ -22,9 +25,20 @@ const initialValues = {
 };
 
 export const ResetPasswordForm = () => {
+    const resetPassword = useAuthStore(state => state.resetPassword);
+    const navigate = useNavigate();
+
     const handleSubmit = (values, { resetForm }) => {
-        console.log(values);
+        resetPassword(values);
         resetForm();
+        handleNavigateToSuccess();
+    };
+
+    const handleNavigateToSuccess = () => {
+        navigate(
+            '/success',
+            { state: '/reset-password' }
+        );
     };
 
     return (
