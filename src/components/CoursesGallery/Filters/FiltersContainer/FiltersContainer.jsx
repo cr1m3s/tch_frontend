@@ -13,6 +13,7 @@ const FiltersContainer = ({ onClick }) => {
         <Section $desktop={isDescktopScreenSize}>
             <FiltersList />
             <Button
+                type='submit'
                 variant="tertiary"
                 size="standard"
                 onClick={onClick}

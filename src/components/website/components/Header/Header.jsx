@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { StyledContainer, StyledFixed, StyledNavigation } from "./Header.styled";
 import { Logo, Burger } from "../../../common";
-
+import { AuthButtonsGroup } from "../../../AuthButtonsGroup";
+import { useAuthStore } from "../../../../store/auth";
 
 
 export const Header = () => {
-
     const headerRef = useRef(null);
+    const isAuth = useAuthStore((state) => state.isAuth);
+
     useEffect(() => {
         const scrollHeader = () => {
             if (
@@ -40,6 +42,10 @@ export const Header = () => {
                         <Logo variant="header" />
                     )}
                     <StyledNavigation className="navigation" isOpen={isOpened} />
+                    {
+                        !isAuth && <AuthButtonsGroup />
+                    }
+                    
                 </StyledFixed>
             </StyledContainer>
             <Burger onClick={handleBurgerClick} isOpen={isOpened} />
