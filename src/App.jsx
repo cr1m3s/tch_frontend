@@ -24,8 +24,7 @@ const App = () => {
   const refresh = useAuthStore((state) => state.refresh);
   const setToken = useAuthStore((state) => state.setToken);
   const token = useAuthStore((state) => state.token);
-  console.log(isAuth);
-  console.log(token);
+
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -38,7 +37,6 @@ const App = () => {
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const googleToken = urlSearchParams.get('token');
-    console.log('googleToken:', googleToken);
 
     if (googleToken) {
       setToken(googleToken);
