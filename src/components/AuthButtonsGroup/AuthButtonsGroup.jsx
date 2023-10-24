@@ -2,7 +2,7 @@ import {
     AuthBtnsWrapper,
     LoginLink,
     RegisterLink,
-} from "./AuthButtonsGroup.styled";
+} from './AuthButtonsGroup.styled';
 
 
 const AuthButtonsGroup = () => {

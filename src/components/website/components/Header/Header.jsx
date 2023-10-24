@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import { StyledContainer, StyledFixed, StyledNavigation } from "./Header.styled";
-import { Logo, Burger } from "../../../common";
-import { AuthButtonsGroup } from "../../../AuthButtonsGroup";
-import { useAuthStore } from "../../../../store/auth";
+import { useEffect, useRef, useState } from 'react';
+import { StyledContainer, StyledFixed, StyledNavigation } from './Header.styled';
+import { Logo, Burger } from '../../../common';
+import { AuthButtonsGroup } from '../../../AuthButtonsGroup';
+import { useAuthStore } from '../../../../store/auth';
 
 
 export const Header = () => {
     const headerRef = useRef(null);
-    const isAuth = useAuthStore((state) => state.isAuth);
+    const { isAuth } = useAuthStore();
 
     useEffect(() => {
         const scrollHeader = () => {
@@ -15,14 +15,14 @@ export const Header = () => {
                 document.body.scrollTop > 100 ||
                 document.documentElement.scrollTop > 100
             ) {
-                headerRef.current.classList.add("scroll");
+                headerRef.current.classList.add('scroll');
             } else {
-                headerRef.current.classList.remove("scroll");
+                headerRef.current.classList.remove('scroll');
             }
         };
-        window.addEventListener("scroll", scrollHeader);
+        window.addEventListener('scroll', scrollHeader);
         return () => {
-            window.removeEventListener("scroll", scrollHeader);
+            window.removeEventListener('scroll', scrollHeader);
         };
     }, []);
 
@@ -37,11 +37,11 @@ export const Header = () => {
             <StyledContainer >
                 <StyledFixed ref={headerRef}>
                     {isOpened ? (
-                        <Logo variant="footer" />
+                        <Logo variant='footer' />
                     ) : (
-                        <Logo variant="header" />
+                        <Logo variant='header' />
                     )}
-                    <StyledNavigation className="navigation" isOpen={isOpened} />
+                    <StyledNavigation className='navigation' isOpen={isOpened} />
                     {
                         !isAuth && <AuthButtonsGroup />
                     }

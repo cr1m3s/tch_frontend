@@ -2,8 +2,8 @@ import { Navigate, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const ProtectedRoute = ({
-    isAllowed,
-    component,
+    isAllowed = false,
+    component = null,
     redirectTo = '/login',
 }) => {
     if (!isAllowed) return <Navigate to={redirectTo} />;

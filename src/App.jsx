@@ -22,10 +22,8 @@ import MyAdvertPage from './pages/MyAdvertPage';
 
 
 const App = () => {
-  const isAuth = useAuthStore((state) => state.isAuth);
-  const refresh = useAuthStore((state) => state.refresh);
-  const setToken = useAuthStore((state) => state.setToken);
-  const token = useAuthStore((state) => state.token);
+  const { isAuth, setToken, refresh, token } = useAuthStore();
+
 
   useEffect(() => {
     const fetchUserData = async () => {
