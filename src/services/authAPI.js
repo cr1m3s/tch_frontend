@@ -66,6 +66,24 @@ export const fetchRefresh = async () => {
 
 
 /*
+ * POST @ /api/auth/password-reset
+ * body: { email }
+ */
+export const fetchResetPassword = async (values) => {
+    try {
+        const response = await axios.post(
+            `/api/auth/password-reset`,
+            values
+        );
+
+        return response.data.data;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
+/*
  * PATCH @ /protected/user-patch
  * headers: Authorization: Bearer token
  */

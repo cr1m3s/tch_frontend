@@ -5,6 +5,7 @@ import {
     fetchRegister,
     fetchRefresh,
     fetchUpdateUserData
+    fetchResetPassword
 } from '../services';
 
 
@@ -61,7 +62,7 @@ export const useAuthStore = create(
                         loading: false
                     }));
                 }
-            },        
+            },
             refresh: async () => {
                 try {
                     const response = await fetchRefresh();
@@ -91,6 +92,20 @@ export const useAuthStore = create(
                     console.log(error);
                     set(() => ({
                         errors: error,
+                        loading: false
+                    }));
+            resetPassword: async (values) => {
+                set(() => ({ loading: true }));
+
+                try {
+                    await fetchResetPassword(values);
+
+                    set(() => ({
+                        loading: false
+                    }))
+                } catch (error) {
+                    set(() => ({
+                        errors: error.response.data.status,
                         loading: false
                     }));
                 }
