@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { userScheme } from '../../../../shared';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
 import { FormTitle } from '../FormTitle';
 import { Icon, Button, Message, AccentText } from '../../../common';
 import {
@@ -14,27 +14,11 @@ import {
     Error,
     InputIconShow
 } from './ChangePasswordForm.styled';
-import { FORMS_VALIDATION } from '../../../../shared';
-
-
-const userSchema = Yup.object().shape({
-    currentPassword: Yup.string()
-        .min(FORMS_VALIDATION.minPassword, 'Your password has at least 6 characters')
-        .max(FORMS_VALIDATION.maxPassword, 'Your password can not have more then 16 characters')
-        .required('Enter current password is required'),
-    newPassword: Yup.string()
-        .min(FORMS_VALIDATION.minPassword, 'Password mast be at least 6 characters')
-        .max(FORMS_VALIDATION.maxPassword, 'Password can not have more then 16 characters')
-        .required('Password is required'),
-    confirmPassword: Yup.string()
-        .required('Conformation is required')
-        .oneOf([Yup.ref('password'), null], 'Passwords must match'),
-});
 
 
 const initialValues = {
     currentPassword: '',
-    newPassword: '',
+    password: '',
     confirmPassword: ''
 };
 
@@ -42,13 +26,13 @@ const initialValues = {
 export const ChangePasswordForm = () => {
     const [showCurrentPassword, setShowCurrentPassword] = useState(false);
     const [currentPasswordError, setCurrentPasswordError] = useState('');
-    const [showNewPassword, setShowNewPassword] = useState(false);
-    const [newPasswordError, setNewPasswordError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [passwordError, setPasswordError] = useState('');
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
-    const handleSubmit = ({ newPassword }, { resetForm }) => {
-        console.log('New Password:', newPassword);
+    const handleSubmit = ({ password }, { resetForm }) => {
+        console.log('New Password:', password);
 
         resetForm();
     };
@@ -58,9 +42,9 @@ export const ChangePasswordForm = () => {
         setCurrentPasswordError('');
     };
 
-    const handleToggleShowNewPassword = () => {
-        setShowNewPassword((prevShowNewPassword) => !prevShowNewPassword);
-        setNewPasswordError('');
+    const handleToggleShowPassword = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
+        setPasswordError('');
     };
 
     const handleToggleShowConfirmPassword = () => {
@@ -74,7 +58,7 @@ export const ChangePasswordForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userSchema}
+                validationSchema={userScheme}
             >
                 {({ errors, touched, values, handleChange, handleBlur, isSubmitting }) => (
                     <ChangePasswordFormContainer>
@@ -117,17 +101,17 @@ export const ChangePasswordForm = () => {
                                 <InputBox>
                                     <label>New password</label>
                                     <Input
-                                        type={showNewPassword ? 'text' : 'password'}
-                                        name='newPassword'
-                                        value={values.newPassword}
+                                        type={showPassword ? 'text' : 'password'}
+                                        name='password'
+                                        value={values.password}
                                         placeholder='Enter your password'
                                         onBlur={handleBlur}
-                                        error={errors.newPassword || newPasswordError}
-                                        border={errors.newPassword && touched.newPassword && '1px solid red'}
+                                        error={errors.password || passwordError}
+                                        border={errors.password && touched.password && '1px solid red'}
                                     />
-                                    <InputIconShow onClick={handleToggleShowNewPassword}>
+                                    <InputIconShow onClick={handleToggleShowPassword}>
                                         {
-                                            showNewPassword
+                                            showPassword
                                                 ? <Icon
                                                     name='eye'
                                                     size={24}
@@ -140,7 +124,7 @@ export const ChangePasswordForm = () => {
                                                 />
                                         }
                                     </InputIconShow>
-                                    <Error name='newPassword' component='div' />
+                                    <Error name='password' component='div' />
                                 </InputBox>
 
                                 <InputBox>

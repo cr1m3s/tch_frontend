@@ -1,6 +1,7 @@
-import { Formik } from 'formik';
-import * as Yup from 'yup';
 import { useState } from 'react';
+import { Formik } from 'formik';
+import { userScheme } from '../../../../shared';
+import { FormTitle, Button, Message, Icon } from '../../../common';
 import {
     Section,
     CreatePasswordFormContainer,
@@ -13,18 +14,6 @@ import {
     Error,
     InputIconShow
 } from './CreateNewPasswordForm.styled';
-import { FormTitle, Button, Message, Icon } from '../../../common';
-import { FORMS_VALIDATION } from '../../../../shared'
-
-const userSchema = Yup.object().shape({
-    password: Yup.string()
-        .min(FORMS_VALIDATION.minPassword, 'Password mast be at least 6 characters')
-        .max(FORMS_VALIDATION.maxPassword, 'Password can not have more then 16 characters')
-        .required('Password is required'),
-    confirmPassword: Yup.string()
-        .required('Conformation is required')
-        .oneOf([Yup.ref('password'), null], 'Passwords must match'),
-});
 
 
 const initialValues = {
@@ -63,7 +52,7 @@ export const CreateNewPasswordForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userSchema}
+                validationSchema={userScheme}
             >
                 {({ errors, touched, values, handleChange, handleBlur, isSubmitting }) => (
                     <CreatePasswordFormContainer>

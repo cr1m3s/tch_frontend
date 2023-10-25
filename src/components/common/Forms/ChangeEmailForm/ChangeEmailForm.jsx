@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { userScheme } from '../../../../shared';
 import { FormTitle } from '../FormTitle';
 import { Icon, Button, AccentText, Message } from '../../../common';
 import {
@@ -13,21 +13,10 @@ import {
     Error,
     InputIconShow
 } from './ChangeEmailForm.styled';
-import { FORMS_VALIDATION } from '../../../../shared';
-
-
-
-const userSchema = Yup.object().shape({
-    newEmail: Yup.string().required('Email is required').email('Email is invalid'),
-    currentPassword: Yup.string()
-        .min(FORMS_VALIDATION.minPassword, 'Password mast be at least 6 characters')
-        .max(FORMS_VALIDATION.maxPassword, 'Password can not have more then 16 characters')
-        .required('Password is required'),
-});
 
 
 const initialValues = {
-    newEmail: '',
+    email: '',
     currentPassword: '',
 };
 
@@ -36,8 +25,8 @@ export const ChangeEmailForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState('');
 
-    const handleSubmit = ({ newEmail, currentPassword }, { resetForm }) => {
-        console.log('New Email:', newEmail);
+    const handleSubmit = ({ email, currentPassword }, { resetForm }) => {
+        console.log('New Email:', email);
         console.log('Current Password:', currentPassword);
 
         resetForm();
@@ -54,7 +43,7 @@ export const ChangeEmailForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userSchema}
+                validationSchema={userScheme}
             >
                 {({ errors, touched, values, handleChange, handleBlur, isSubmitting }) => (
                     <ChangeLoginFormContainer>
@@ -67,14 +56,14 @@ export const ChangeEmailForm = () => {
                                 <label>New email</label>
                                 <Input
                                     type='text'
-                                    name='newEmail'
-                                    value={values.newEmail}
+                                    name='email'
+                                    value={values.email}
                                     placeholder='Enter new email'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    border={errors.newEmail && touched.newEmail && '1px solid red'}
+                                    border={errors.email && touched.email && '1px solid red'}
                                 />
-                                <Error name='newEmail' component='div' />
+                                <Error name='email' component='div' />
                             </InputBox>
 
                             <InputBox>

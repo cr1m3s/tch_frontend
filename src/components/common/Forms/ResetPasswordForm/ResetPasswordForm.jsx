@@ -1,5 +1,6 @@
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { userScheme } from '../../../../shared';
+import { FormTitle, Button, Message } from '../../../common';
 import {
     Section,
     ResetPasswordFormContainer,
@@ -9,17 +10,12 @@ import {
     Input,
     Error
 } from './ResetPasswordForm.styled';
-import { FormTitle, Button, Message } from '../../../common';
 
-const userSchema = Yup.object().shape({
-    email: Yup.string()
-        .required('Enter current email is required')
-        .email('Email is invalid'),
-});
 
 const initialValues = {
     email: '',
 };
+
 
 export const ResetPasswordForm = () => {
     const handleSubmit = (values, { resetForm }) => {
@@ -32,7 +28,7 @@ export const ResetPasswordForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userSchema}
+                validationSchema={userScheme}
             >
                 {({ errors, touched, values, handleChange, handleBlur, isSubmitting }) => (
                     <ResetPasswordFormContainer>

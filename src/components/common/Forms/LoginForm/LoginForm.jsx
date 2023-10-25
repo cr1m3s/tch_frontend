@@ -1,6 +1,11 @@
-import { Formik } from 'formik';
-import * as Yup from 'yup';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Formik } from 'formik';
+import { useAuthStore } from '../../../../store/auth';
+import { userScheme } from '../../../../shared';
+import { Icon, Button } from '../../../common';
+import { FormTitle } from '../FormTitle';
+import { ExternalAuth } from '../ExternalAuth';
 import {
     Section,
     LoginFormContainer,
@@ -13,23 +18,7 @@ import {
     InputIconShow,
     ForgotPassword
 } from './LoginForm.styled';
-import { FormTitle } from '../FormTitle';
-import { Icon } from '../../Icon';
-import { ExternalAuth } from '../ExternalAuth';
-import { Button } from '../../Button';
-import { FORMS_VALIDATION } from '../../../../shared';
-import { useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../../../../store/auth';
 
-
-
-const userSchema = Yup.object().shape({
-    email: Yup.string().required('Email is required').email('Email is invalid'),
-    password: Yup.string()
-        .min(FORMS_VALIDATION.minPassword, 'Password mast be at least 6 characters')
-        .max(FORMS_VALIDATION.maxPassword, 'Password can not have more then 16 characters')
-        .required('Password is required'),
-});
 
 
 const initialValues = {
@@ -66,7 +55,7 @@ const LoginForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userSchema}
+                validationSchema={userScheme}
             >
                 {({
                     errors,

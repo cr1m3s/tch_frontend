@@ -70,11 +70,14 @@ export const Error = styled(ErrorMessage)`
 `;
 
 export const CheckboxContainer = styled.div`
+    margin-bottom: 34px;
+`;
+
+export const Checkbox = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    margin-bottom: 34px;
 `;
 
 export const ConfirmationText = styled.p`
