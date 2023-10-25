@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import { Button } from "../../../common";
-import FiltersList from "../FiltersList/FiltersList";
+import { Button } from '../../../common';
+import FiltersList from '../FiltersList/FiltersList';
 import {
     Section
-} from "./FiltersContainer.styled";
+} from './FiltersContainer.styled';
 
 
 const FiltersContainer = ({ onClick }) => {
@@ -13,8 +13,9 @@ const FiltersContainer = ({ onClick }) => {
         <Section $desktop={isDescktopScreenSize}>
             <FiltersList />
             <Button
-                variant="tertiary"
-                size="standard"
+                type='submit'
+                variant='tertiary'
+                size='standard'
                 onClick={onClick}
                 >Apply filtering
             </Button>                
