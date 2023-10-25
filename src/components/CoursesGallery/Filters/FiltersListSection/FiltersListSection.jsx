@@ -12,7 +12,7 @@ import {
 } from './FiltersListSection.styled';
 
 
-const FiltersListSection = ({ title, minPrice, maxPrice, categories }) => {
+const FiltersListSection = ({ title, categories }) => {
     const isDescktopScreenSize = window.matchMedia('(min-width: 1440px)').matches;
     const [isOpen, setIsOpen] = useState(false);
     const id = nanoid();
@@ -84,11 +84,11 @@ const FiltersListSection = ({ title, minPrice, maxPrice, categories }) => {
     );
 };
 
+
 FiltersListSection.propTypes = {
     title: PropTypes.string.isRequired,
-    minPrice: PropTypes.number.isRequired,
-    maxPrice: PropTypes.number.isRequired,
-    categories: PropTypes.array.isRequired
+    categories: PropTypes.array
 };
+
 
 export default FiltersListSection;
