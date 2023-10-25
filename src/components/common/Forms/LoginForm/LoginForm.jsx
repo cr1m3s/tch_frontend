@@ -42,7 +42,7 @@ const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState('');
 
-    const login = useAuthStore((state) => state.login)
+    const { login } = useAuthStore();
     const navigate = useNavigate();
 
 
