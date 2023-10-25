@@ -14,6 +14,7 @@ import {
     InputIconShow
 } from './ChangeEmailForm.styled';
 import { FORMS_VALIDATION } from '../../../../shared';
+import { useAuthStore } from '../../../../store/auth';
 
 
 
@@ -35,11 +36,11 @@ const initialValues = {
 export const ChangeEmailForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState('');
+    const { user, updateUserData } = useAuthStore();
+    const userEmail = user.email;
 
-    const handleSubmit = ({ newEmail, currentPassword }, { resetForm }) => {
-        console.log('New Email:', newEmail);
-        console.log('Current Password:', currentPassword);
-
+    const handleSubmit = (values, { resetForm }) => {
+        updateUserData(values);
         resetForm();
     };
 
@@ -60,7 +61,7 @@ export const ChangeEmailForm = () => {
                     <ChangeLoginFormContainer>
                         <FormTitle>Change your email</FormTitle>
                         <FormDescr>
-                            <Message>Fill in the form to change the email for account:</Message> <AccentText size={20}>a.salute@gmail.com</AccentText>
+                            <Message>Fill in the form to change the email for account:</Message> <AccentText size={20}>{ userEmail }</AccentText>
                         </FormDescr>
                         <FormBox>
                             <InputBox>
