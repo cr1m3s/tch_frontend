@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Formik, Form, Field } from "formik";
-import { registerScheme } from "../../../../shared";
-import { useAuthStore } from "../../../../store/auth";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Formik, Form, Field } from 'formik';
+import { registerScheme } from '../../../../shared';
+import { useAuthStore } from '../../../../store/auth';
 import {
     Button,
     ExternalAuth,
     FormTitle,
     Icon,
-} from "../../../common";
+} from '../../../common';
 import {
     Section,
     RegisterFormContainer,
@@ -22,7 +22,7 @@ import {
     ConfirmationText,
     PolicyLink,
     InputIconShow,
-} from "./RegisterForm.styled";
+} from './RegisterForm.styled';
 
 
 const initialValues = {
@@ -71,7 +71,7 @@ export const RegisterForm = () => {
     };
 
     const handleNavigateToLogin = () => {
-        navigate('/profile');
+        navigate('/login');
     };
 
     return (
@@ -167,8 +167,8 @@ export const RegisterForm = () => {
                                 <InputIconShow onClick={handleToggleConfirmPassword}>
                                     {
                                         showConfirmPassword
-                                            ? <Icon name="eye" size={24} color={"#EEEEEE"} />
-                                            : <Icon name="hidden" size={24} color={"#EEEEEE"} />
+                                            ? <Icon name='eye' size={24} color={'#EEEEEE'} />
+                                            : <Icon name='hidden' size={24} color={'#EEEEEE'} />
                                     }
                                 </InputIconShow>
                                 <Error name='confirmPassword' component='div' />
@@ -188,15 +188,15 @@ export const RegisterForm = () => {
                                         <div>
                                             {
                                                 isChecked
-                                                    ? <Icon name="checked" size={24} />
-                                                    : <Icon name="unchecked" size={24} />
+                                                    ? <Icon name='checked' size={24} />
+                                                    : <Icon name='unchecked' size={24} />
                                             }
                                         </div>
                                         <ConfirmationText>
-                                            By checking this box, you are creating an account and you agree to the <PolicyLink target="_blank" to="/conditions">Terms & Conditions</PolicyLink> and <PolicyLink target="_blank" to="/policy">Privacy Policy</PolicyLink>.
+                                            By checking this box, you are creating an account and you agree to the <PolicyLink target='_blank' to='/conditions'>Terms & Conditions</PolicyLink> and <PolicyLink target='_blank' to='/policy'>Privacy Policy</PolicyLink>.
                                         </ConfirmationText>
                                     </Checkbox>
-                                    <Error name="confirmation" component="div" />
+                                    <Error name='confirmation' component='div' />
                                 </label>
                             </CheckboxContainer>
 
