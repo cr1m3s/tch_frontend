@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 import {
     getDataFromLocalStorage
-} from "./localStorage";
-import { STATUS_CODES } from "../shared";
+} from './localStorage';
+import { STATUS_CODES } from '../shared';
 
 
-axios.defaults.baseURL = "https://dev-backend-b4vo.onrender.com";
+axios.defaults.baseURL = 'https://dev-backend-b4vo.onrender.com';
 
 
 /*
@@ -13,6 +13,7 @@ axios.defaults.baseURL = "https://dev-backend-b4vo.onrender.com";
  * body: { name, email, password }
  */
 export const fetchRegister = async (values) => {
+    console.log(values);
     try {
         const response = await axios.post(
             `/api/auth/register`,
@@ -38,7 +39,7 @@ export const fetchLogin = async (values) => {
             values
         );
 
-        return response;
+        return response.data.data;
     } catch(error) {
         console.log(error.message);
     }
@@ -50,7 +51,7 @@ export const fetchLogin = async (values) => {
  * headers: Authorization: Bearer token
  */
 export const fetchRefresh = async () => {
-    const token = getDataFromLocalStorage("auth").state.token;
+    const token = getDataFromLocalStorage('auth').state.token;
     try {
         const response = await axios.get(
             `/protected/userinfo`,
@@ -61,5 +62,44 @@ export const fetchRefresh = async () => {
     } catch (error) {
         const faildStatus = error.response.data.status;
         return faildStatus;
+    }
+}
+
+
+/*
+ * POST @ /api/auth/password-reset
+ * body: { email }
+ */
+export const fetchResetPassword = async (values) => {
+    console.log('start');
+    try {
+        const response = await axios.post(
+            `/api/auth/password-reset`,
+            values
+        );
+        console.log('api res:', response);
+        return response.data.data;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
+/*
+ * PATCH @ /protected/user-patch
+ * headers: Authorization: Bearer token
+ */
+export const fetchUpdateUserData = async (data) => {
+    const token = getDataFromLocalStorage('auth').state.token;
+    try {
+        const response = await axios.patch(
+            `/protected/user-patch`,
+            data,
+            { headers: {'Authorization': `Bearer ${token}`} }
+        );
+
+        return response.data.data;
+    } catch (error) {
+        console.log(error.message);
     }
 }

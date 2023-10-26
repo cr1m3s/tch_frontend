@@ -1,18 +1,11 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid/non-secure';
+import { Item } from './FilterSection.styled';
 import { Icon } from '../../../common';
-import { CategoryItem } from '../CategoryItem';
 import PropTypes from 'prop-types';
+import CategoryCheckbox from '../CategoryCheckbox/CategoryCheckbox';
 
-import {
-    ItemWrapper,
-    SectionHeader,
-    Title,
-    CategoriesList
-} from './FiltersListSection.styled';
-
-
-const FiltersListSection = ({ title, categories }) => {
+const FilterSection = ({ title, categories }) => {
     const isDescktopScreenSize = window.matchMedia('(min-width: 1440px)').matches;
     const [isOpen, setIsOpen] = useState(false);
     const id = nanoid();
@@ -22,9 +15,9 @@ const FiltersListSection = ({ title, categories }) => {
     };
 
     return (
-        <ItemWrapper>
-            <SectionHeader>
-                <Title>{title}</Title>
+        <Item style={{ marginBottom: '20px' }}>
+            <div>
+                <span>{title}</span>
                 <div onClick={handleToggleItemContainer}>
                     {
                         (!isOpen && !isDescktopScreenSize) &&(
@@ -63,32 +56,30 @@ const FiltersListSection = ({ title, categories }) => {
                             )
                     }                    
                 </div>
-            </SectionHeader>
+            </div>
 
             {
                 isOpen &&
-                    <CategoriesList>
+                    <div>
                         {
                             categories
                                 ? categories.map((category) => (
-                                    <CategoryItem
+                                    <CategoryCheckbox
                                         key={id}
                                         category={category}
                                     />                             
                                 ))
                                 : <div>sort prise</div>    
                         }
-                    </CategoriesList>
+                    </div>
             }
-        </ItemWrapper>
+        </Item>
     );
 };
 
-
-FiltersListSection.propTypes = {
+FilterSection.propTypes = {
     title: PropTypes.string.isRequired,
-    categories: PropTypes.array
+    categories: PropTypes.array.isRequired,
 };
 
-
-export default FiltersListSection;
+export default FilterSection;

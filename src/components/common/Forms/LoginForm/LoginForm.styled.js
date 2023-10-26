@@ -4,11 +4,11 @@ import { Field, ErrorMessage, Form } from 'formik';
 
 
 export const Section = styled.div`
-    padding-top: 144px;
+    padding-top: 150px;
     padding-bottom: 169px;
 
     @media screen and (min-width: 768px) {
-        padding-top: 232px;
+        padding-top: 150px;
         padding-bottom: 232px; 
     };    
 
@@ -24,6 +24,12 @@ export const LoginFormContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 408px;
+    
+    @media screen and (min-width: 768px) {
+        max-width: 358px;  
+    };    
 `;
 
 export const LoginLinkBox = styled.p`
@@ -59,7 +65,6 @@ export const InputBox = styled.div`
     display: flex;
     flex-direction: column;
     gap: 4px;
-    min-width: 358px;
 
     &:first-child {
         margin-bottom: 24px;

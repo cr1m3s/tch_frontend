@@ -1,5 +1,7 @@
+import { useNavigate } from 'react-router';
 import { Formik } from 'formik';
-import { userScheme } from '../../../../shared';
+import { resetPasswordScheme } from '../../../../shared';
+import { useAuthStore } from '../../../../store/auth';
 import { FormTitle, Button, Message } from '../../../common';
 import {
     Section,
@@ -18,9 +20,21 @@ const initialValues = {
 
 
 export const ResetPasswordForm = () => {
+    const { resetPassword } = useAuthStore();
+    const navigate = useNavigate();
+
     const handleSubmit = (values, { resetForm }) => {
-        console.log(values);
+        console.log("work");
+        resetPassword(values);
         resetForm();
+        handleNavigateToSuccess();
+    };
+
+    const handleNavigateToSuccess = () => {
+        navigate(
+            '/success',
+            { state: '/reset-password' }
+        );
     };
 
     return (
@@ -28,7 +42,7 @@ export const ResetPasswordForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userScheme}
+                validationSchema={resetPasswordScheme}
             >
                 {({ errors, touched, values, handleChange, handleBlur, isSubmitting }) => (
                     <ResetPasswordFormContainer>
@@ -66,4 +80,3 @@ export const ResetPasswordForm = () => {
         </Section>
     )
 };
-

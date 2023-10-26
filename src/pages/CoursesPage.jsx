@@ -1,12 +1,11 @@
-import { Gallery } from "../components/CoursesGallery/Gallery";
-import { Button } from "../components/common";
-import { useAuthStore } from "../store/auth";
+import { Gallery } from '../components/CoursesGallery/Gallery';
+import { Button } from '../components/common';
+import { useAuthStore } from '../store/auth';
 
 
 const CoursesPage = () => {
-    const isAuth = useAuthStore((state) => state.isAuth);
-    const logout = useAuthStore((state) => state.logout);
-  
+    const { isAuth, logout } = useAuthStore();
+
     return (
         <>
             {

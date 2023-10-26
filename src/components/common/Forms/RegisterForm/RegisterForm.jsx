@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { userScheme } from "../../../../shared";
+import { registerScheme } from "../../../../shared";
 import { useAuthStore } from "../../../../store/auth";
 import {
     Button,
@@ -26,26 +26,24 @@ import {
 
 
 const initialValues = {
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
     confirmation: false
 };
 
-
 export const RegisterForm = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const [passwordError, setPasswordError] = useState("");
+    const [passwordError, setPasswordError] = useState('');
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [confirmPasswordError, setConfirmPasswordError] = useState("");
+    const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const [isChecked, setIsChecked] = useState(false);
-
-    const register = useAuthStore((state) => state.register);
+    const { register } = useAuthStore();
     const navigate = useNavigate();
 
-    const handleSubmit = async (values, { resetForm }) => {
 
+    const handleSubmit = async (values, { resetForm }) => {
         if (isChecked) {
             await register(values);
 
@@ -58,14 +56,14 @@ export const RegisterForm = () => {
 
     const handleTogglePassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
-        setPasswordError("");
+        setPasswordError('');
     };
 
     const handleToggleConfirmPassword = () => {
         setShowConfirmPassword(
             (prevShowConfirmPassword) => !prevShowConfirmPassword
         );
-        setConfirmPasswordError("");
+        setConfirmPasswordError('');
     };
 
     const handleToggleCheck = () => {
@@ -73,7 +71,7 @@ export const RegisterForm = () => {
     };
 
     const handleNavigateToLogin = () => {
-        navigate('/login');
+        navigate('/profile');
     };
 
     return (
@@ -81,7 +79,7 @@ export const RegisterForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userScheme}
+                validationSchema={registerScheme}
             >
                 {({
                     errors,
@@ -95,74 +93,74 @@ export const RegisterForm = () => {
                         <FormTitle>Sign up</FormTitle>
                         <LoginLinkBox>
                             Already have an account?
-                            <LoginLink to="/login">Log in</LoginLink>
+                            <LoginLink to='/login'>Log in</LoginLink>
                         </LoginLinkBox>
                         <Form>
                             <InputBox>
                                 <label>Name</label>
                                 <Input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Enter your name"
+                                    type='text'
+                                    name='name'
+                                    placeholder='Enter your name'
                                     value={values.name}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    border={errors.name && touched.name && "1px solid red"}
+                                    border={errors.name && touched.name && '1px solid red'}
                                 />
-                                <Error name="name" component="div" />
+                                <Error name='name' component='div' />
                             </InputBox>
 
 
                             <InputBox>
                                 <label>Email</label>
                                 <Input
-                                    type="text"
-                                    name="email"
+                                    type='text'
+                                    name='email'
                                     value={values.email}
-                                    placeholder="Enter email"
+                                    placeholder='Enter email'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    border={errors.email && touched.email && "1px solid red"}
+                                    border={errors.email && touched.email && '1px solid red'}
                                 />
-                                <Error name="email" component="div" />
+                                <Error name='email' component='div' />
                             </InputBox>
 
 
                             <InputBox>
                                 <label>Password</label>
                                 <Input
-                                    type={showPassword ? "text" : "password"}
-                                    name="password"
+                                    type={showPassword ? 'text' : 'password'}
+                                    name='password'
                                     value={values.password}
-                                    placeholder="Password"
+                                    placeholder='Password'
                                     onBlur={handleBlur}
                                     error={errors.password || passwordError}
-                                    border={errors.password && touched.password && "1px solid red"}
+                                    border={errors.password && touched.password && '1px solid red'}
                                 />
                                 <InputIconShow onClick={handleTogglePassword}>
                                     {
                                         showPassword
-                                            ? <Icon name="eye" size={24} color={"#EEEEEE"} />
-                                            : <Icon name="hidden" size={24} color={"#EEEEEE"} />
+                                            ? <Icon name='eye' size={24} color={'#EEEEEE'} />
+                                            : <Icon name='hidden' size={24} color={'#EEEEEE'} />
                                     }
                                 </InputIconShow>
-                                <Error name="password" component="div" />
+                                <Error name='password' component='div' />
                             </InputBox>
                             
 
                             <InputBox>
                                 <label>Confirm password</label>
                                 <Input
-                                    type={showConfirmPassword ? "text" : "password"}
-                                    name="confirmPassword"
+                                    type={showConfirmPassword ? 'text' : 'password'}
+                                    name='confirmPassword'
                                     value={values.confirmPassword}
-                                    placeholder="Confirm password"
+                                    placeholder='Confirm password'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     border={
                                         errors.confirmPassword &&
                                         touched.confirmPassword &&
-                                        "1px solid red"
+                                        '1px solid red'
                                     }
                                     error={errors.confirmPassword || confirmPasswordError}
                                 />
@@ -171,9 +169,9 @@ export const RegisterForm = () => {
                                         showConfirmPassword
                                             ? <Icon name="eye" size={24} color={"#EEEEEE"} />
                                             : <Icon name="hidden" size={24} color={"#EEEEEE"} />
-                                    }                                        
+                                    }
                                 </InputIconShow>
-                                <Error name="confirmPassword" component="div" />
+                                <Error name='confirmPassword' component='div' />
                             </InputBox>
                             
 
@@ -187,7 +185,6 @@ export const RegisterForm = () => {
                                             value={isChecked}
                                             style={{display: 'none'}}
                                         />
-
                                         <div>
                                             {
                                                 isChecked
@@ -198,15 +195,14 @@ export const RegisterForm = () => {
                                         <ConfirmationText>
                                             By checking this box, you are creating an account and you agree to the <PolicyLink target="_blank" to="/conditions">Terms & Conditions</PolicyLink> and <PolicyLink target="_blank" to="/policy">Privacy Policy</PolicyLink>.
                                         </ConfirmationText>
-                                        
                                     </Checkbox>
                                     <Error name="confirmation" component="div" />
                                 </label>
                             </CheckboxContainer>
 
                             <Button
-                                size="fluid"
-                                type="submit"
+                                size='fluid'
+                                type='submit'
                                 isDisabled={isSubmitting}
                             >
                                 Sign up

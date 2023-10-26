@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
-import { userScheme } from '../../../../shared';
+import { createNewPasswordScheme } from '../../../../shared';
+import { useAuthStore } from '../../../../store/auth';
 import { FormTitle, Button, Message, Icon } from '../../../common';
 import {
     Section,
@@ -27,10 +28,10 @@ export const CreateNewPasswordForm = () => {
     const [passwordError, setPasswordError] = useState('');
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const { updateUserData } = useAuthStore();
 
-
-    const handleSubmit = ({ password }, { resetForm }) => {
-        console.log(password);
+    const handleSubmit = (values, { resetForm }) => {
+        updateUserData(values);
         resetForm();
     };
 
@@ -52,7 +53,7 @@ export const CreateNewPasswordForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userScheme}
+                validationSchema={createNewPasswordScheme}
             >
                 {({ errors, touched, values, handleChange, handleBlur, isSubmitting }) => (
                     <CreatePasswordFormContainer>

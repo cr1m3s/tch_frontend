@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { userScheme } from '../../../../shared';
 import { Formik } from 'formik';
+import { changePasswordScheme } from '../../../../shared';
+import { useAuthStore } from '../../../../store/auth';
 import { FormTitle } from '../FormTitle';
 import { Icon, Button, Message, AccentText } from '../../../common';
 import {
@@ -30,10 +31,12 @@ export const ChangePasswordForm = () => {
     const [passwordError, setPasswordError] = useState('');
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const { user, updateUserData } = useAuthStore();
+    const userEmail = user.email;
 
-    const handleSubmit = ({ password }, { resetForm }) => {
-        console.log('New Password:', password);
 
+    const handleSubmit = (values, { resetForm }) => {
+        updateUserData(values);
         resetForm();
     };
 
@@ -58,13 +61,13 @@ export const ChangePasswordForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userScheme}
+                validationSchema={changePasswordScheme}
             >
                 {({ errors, touched, values, handleChange, handleBlur, isSubmitting }) => (
                     <ChangePasswordFormContainer>
                         <FormTitle>Change your password</FormTitle>
                         <FormDescr>
-                            <Message>Fill in the form to change the password for account:</Message> <AccentText size={20}>a.salute@gmail.com</AccentText>
+                            <Message>Fill in the form to change the password for account:</Message> <AccentText size={20}>{userEmail}</AccentText>
                         </FormDescr>
                         <FormBox>
                             <InputBoxesWrapper>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import { useAuthStore } from '../../../../store/auth';
-import { userScheme } from '../../../../shared';
+import { loginScheme } from '../../../../shared';
 import { Icon, Button } from '../../../common';
 import { FormTitle } from '../FormTitle';
 import { ExternalAuth } from '../ExternalAuth';
@@ -20,7 +20,6 @@ import {
 } from './LoginForm.styled';
 
 
-
 const initialValues = {
     email: '',
     password: '',
@@ -30,8 +29,7 @@ const initialValues = {
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState('');
-
-    const login = useAuthStore((state) => state.login)
+    const { login } = useAuthStore();
     const navigate = useNavigate();
 
 
@@ -55,7 +53,7 @@ const LoginForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userScheme}
+                validationSchema={loginScheme}
             >
                 {({
                     errors,
