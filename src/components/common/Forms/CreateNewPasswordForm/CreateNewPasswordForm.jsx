@@ -15,6 +15,8 @@ import {
 } from './CreateNewPasswordForm.styled';
 import { FormTitle, Button, Message, Icon } from '../../../common';
 import { FORMS_VALIDATION } from '../../../../shared'
+import { useAuthStore } from '../../../../store/auth';
+
 
 const userSchema = Yup.object().shape({
     password: Yup.string()
@@ -38,10 +40,10 @@ export const CreateNewPasswordForm = () => {
     const [passwordError, setPasswordError] = useState('');
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const { updateUserData } = useAuthStore();
 
-
-    const handleSubmit = ({ password }, { resetForm }) => {
-        console.log(password);
+    const handleSubmit = (values, { resetForm }) => {
+        updateUserData(values);
         resetForm();
     };
 

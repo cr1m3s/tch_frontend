@@ -1,20 +1,22 @@
 import { create } from 'zustand';
-import { persist } from "zustand/middleware";
+import { persist } from 'zustand/middleware';
 import {
     fetchLogin,
     fetchRegister,
-    fetchRefresh
+    fetchRefresh,
+    fetchUpdateUserData
+    fetchResetPassword
 } from '../services';
 
 
 const userState = {
-    id: "",
-    name: "",
-    email: "",
-    photo: "",
+    id: '',
+    name: '',
+    email: '',
+    photo: '',
     verified: false,
-    password: "",
-    role: "user"
+    password: '',
+    role: 'user'
 }
 
 export const useAuthStore = create(
@@ -50,7 +52,7 @@ export const useAuthStore = create(
                     const response = await fetchLogin(values);
 
                     set(() => ({
-                        token: response.data.data,
+                        token: response,
                         isAuth: true,
                         loading: false
                     }));
@@ -60,13 +62,14 @@ export const useAuthStore = create(
                         loading: false
                     }));
                 }
-            },        
+            },
             refresh: async () => {
                 try {
                     const response = await fetchRefresh();
+                    
                     set(() => ({
-                        user: response.data.data,
-                    }));              
+                        user: {...response},
+                    }));      
                 } catch (error) {
                     if (error.response) {
                         set(() => ({
@@ -76,6 +79,37 @@ export const useAuthStore = create(
                 }
 
             },
+            updateUserData: async (data) => {
+                set(() => ({ loading: true }));
+
+                try {
+                    const response = await fetchUpdateUserData(data);             
+                    set(() => ({
+                        user: response,
+                        loading: false,
+                    })); 
+                } catch (error) {
+                    console.log(error);
+                    set(() => ({
+                        errors: error,
+                        loading: false
+                    }));
+            resetPassword: async (values) => {
+                set(() => ({ loading: true }));
+
+                try {
+                    await fetchResetPassword(values);
+
+                    set(() => ({
+                        loading: false
+                    }))
+                } catch (error) {
+                    set(() => ({
+                        errors: error.response.data.status,
+                        loading: false
+                    }));
+                }
+            },
             logout: () => set(() => ({
                 token: null,
                 user: null,
@@ -84,6 +118,6 @@ export const useAuthStore = create(
             cleanErrors: () => set(() => ({ errors: null })),
         }),
 
-        {name: "auth",}
+        {name: 'auth',}
     )
 );

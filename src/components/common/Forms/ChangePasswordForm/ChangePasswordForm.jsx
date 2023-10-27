@@ -15,6 +15,7 @@ import {
     InputIconShow
 } from './ChangePasswordForm.styled';
 import { FORMS_VALIDATION } from '../../../../shared';
+import { useAuthStore } from '../../../../store/auth';
 
 
 const userSchema = Yup.object().shape({
@@ -28,7 +29,7 @@ const userSchema = Yup.object().shape({
         .required('Password is required'),
     confirmPassword: Yup.string()
         .required('Conformation is required')
-        .oneOf([Yup.ref('password'), null], 'Passwords must match'),
+        .oneOf([Yup.ref('newPassword'), null], 'Passwords must match'),
 });
 
 
@@ -46,10 +47,11 @@ export const ChangePasswordForm = () => {
     const [newPasswordError, setNewPasswordError] = useState('');
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const { user, updateUserData } = useAuthStore();
+    const userEmail = user.email;
 
-    const handleSubmit = ({ newPassword }, { resetForm }) => {
-        console.log('New Password:', newPassword);
-
+    const handleSubmit = (values, { resetForm }) => {
+        updateUserData(values);
         resetForm();
     };
 
@@ -80,7 +82,7 @@ export const ChangePasswordForm = () => {
                     <ChangePasswordFormContainer>
                         <FormTitle>Change your password</FormTitle>
                         <FormDescr>
-                            <Message>Fill in the form to change the password for account:</Message> <AccentText size={20}>a.salute@gmail.com</AccentText>
+                            <Message>Fill in the form to change the password for account:</Message> <AccentText size={20}>{userEmail}</AccentText>
                         </FormDescr>
                         <FormBox>
                             <InputBoxesWrapper>
