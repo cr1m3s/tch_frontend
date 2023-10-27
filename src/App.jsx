@@ -40,7 +40,7 @@ const App = () => {
     if (googleToken) {
       setToken(googleToken);
     }
-  }, [setToken])
+  }, [setToken]);
 
   return (
     <>

@@ -1,1 +1,1 @@
-export { default as ProfileContainer} from './PersonalInfo.jsx'
+export { default as ProfileContainer } from './ProfileContainer';

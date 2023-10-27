@@ -4,8 +4,8 @@ import {
     fetchLogin,
     fetchRegister,
     fetchRefresh,
-    fetchUpdateUserData
-    fetchResetPassword
+    fetchUpdateUserData,
+    fetchResetPassword,
 } from '../services';
 
 
@@ -77,23 +77,23 @@ export const useAuthStore = create(
                         }));
                     }
                 }
-
             },
             updateUserData: async (data) => {
                 set(() => ({ loading: true }));
 
                 try {
-                    const response = await fetchUpdateUserData(data);             
+                    const response = await fetchUpdateUserData(data);
                     set(() => ({
                         user: response,
                         loading: false,
-                    })); 
+                    }));
                 } catch (error) {
-                    console.log(error);
                     set(() => ({
                         errors: error,
                         loading: false
-                    }));
+                    }))
+                }
+            },
             resetPassword: async (values) => {
                 set(() => ({ loading: true }));
 
@@ -112,7 +112,7 @@ export const useAuthStore = create(
             },
             logout: () => set(() => ({
                 token: null,
-                user: null,
+                user: userState,
                 isAuth: false
             })),
             cleanErrors: () => set(() => ({ errors: null })),
