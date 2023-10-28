@@ -81,7 +81,7 @@ const LoginForm = () => {
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         error={errors.email}
-                                        border={errors.email && touched.email && '1px solid red'}
+                                        border={errors.email && touched.email}
                                     />
                                     <Error name='email' component='div' />
                                 </InputBox>
@@ -95,22 +95,17 @@ const LoginForm = () => {
                                         placeholder='Password'
                                         onBlur={handleBlur}
                                         error={errors.password || passwordError}
-                                        border={errors.password && touched.password && '1px solid red'}
+                                        border={errors.password && touched.password}
                                     />
                                     <InputIconShow onClick={handleTogglePassword}>
-                                        {
-                                            showPassword
-                                                ? <Icon
-                                                    name='eye'
-                                                    size={24}
-                                                    color={'#EEE'}
-                                                />
-                                                : <Icon
-                                                    name='hidden'
-                                                    size={24}
-                                                    color={'#EEE'}
-                                                />
-                                        }
+                                        <Icon
+                                            name={showPassword
+                                                ? 'eye'
+                                                : 'hidden'
+                                            }
+                                            size={24}
+                                            color={'#EEEEEE'}
+                                        />
                                     </InputIconShow>
                                     <Error name='password' component='div' />
                                 </InputBox>

@@ -60,7 +60,7 @@ export const ResetPasswordForm = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     error={errors.email}
-                                    border={errors.email && touched.email && '1px solid red'}
+                                    border={errors.email && touched.email}
                                 />
                                 <Error name='email' component='div' />
                             </InputBox>

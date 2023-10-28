@@ -3,7 +3,12 @@ import { Formik } from 'formik';
 import { changeEmailScheme } from '../../../../shared';
 import { useAuthStore } from '../../../../store/auth';
 import { FormTitle } from '../FormTitle';
-import { Icon, Button, AccentText, Message } from '../../../common';
+import {
+    Icon,
+    Button,
+    AccentText,
+    Message
+} from '../../../common';
 import {
     Section,
     ChangeLoginFormContainer,
@@ -46,7 +51,14 @@ export const ChangeEmailForm = () => {
                 onSubmit={handleSubmit}
                 validationSchema={changeEmailScheme}
             >
-                {({ errors, touched, values, handleChange, handleBlur, isSubmitting }) => (
+                {({
+                    errors,
+                    touched,
+                    values,
+                    handleChange,
+                    handleBlur,
+                    isSubmitting
+                }) => (
                     <ChangeLoginFormContainer>
                         <FormTitle>Change your email</FormTitle>
                         <FormDescr>
@@ -63,7 +75,7 @@ export const ChangeEmailForm = () => {
                                     placeholder='Enter new email'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    border={errors.email && touched.email && '1px solid red'}
+                                    border={errors.email && touched.email}
                                 />
                                 <Error name='email' component='div' />
                             </InputBox>
@@ -77,22 +89,17 @@ export const ChangeEmailForm = () => {
                                     placeholder='Enter your password'
                                     onBlur={handleBlur}
                                     error={errors.currentPassword || passwordError}
-                                    border={errors.currentPassword && touched.currentPassword && '1px solid red'}
+                                    border={errors.currentPassword && touched.currentPassword}
                                 />
                                 <InputIconShow onClick={handleTogglePassword}>
-                                    {
-                                        showPassword
-                                            ? <Icon
-                                                name='eye'
-                                                size={24}
-                                                color={'#EEE'}
-                                            />
-                                            : <Icon
-                                                name='hidden'
-                                                size={24}
-                                                color={'#EEE'}
-                                            />
-                                    }
+                                    <Icon
+                                        name={showPassword
+                                            ? 'eye'
+                                            : 'hidden'
+                                        }
+                                        size={24}
+                                        color={'#EEEEEE'}
+                                    />
                                 </InputIconShow>
                                 <Error name='currentPassword' component='div' />
                             </InputBox>
