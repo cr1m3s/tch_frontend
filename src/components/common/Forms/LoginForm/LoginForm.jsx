@@ -46,7 +46,7 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
 
-    const handleSubmit = async(values, { resetForm }) => {
+    const handleSubmit = async (values, { resetForm }) => {
         await login(values);
         resetForm();
         handleNavigateToCourses();
@@ -58,7 +58,7 @@ const LoginForm = () => {
     };
 
     const handleNavigateToCourses = () => {
-        navigate('/')
+        navigate('/profile')
     };
 
     return (
