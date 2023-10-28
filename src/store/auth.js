@@ -5,7 +5,7 @@ import {
     fetchRegister,
     fetchRefresh,
     fetchUpdateUserData,
-    fetchResetPassword
+    fetchResetPassword,
 } from '../services';
 
 
@@ -93,7 +93,7 @@ export const useAuthStore = create(
                     set(() => ({
                         errors: error,
                         loading: false
-                    }));
+                    }))
                 }
             },
             resetPassword: async (values) => {
@@ -114,7 +114,7 @@ export const useAuthStore = create(
             },
             logout: () => set(() => ({
                 token: null,
-                user: null,
+                user: userState,
                 isAuth: false
             })),
             cleanErrors: () => set(() => ({ errors: null })),

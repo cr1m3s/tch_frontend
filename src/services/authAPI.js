@@ -38,8 +38,10 @@ export const fetchLogin = async (values) => {
             values
         );
 
-        return response.data.data;
-    } catch(error) {
+        if (response.status === STATUS_CODES.success) {
+            return response.data.data;
+        }
+    } catch (error) {
         console.log(error.message);
     }
 }
@@ -56,7 +58,6 @@ export const fetchRefresh = async () => {
             `/protected/userinfo`,
             { headers: {'Authorization': `Bearer ${token}`} }
         );
-        
         return response.data.data;
     } catch (error) {
         const faildStatus = error.response.data.status;
