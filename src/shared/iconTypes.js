@@ -14,7 +14,8 @@ const ICON_TYPES = {
   info: 'info',
   filter: 'filter',
   plus: 'plus',
-  minus: 'minus'
+  minus: 'minus',
+  logout: 'logout',
 };
 
 export default ICON_TYPES;
