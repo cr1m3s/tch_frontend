@@ -24,7 +24,6 @@ export const ResetPasswordForm = () => {
     const navigate = useNavigate();
 
     const handleSubmit = (values, { resetForm }) => {
-        console.log("work");
         resetPassword(values);
         resetForm();
         handleNavigateToSuccess();

@@ -13,7 +13,6 @@ axios.defaults.baseURL = 'https://dev-backend-b4vo.onrender.com';
  * body: { name, email, password }
  */
 export const fetchRegister = async (values) => {
-    console.log(values);
     try {
         const response = await axios.post(
             `/api/auth/register`,
@@ -71,13 +70,12 @@ export const fetchRefresh = async () => {
  * body: { email }
  */
 export const fetchResetPassword = async (values) => {
-    console.log('start');
     try {
         const response = await axios.post(
             `/api/auth/password-reset`,
             values
         );
-        console.log('api res:', response);
+
         return response.data.data;
     } catch (error) {
         console.log(error.message);
