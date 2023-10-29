@@ -1,6 +1,8 @@
-import { Formik } from 'formik';
-import * as Yup from 'yup';
 import { useState } from 'react';
+import { Formik } from 'formik';
+import { createNewPasswordScheme } from '../../../../shared';
+import { useAuthStore } from '../../../../store/auth';
+import { FormTitle, Button, Message, Icon } from '../../../common';
 import {
     Section,
     CreatePasswordFormContainer,
@@ -13,20 +15,6 @@ import {
     Error,
     InputIconShow
 } from './CreateNewPasswordForm.styled';
-import { FormTitle, Button, Message, Icon } from '../../../common';
-import { FORMS_VALIDATION } from '../../../../shared'
-import { useAuthStore } from '../../../../store/auth';
-
-
-const userSchema = Yup.object().shape({
-    password: Yup.string()
-        .min(FORMS_VALIDATION.minPassword, 'Password mast be at least 6 characters')
-        .max(FORMS_VALIDATION.maxPassword, 'Password can not have more then 16 characters')
-        .required('Password is required'),
-    confirmPassword: Yup.string()
-        .required('Conformation is required')
-        .oneOf([Yup.ref('password'), null], 'Passwords must match'),
-});
 
 
 const initialValues = {
@@ -65,7 +53,7 @@ export const CreateNewPasswordForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userSchema}
+                validationSchema={createNewPasswordScheme}
             >
                 {({ errors, touched, values, handleChange, handleBlur, isSubmitting }) => (
                     <CreatePasswordFormContainer>
@@ -87,14 +75,17 @@ export const CreateNewPasswordForm = () => {
                                         placeholder='Enter your password'
                                         onBlur={handleBlur}
                                         error={errors.password || passwordError}
-                                        border={errors.password && touched.password && '1px solid red'}
+                                        border={errors.password && touched.password}
                                     />
                                     <InputIconShow onClick={handleTogglePassword}>
-                                        {
-                                            showPassword
-                                                ? <Icon name='eye' size={24} color={'#EEEEEE'} />
-                                                : <Icon name='hidden' size={24} color={'#EEEEEE'} />
-                                        }
+                                        <Icon
+                                            name={showPassword
+                                                ? 'eye'
+                                                : 'hidden'
+                                            }
+                                            size={24}
+                                            color={'#EEEEEE'}
+                                        />
                                     </InputIconShow>
                                     <Error name='password' component='div' />
                                 </InputBox>
@@ -108,19 +99,18 @@ export const CreateNewPasswordForm = () => {
                                         placeholder='Enter your password'
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                        border={
-                                            errors.confirmPassword &&
-                                            touched.confirmPassword &&
-                                            '1px solid red'
-                                        }
+                                        border={errors.confirmPassword && touched.confirmPassword}
                                         error={errors.confirmPassword || confirmPasswordError}
                                     />
                                     <InputIconShow onClick={handleToggleConfirmPassword}>
-                                        {
-                                            showConfirmPassword
-                                                ? <Icon name='eye' size={24} color={'#EEEEEE'} />
-                                                : <Icon name='hidden' size={24} color={'#EEEEEE'} />
-                                        }
+                                        <Icon
+                                            name={showConfirmPassword
+                                                ? 'eye'
+                                                : 'hidden'
+                                            }
+                                            size={24}
+                                            color={'#EEEEEE'}
+                                        />
                                     </InputIconShow>
                                     <Error name='confirmPassword' component='div' />
                                 </InputBox>

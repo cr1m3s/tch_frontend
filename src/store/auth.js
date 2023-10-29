@@ -17,7 +17,7 @@ const userState = {
     verified: false,
     password: '',
     role: 'user'
-}
+};
 
 export const useAuthStore = create(
     persist(
@@ -31,13 +31,15 @@ export const useAuthStore = create(
                 set(() => ({
                     token,
                     isAuth: !!token,
-            })),
+                })),
             register: async (values) => {
                 set(() => ({ loading: true }));
 
                 try {
                     await fetchRegister(values);
-                    set(() => ({ loading: false }));
+                    set(() => ({
+                        loading: false
+                    }));
                 } catch (error) {
                     set(() => ({
                         errors: error.response.data.status,
@@ -60,7 +62,7 @@ export const useAuthStore = create(
                     set(() => ({
                         errors: error.response.data.status,
                         loading: false
-                    }));
+                    }))
                 }
             },
             refresh: async () => {

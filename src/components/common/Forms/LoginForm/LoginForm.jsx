@@ -1,6 +1,11 @@
-import { Formik } from 'formik';
-import * as Yup from 'yup';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Formik } from 'formik';
+import { useAuthStore } from '../../../../store/auth';
+import { loginScheme } from '../../../../shared';
+import { Icon, Button } from '../../../common';
+import { FormTitle } from '../FormTitle';
+import { ExternalAuth } from '../ExternalAuth';
 import {
     Section,
     LoginFormContainer,
@@ -13,23 +18,6 @@ import {
     InputIconShow,
     ForgotPassword
 } from './LoginForm.styled';
-import { FormTitle } from '../FormTitle';
-import { Icon } from '../../Icon';
-import { ExternalAuth } from '../ExternalAuth';
-import { Button } from '../../Button';
-import { FORMS_VALIDATION } from '../../../../shared';
-import { useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../../../../store/auth';
-
-
-
-const userSchema = Yup.object().shape({
-    email: Yup.string().required('Email is required').email('Email is invalid'),
-    password: Yup.string()
-        .min(FORMS_VALIDATION.minPassword, 'Password mast be at least 6 characters')
-        .max(FORMS_VALIDATION.maxPassword, 'Password can not have more then 16 characters')
-        .required('Password is required'),
-});
 
 
 const initialValues = {
@@ -41,7 +29,6 @@ const initialValues = {
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState('');
-
     const { login } = useAuthStore();
     const navigate = useNavigate();
 
@@ -66,7 +53,7 @@ const LoginForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userSchema}
+                validationSchema={loginScheme}
             >
                 {({
                     errors,
@@ -94,7 +81,7 @@ const LoginForm = () => {
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         error={errors.email}
-                                        border={errors.email && touched.email && '1px solid red'}
+                                        border={errors.email && touched.email}
                                     />
                                     <Error name='email' component='div' />
                                 </InputBox>
@@ -108,22 +95,17 @@ const LoginForm = () => {
                                         placeholder='Password'
                                         onBlur={handleBlur}
                                         error={errors.password || passwordError}
-                                        border={errors.password && touched.password && '1px solid red'}
+                                        border={errors.password && touched.password}
                                     />
                                     <InputIconShow onClick={handleTogglePassword}>
-                                        {
-                                            showPassword
-                                                ? <Icon
-                                                    name='eye'
-                                                    size={24}
-                                                    color={'#EEE'}
-                                                />
-                                                : <Icon
-                                                    name='hidden'
-                                                    size={24}
-                                                    color={'#EEE'}
-                                                />
-                                        }
+                                        <Icon
+                                            name={showPassword
+                                                ? 'eye'
+                                                : 'hidden'
+                                            }
+                                            size={24}
+                                            color={'#EEEEEE'}
+                                        />
                                     </InputIconShow>
                                     <Error name='password' component='div' />
                                 </InputBox>

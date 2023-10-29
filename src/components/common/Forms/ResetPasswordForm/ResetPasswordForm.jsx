@@ -1,5 +1,8 @@
+import { useNavigate } from 'react-router';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { resetPasswordScheme } from '../../../../shared';
+import { useAuthStore } from '../../../../store/auth';
+import { FormTitle, Button, Message } from '../../../common';
 import {
     Section,
     ResetPasswordFormContainer,
@@ -9,23 +12,15 @@ import {
     Input,
     Error
 } from './ResetPasswordForm.styled';
-import { FormTitle, Button, Message } from '../../../common';
-import { useAuthStore } from '../../../../store/auth';
-import { useNavigate } from 'react-router';
 
-
-const userSchema = Yup.object().shape({
-    email: Yup.string()
-        .required('Enter current email is required')
-        .email('Email is invalid'),
-});
 
 const initialValues = {
     email: '',
 };
 
+
 export const ResetPasswordForm = () => {
-    const resetPassword = useAuthStore(state => state.resetPassword);
+    const { resetPassword } = useAuthStore();
     const navigate = useNavigate();
 
     const handleSubmit = (values, { resetForm }) => {
@@ -46,7 +41,7 @@ export const ResetPasswordForm = () => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={userSchema}
+                validationSchema={resetPasswordScheme}
             >
                 {({ errors, touched, values, handleChange, handleBlur, isSubmitting }) => (
                     <ResetPasswordFormContainer>
@@ -65,7 +60,7 @@ export const ResetPasswordForm = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     error={errors.email}
-                                    border={errors.email && touched.email && '1px solid red'}
+                                    border={errors.email && touched.email}
                                 />
                                 <Error name='email' component='div' />
                             </InputBox>
@@ -84,4 +79,3 @@ export const ResetPasswordForm = () => {
         </Section>
     )
 };
-
