@@ -25,11 +25,7 @@ const FiltersListSection = ({ title, categories }) => {
             <SectionHeader onClick={handleToggleItemContainer}>
                 <Title>{title}</Title>
                 <div>
-                    {
-                        isOpen
-                            ? <StyledIcon name='minus' /> 
-                            : <StyledIcon name='plus' /> 
-                    }                  
+                    <StyledIcon name={isOpen ? 'minus' : 'plus'} />                 
                 </div>
             </SectionHeader>
 

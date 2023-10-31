@@ -18,11 +18,7 @@ const CategoryItem = ({ category }) => {
     return (
         <CategoryItemWrapper>
             <div onClick={handleToggleCheckCategory}>
-                {
-                    isChecked 
-                        ? <StyledIcon name='checked' />
-                        : <StyledIcon name='unchecked' />
-                }
+                <StyledIcon name={isChecked ? 'checked' : 'unchecked'} />
             </div>
             <span>{category}</span>        
         </CategoryItemWrapper>        
