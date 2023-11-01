@@ -97,8 +97,9 @@ export const RegisterForm = () => {
                         </LoginLinkBox>
                         <Form>
                             <InputBox>
-                                <label>Name</label>
+                                <label htmlFor='name'>Name</label>
                                 <Input
+                                    id='name'
                                     type='text'
                                     name='name'
                                     placeholder='Enter your name'
@@ -112,9 +113,10 @@ export const RegisterForm = () => {
 
 
                             <InputBox>
-                                <label>Email</label>
+                                <label htmlFor='email'>Email</label>
                                 <Input
-                                    type='text'
+                                    id='email'
+                                    type='email'
                                     name='email'
                                     value={values.email}
                                     placeholder='Enter email'
@@ -127,8 +129,9 @@ export const RegisterForm = () => {
 
 
                             <InputBox>
-                                <label>Password</label>
+                                <label htmlFor='password'>Password</label>
                                 <Input
+                                    id='password'
                                     type={showPassword ? 'text' : 'password'}
                                     name='password'
                                     value={values.password}
@@ -152,8 +155,9 @@ export const RegisterForm = () => {
                             
 
                             <InputBox>
-                                <label>Confirm password</label>
+                                <label htmlFor='confirmPassword'>Confirm password</label>
                                 <Input
+                                    id='confirmPassword'
                                     type={showConfirmPassword ? 'text' : 'password'}
                                     name='confirmPassword'
                                     value={values.confirmPassword}
@@ -178,14 +182,14 @@ export const RegisterForm = () => {
                             
 
                             <CheckboxContainer>
-                                <label>
+                                <label htmlFor='confirmation'>
                                     <Checkbox>
                                         <Field
+                                            id='confirmation'
                                             name='confirmation'
-                                            type='checkbox'
+                                            type='hidden'
                                             onClick={handleToggleCheck}
                                             value={isChecked}
-                                            style={{ display: 'none' }}
                                         />
                                         <div>
                                             <Icon
