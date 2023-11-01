@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { PublicRoute, ProtectedRoute } from './routes';
 import { useEffect } from 'react';
 import { GlobalStyles } from './styles/GlobalStyles.styled';
@@ -21,8 +21,8 @@ import ProfilePage from './pages/ProfilePage';
 import MyAdvertPage from './pages/MyAdvertPage';
 
 
-const App = () => {
   const { isAuth, setToken, setProfile, token } = useAuthStore();
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -39,8 +39,10 @@ const App = () => {
 
     if (googleToken) {
       setToken(googleToken);
+      navigate('/');
     }
-  }, [setToken]);
+  }, [setToken, navigate]);
+
 
   return (
     <>
