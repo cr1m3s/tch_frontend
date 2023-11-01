@@ -19,7 +19,6 @@ import {
     InputIconShow,
     ForgotPassword
 } from './LoginForm.styled';
-// import { fetchLogin } from '../../../../services';
 
 
 const initialValues = {
