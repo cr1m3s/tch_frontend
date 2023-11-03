@@ -16,6 +16,7 @@ const ICON_TYPES = {
   plus: 'plus',
   minus: 'minus',
   logout: 'logout',
+  search: 'search',
 };
 
 export default ICON_TYPES;
