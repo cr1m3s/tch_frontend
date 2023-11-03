@@ -80,11 +80,11 @@ export const useAuthStore = create(
                     }
                 }
             },
-            updateUserData: async (data) => {
+            updateUserData: async (updateData, currentPassword) => {
                 set(() => ({ loading: true }));
 
                 try {
-                    const response = await fetchUpdateUserData(data);
+                    const response = await fetchUpdateUserData(updateData, currentPassword);
                     set(() => ({
                         user: response,
                         loading: false,

@@ -88,13 +88,14 @@ export const fetchResetPassword = async (values) => {
  * PATCH @ /protected/user-patch
  * headers: Authorization: Bearer token
  */
-export const fetchUpdateUserData = async (data) => {
+export const fetchUpdateUserData = async (updateData, currentPassword) => {
     const token = getDataFromLocalStorage('auth').state.token;
+
     try {
         const response = await axios.patch(
             `/protected/user-patch`,
-            data,
-            { headers: {'Authorization': `Bearer ${token}`} }
+            updateData,
+            { headers: { 'Authorization': `${token}:${currentPassword}` } }
         );
 
         return response.data.data;
