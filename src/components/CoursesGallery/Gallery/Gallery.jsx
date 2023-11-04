@@ -4,12 +4,12 @@ import FiltersBtn from "../FiltersBtn/FiltersBtn";
 import FiltersContainer from "../Filters/FiltersContainer/FiltersContainer";
 import {
     Section,
-    Wrapper
+    SortWrapper,
+    MainContentWrapper,
 } from "./Gallery.styled";
 
 
 const Gallery = () => {
-    const isDescktopScreenSize = window.matchMedia('(min-width: 1440px)').matches;
     const [isFiltersShown, setIsFiltersShown] = useState(false);
 
 
@@ -20,28 +20,18 @@ const Gallery = () => {
     
     return (
         <Section>
-            {
-                isDescktopScreenSize
-                    ? (
-                        <>
-                            < FiltersContainer /> 
-                            < CoursesList />
-                        </>
-                    )
-                    : (
-                        <>
-                            <Wrapper>
-                                < FiltersBtn onClick={handleToggleFiltersList} />
-                            </Wrapper>
-                            
-                            {
-                                isFiltersShown 
-                                    ? < FiltersContainer onClick={handleToggleFiltersList} />
-                                    : < CoursesList />  
-                            }
-                        </>
-                    )
-            }
+            <SortWrapper>
+                < FiltersBtn onClick={handleToggleFiltersList} />
+            </SortWrapper>
+
+            <MainContentWrapper>
+                < FiltersContainer
+                            isVisible={isFiltersShown}
+                            onClick={handleToggleFiltersList}
+                />
+                < CoursesList isVisible={!isFiltersShown}/>  
+            </MainContentWrapper>
+
         </Section>
     );
 };

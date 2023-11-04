@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid/non-secure';
-import { Icon } from '../../../common';
 import { CategoryItem } from '../CategoryItem';
 import PropTypes from 'prop-types';
 
@@ -8,12 +7,12 @@ import {
     ItemWrapper,
     SectionHeader,
     Title,
+    StyledIcon,
     CategoriesList
 } from './FiltersListSection.styled';
 
 
 const FiltersListSection = ({ title, categories }) => {
-    const isDescktopScreenSize = window.matchMedia('(min-width: 1440px)').matches;
     const [isOpen, setIsOpen] = useState(false);
     const id = nanoid();
 
@@ -23,45 +22,10 @@ const FiltersListSection = ({ title, categories }) => {
 
     return (
         <ItemWrapper>
-            <SectionHeader>
+            <SectionHeader onClick={handleToggleItemContainer}>
                 <Title>{title}</Title>
-                <div onClick={handleToggleItemContainer}>
-                    {
-                        (!isOpen && !isDescktopScreenSize) &&(
-                                <Icon
-                                    name='plus'
-                                    size={24}
-                                    color='#FFFFFF'
-                                />                                            
-                            )
-                    }
-                    {
-                        (isOpen && !isDescktopScreenSize) &&(
-                                <Icon
-                                    name='minus'
-                                    size={24}
-                                    color='#FFFFFF'
-                                />                                            
-                            )
-                    }
-                    {
-                        (!isOpen && isDescktopScreenSize) &&(
-                                <Icon
-                                    name='plus'
-                                    size={24}
-                                    color='#000000'
-                                />                                            
-                            )
-                    }
-                    {
-                        (isOpen && isDescktopScreenSize) &&(
-                                <Icon
-                                    name='minus'
-                                    size={24}
-                                    color='#000000'
-                                />                                            
-                            )
-                    }                    
+                <div>
+                    <StyledIcon name={isOpen ? 'minus' : 'plus'} />                 
                 </div>
             </SectionHeader>
 
