@@ -33,8 +33,12 @@ export const ChangeEmailForm = () => {
     const { user, updateUserData } = useAuthStore();
     const userEmail = user.email;
 
-    const handleSubmit = (values, { resetForm }) => {
-        updateUserData(values);
+    const handleSubmit = ({email, currentPassword}, { resetForm }) => {
+        const dataToUpdate = {
+            email,
+        };
+
+        updateUserData(dataToUpdate, currentPassword);
         resetForm();
     };
 
