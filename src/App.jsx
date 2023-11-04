@@ -25,6 +25,7 @@ const App = () => {
   const { isAuth, setToken, setProfile, token } = useAuthStore();
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     const fetchUserData = async () => {
       await setProfile();
