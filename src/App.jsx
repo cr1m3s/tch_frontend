@@ -83,11 +83,25 @@ const App = () => {
           />
 
           <Route path='/login' element={<LoginPage />} />
-
-          <Route path='/change-email' element={<ChangeEmailPage />} />
           <Route path='/reset-password' element={<ResetPasswordPage />} />
-          <Route path='/change-password' element={<ChangePasswordPage />} />
           <Route path='/create-password' element={<CreateNewPasswordPage />} />
+
+          <Route
+            path='/change-password'
+            element={
+              <ProtectedRoute
+                component={<ChangePasswordPage />}
+                isAllowed={isAuth}                
+              />}
+          />
+          <Route
+            path='/change-email'
+            element={
+              <ProtectedRoute
+                component={<ChangeEmailPage />}
+                isAllowed={isAuth}                
+              />}
+          />
 
           <Route path='/conditions' element={<ConditionsPage />} />
           <Route path='/policy' element={<PolicyPage />} />
