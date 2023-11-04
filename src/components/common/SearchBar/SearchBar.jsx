@@ -13,16 +13,10 @@ const initialValues = {
 
 
 const SearchBar = () => {
-    const handleSubmit = ({search}, {resetForm}) => {
-        console.log(search);
-        resetForm();
-    };
-
     return (
         <div>
             <Formik
                 initialValues={initialValues}
-                onSubmit={handleSubmit}      
             >
                 {
                     ({ errors, touched, values, handleChange, handleBlur }) => (
