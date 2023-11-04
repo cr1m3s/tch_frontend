@@ -30,7 +30,7 @@ const initialValues = {
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState('');
-    const [isMessage, setIsMessage] = useState(false);
+    const [isError, setIsError] = useState(false);
     const { login } = useAuthStore();
     const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ const LoginForm = () => {
             resetForm();
             handleNavigateToCourses();
         } catch (error) {
-            setIsMessage(true);
+            setIsError(true);
             resetForm();
             throw error;            
         }
@@ -75,7 +75,7 @@ const LoginForm = () => {
                         <FormTitle>Log in</FormTitle>
 
                         {
-                            isMessage && <UnauthorizedMessage>You are not logged in. Try again!</UnauthorizedMessage>
+                            isError && <UnauthorizedMessage>You are not logged in. Try again!</UnauthorizedMessage>
                         }     
                         
                         <LoginLinkBox>

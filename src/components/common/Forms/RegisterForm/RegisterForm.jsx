@@ -40,7 +40,7 @@ export const RegisterForm = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const [isChecked, setIsChecked] = useState(false);
-    const [isMessage, setIsMessage] = useState(false);
+    const [isError, setIsError] = useState(false);
     const { register } = useAuthStore();
     const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ export const RegisterForm = () => {
                 handleNavigateToLogin();
             }            
         } catch (error) {
-            setIsMessage(true);
+            setIsError(true);
             resetForm();
             setIsChecked(false);
             throw error;
@@ -99,7 +99,7 @@ export const RegisterForm = () => {
                         <FormTitle>Sign up</FormTitle>
 
                         {
-                            isMessage && <UnauthorizedMessage>Fail. Try again!</UnauthorizedMessage>
+                            isError && <UnauthorizedMessage>Fail. Try again!</UnauthorizedMessage>
                         }
 
                         <LoginLinkBox>
