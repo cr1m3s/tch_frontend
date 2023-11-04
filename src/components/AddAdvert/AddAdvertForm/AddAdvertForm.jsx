@@ -40,7 +40,6 @@ const AddAdvertForm = () => {
                     <div>
                         <FormTitle>Create advertisement</FormTitle>
                         <Form>
-                            {/* // TITLE */}
                             <div>
                                 <label htmlFor='title'>Title</label>
                                 <Field
@@ -56,7 +55,6 @@ const AddAdvertForm = () => {
                                 <ErrorMessage name='title' component='div' />                                
                             </div>
 
-                            {/* // CATEGORY */}
                             <div>
                                 <label htmlFor='category'>Category</label>
                                 <Field
@@ -80,7 +78,6 @@ const AddAdvertForm = () => {
                                 <ErrorMessage name='category' component='div' />                                
                             </div>
 
-                            {/* // SUBCATEGORY */}
                             <div>
                                 <label htmlFor='subcategory'>Subcategory</label>
                                 <Field
@@ -105,7 +102,6 @@ const AddAdvertForm = () => {
                                 <ErrorMessage name='subcategory' component='div' />                                
                             </div>
 
-                            {/* // TIME */}
                             <div>
                                 <label htmlFor='time'>Time</label>
                                 <Field
@@ -129,7 +125,6 @@ const AddAdvertForm = () => {
                                 <ErrorMessage name='time' component='div' />                                
                             </div>
 
-                            {/* // FORMAT */}
                             <div>
                                 <label htmlFor='format'>Format</label>
                                 <Field
@@ -148,7 +143,6 @@ const AddAdvertForm = () => {
                                 <ErrorMessage name='format' component='div' />                                
                             </div>
 
-                            {/* // PRICE */}
                             <div>
                                 <label htmlFor='price'>Price</label>
                                 <Field
@@ -164,7 +158,6 @@ const AddAdvertForm = () => {
                                 <ErrorMessage name='price' component='div' />                                
                             </div>
 
-                            {/* // LANGUAGE */}
                             <div>
                                 <label htmlFor='language'>Language</label>
                                 <Field
@@ -189,7 +182,6 @@ const AddAdvertForm = () => {
                                 <ErrorMessage name='language' component='div' />                                
                             </div>
 
-                            {/* // TEXT */}
                             <div>
                                 <label htmlFor='text'>Description</label>
                                 <Field
