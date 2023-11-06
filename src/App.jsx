@@ -18,7 +18,8 @@ import ChangePasswordPage from './pages/ChangePasswordPage';
 import CreateNewPasswordPage from './pages/CreateNewPasswordPage';
 import CoursesPage from './pages/CoursesPage';
 import ProfilePage from './pages/ProfilePage';
-import MyAdvertPage from './pages/MyAdvertPage';
+import MyAdvertPage from './pages/MyAdvertsPage';
+import AddAdvertPage from './pages/AddAdvertPage';
 
 
 const App = () => {
@@ -54,19 +55,28 @@ const App = () => {
           <Route index element={<CoursesPage />} />
           
           <Route
+            path='/profile'
+            element={
+              <ProtectedRoute
+                component={<ProfilePage />}
+                isAllowed={isAuth}                
+              />}
+          />
+
+          <Route
             path='/my-advert'
             element={
               <ProtectedRoute
                 component={<MyAdvertPage />}
                 isAllowed={isAuth}                
               />}
-          />
+          />          
 
           <Route
-            path='/profile'
+            path='/add-advert'
             element={
               <ProtectedRoute
-                component={<ProfilePage />}
+                component={<AddAdvertPage />}
                 isAllowed={isAuth}                
               />}
           />

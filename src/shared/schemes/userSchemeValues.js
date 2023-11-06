@@ -24,18 +24,22 @@ export const emailScheme = Yup
 
 export const passwordScheme = Yup
     .string()
+    .min(FORMS_VALIDATION.minPassword, 'Minimum number of characters is 6')
+    .max(FORMS_VALIDATION.maxPassword, 'Maximum number of characters is 16')    
     .matches(
         PASSWORD_REGEXP,
-        'Password must contain at least 6 characters, one uppercase, one number and one special case character'
+        'Password must contain both at least one upper- and at least one lower-case character, one number and one special case character'
     )
     .required('Password is required');
 
 
 export const currentPasswordScheme = Yup
     .string()
+    .min(FORMS_VALIDATION.minPassword, 'Minimum number of characters is 6')
+    .max(FORMS_VALIDATION.maxPassword, 'Maximum number of characters is 16')     
     .matches(
         PASSWORD_REGEXP,
-        'Password must contain at least 6 characters, one uppercase, one number and one special case character'
+        'Password must contain both at least one upper- and at least one lower-case character, one number and one special case character'
     )
     .required('Enter current password is required');
 
