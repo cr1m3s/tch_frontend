@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {
     getDataFromLocalStorage
-} from './localStorage';
-import { STATUS_CODES } from '../shared';
+} from '../localStorage';
+import { STATUS_CODES } from '../../shared';
 
 
 axios.defaults.baseURL = 'https://dev-backend-b4vo.onrender.com';
@@ -56,7 +56,7 @@ export const fetchRefresh = async () => {
     try {
         const response = await axios.get(
             `/protected/userinfo`,
-            { headers: {'Authorization': `Bearer ${token}`} }
+            { headers: {'Authorization': `${token}`} }
         );
         return response.data.data;
     } catch (error) {
