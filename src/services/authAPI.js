@@ -23,7 +23,9 @@ export const fetchRegister = async (values) => {
             return response.data.data;
         }
     } catch(error) {
-        console.log(error.message);
+        if (error.response.status === STATUS_CODES.unauthorized) {
+            throw error;
+        }
     }
 }
 
@@ -42,7 +44,9 @@ export const fetchLogin = async (values) => {
             return response.data.data;
         }
     } catch (error) {
-        console.log(error.message);
+        if (error.response.status === STATUS_CODES.unauthorized) {
+            throw error;
+        }
     }
 }
 
@@ -53,10 +57,11 @@ export const fetchLogin = async (values) => {
  */
 export const fetchRefresh = async () => {
     const token = getDataFromLocalStorage('auth').state.token;
+
     try {
         const response = await axios.get(
             `/protected/userinfo`,
-            { headers: {'Authorization': `Bearer ${token}`} }
+            { headers: { 'Authorization': token } }
         );
         return response.data.data;
     } catch (error) {

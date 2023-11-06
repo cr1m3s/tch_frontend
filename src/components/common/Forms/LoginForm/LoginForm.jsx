@@ -9,6 +9,7 @@ import { ExternalAuth } from '../ExternalAuth';
 import {
     Section,
     LoginFormContainer,
+    UnauthorizedMessage,
     FormBox,
     LoginLink,
     LoginLinkBox,
@@ -29,14 +30,21 @@ const initialValues = {
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState('');
+    const [isError, setIsError] = useState(false);
     const { login } = useAuthStore();
     const navigate = useNavigate();
 
 
     const handleSubmit = async (values, { resetForm }) => {
-        await login(values);
-        resetForm();
-        handleNavigateToCourses();
+        try {
+            await login(values);
+            resetForm();
+            handleNavigateToCourses();
+        } catch (error) {
+            setIsError(true);
+            resetForm();
+            throw error;            
+        }
     };
 
     const handleTogglePassword = () => {
@@ -65,6 +73,11 @@ const LoginForm = () => {
                 }) => (
                     <LoginFormContainer>
                         <FormTitle>Log in</FormTitle>
+
+                        {
+                            isError && <UnauthorizedMessage>You are not logged in. Try again!</UnauthorizedMessage>
+                        }     
+                        
                         <LoginLinkBox>
                             <p>Don’t have an account?</p>
                             <LoginLink to='/register'>Sign up</LoginLink>

@@ -22,16 +22,17 @@ import MyAdvertPage from './pages/MyAdvertPage';
 
 
 const App = () => {
-  const { isAuth, setToken, refresh, token } = useAuthStore();
+  const { isAuth, setToken, setProfile, token } = useAuthStore();
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     const fetchUserData = async () => {
-      await refresh();
+      await setProfile();
     };
 
     if (token) fetchUserData();
-  }, [refresh, token]);
+  }, [setProfile, token]);
 
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search);

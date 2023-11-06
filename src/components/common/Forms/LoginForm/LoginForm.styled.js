@@ -32,6 +32,13 @@ export const LoginFormContainer = styled.div`
     };    
 `;
 
+export const UnauthorizedMessage = styled.p`
+    color: ${({theme}) => theme.colors.error};
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 120%;
+`;
+
 export const LoginLinkBox = styled.p`
     display: flex;
     flex-direction: row;
