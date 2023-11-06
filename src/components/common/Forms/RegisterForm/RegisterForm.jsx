@@ -12,6 +12,7 @@ import {
 import {
     Section,
     RegisterFormContainer,
+    UnauthorizedMessage,
     LoginLink,
     LoginLinkBox,
     InputBox,
@@ -39,18 +40,23 @@ export const RegisterForm = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const [isChecked, setIsChecked] = useState(false);
+    const [isError, setIsError] = useState(false);
     const { register } = useAuthStore();
     const navigate = useNavigate();
 
-
     const handleSubmit = async (values, { resetForm }) => {
-        if (isChecked) {
-            await register(values);
-
+        try {
+            if (isChecked) {
+                await register(values);
+                resetForm();
+                setIsChecked(false);
+                handleNavigateToLogin();
+            }            
+        } catch (error) {
+            setIsError(true);
             resetForm();
             setIsChecked(false);
-
-            handleNavigateToLogin();
+            throw error;
         }
     };
 
@@ -91,6 +97,11 @@ export const RegisterForm = () => {
                 }) => (
                     <RegisterFormContainer>
                         <FormTitle>Sign up</FormTitle>
+
+                        {
+                            isError && <UnauthorizedMessage>Fail. Try again!</UnauthorizedMessage>
+                        }
+
                         <LoginLinkBox>
                             Already have an account?
                             <LoginLink to='/login'>Log in</LoginLink>

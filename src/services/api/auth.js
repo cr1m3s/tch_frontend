@@ -1,7 +1,5 @@
 import axios from 'axios';
-import {
-    getDataFromLocalStorage
-} from '../localStorage';
+import { getDataFromLocalStorage } from '../localStorage';
 import { STATUS_CODES } from '../../shared';
 
 
@@ -23,7 +21,9 @@ export const fetchRegister = async (values) => {
             return response.data.data;
         }
     } catch(error) {
-        console.log(error.message);
+        if (error.response.status === STATUS_CODES.unauthorized) {
+            throw error;
+        }
     }
 }
 
@@ -42,7 +42,9 @@ export const fetchLogin = async (values) => {
             return response.data.data;
         }
     } catch (error) {
-        console.log(error.message);
+        if (error.response.status === STATUS_CODES.unauthorized) {
+            throw error;
+        }
     }
 }
 
@@ -53,10 +55,11 @@ export const fetchLogin = async (values) => {
  */
 export const fetchRefresh = async () => {
     const token = getDataFromLocalStorage('auth').state.token;
+
     try {
         const response = await axios.get(
             `/protected/userinfo`,
-            { headers: {'Authorization': `${token}`} }
+            { headers: { 'Authorization': token } }
         );
         return response.data.data;
     } catch (error) {
@@ -86,15 +89,38 @@ export const fetchResetPassword = async (values) => {
 
 /*
  * PATCH @ /protected/user-patch
- * headers: Authorization: Bearer token
+ * headers: Authorization: Bearer token:password
+ * body: { updateData }
  */
-export const fetchUpdateUserData = async (data) => {
+export const fetchUpdateUserData = async (updateData, currentPassword) => {
     const token = getDataFromLocalStorage('auth').state.token;
+
     try {
         const response = await axios.patch(
             `/protected/user-patch`,
-            data,
-            { headers: {'Authorization': `Bearer ${token}`} }
+            updateData,
+            { headers: { 'Authorization': `${token}:${currentPassword}` } }
+        );
+
+        return response.data.data;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
+/*
+ * PATCH @ /protected/create-password
+ * headers: Authorization: Bearer token
+ */
+export const fetchCreateNewPassword = async (newPassword) => {
+    const token = getDataFromLocalStorage('auth').state.token;
+
+    try {
+        const response = await axios.patch(
+            `/protected/create-password`,
+            newPassword,
+            { headers: {'Authorization': token} }
         );
 
         return response.data.data;

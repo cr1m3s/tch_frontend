@@ -15,6 +15,7 @@ import {
     Error,
     InputIconShow
 } from './CreateNewPasswordForm.styled';
+import { fetchCreateNewPassword } from '../../../../services';
 
 
 const initialValues = {
@@ -28,10 +29,17 @@ export const CreateNewPasswordForm = () => {
     const [passwordError, setPasswordError] = useState('');
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
-    const { updateUserData } = useAuthStore();
+    
+    const { user } = useAuthStore();
+    const userEmail = user.email;
 
-    const handleSubmit = (values, { resetForm }) => {
-        updateUserData(values);
+
+    const handleSubmit = ({password}, { resetForm }) => {
+        const newPassworsPayload = {
+            password,
+        };
+        
+        fetchCreateNewPassword(newPassworsPayload);
         resetForm();
     };
 
@@ -60,7 +68,7 @@ export const CreateNewPasswordForm = () => {
                         <FormTitle>Create new password</FormTitle>
                         <MessageWrapper>
                             <Message indentBottom={24} position='center'>
-                                Enter a new password for account: a.salute@gmail.com
+                                Enter a new password for account: {userEmail}
                             </Message>
                         </MessageWrapper>
 

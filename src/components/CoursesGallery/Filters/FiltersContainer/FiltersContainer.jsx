@@ -6,11 +6,9 @@ import {
 } from './FiltersContainer.styled';
 
 
-const FiltersContainer = ({ onClick }) => {
-    const isDescktopScreenSize = window.matchMedia('(min-width: 1440px)').matches;
-
+const FiltersContainer = ({ onClick, isVisible }) => {
     return (
-        <Section $desktop={isDescktopScreenSize}>
+        <Section $isVisible={isVisible}>
             <FiltersList />
             <Button
                 type='submit'
@@ -25,6 +23,7 @@ const FiltersContainer = ({ onClick }) => {
 
 FiltersContainer.propTypes = {
     onClick: PropTypes.func,
+    isVisible: PropTypes.bool,
 };
 
 export default FiltersContainer;

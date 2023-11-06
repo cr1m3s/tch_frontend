@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import { CourseCard } from '../CourseCard';
 import courses from '../../../courses.json';
 import { List } from './CoursesList.styled';
 
 
-const CoursesList = () => {
+const CoursesList = ({isVisible}) => {
     return (
-        <List>
+        <List $isVisible={isVisible}>
             {
                 courses.map(({
                     id,
@@ -41,5 +42,11 @@ const CoursesList = () => {
         </List>
     );
 };
+
+
+CoursesList.propTypes = {
+    isVisible: PropTypes.bool,
+}
+
 
 export default CoursesList;

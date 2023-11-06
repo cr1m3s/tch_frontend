@@ -45,6 +45,7 @@ export const useAuthStore = create(
                         errors: error.response.data.status,
                         loading: false
                     }));
+                    throw error;
                 }
             },
             login: async (values) => {
@@ -63,9 +64,10 @@ export const useAuthStore = create(
                         errors: error.response.data.status,
                         loading: false
                     }))
+                    throw error;
                 }
             },
-            refresh: async () => {
+            setProfile: async () => {
                 try {
                     const response = await fetchRefresh();
                     
@@ -80,11 +82,11 @@ export const useAuthStore = create(
                     }
                 }
             },
-            updateUserData: async (data) => {
+            updateUserData: async (updateData, currentPassword) => {
                 set(() => ({ loading: true }));
 
                 try {
-                    const response = await fetchUpdateUserData(data);
+                    const response = await fetchUpdateUserData(updateData, currentPassword);
                     set(() => ({
                         user: response,
                         loading: false,

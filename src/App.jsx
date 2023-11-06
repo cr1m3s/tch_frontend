@@ -23,16 +23,17 @@ import AddAdvertPage from './pages/AddAdvertPage';
 
 
 const App = () => {
-  const { isAuth, setToken, refresh, token } = useAuthStore();
+  const { isAuth, setToken, setProfile, token } = useAuthStore();
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     const fetchUserData = async () => {
-      await refresh();
+      await setProfile();
     };
 
     if (token) fetchUserData();
-  }, [refresh, token]);
+  }, [setProfile, token]);
 
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -93,11 +94,25 @@ const App = () => {
           />
 
           <Route path='/login' element={<LoginPage />} />
-
-          <Route path='/change-email' element={<ChangeEmailPage />} />
           <Route path='/reset-password' element={<ResetPasswordPage />} />
-          <Route path='/change-password' element={<ChangePasswordPage />} />
           <Route path='/create-password' element={<CreateNewPasswordPage />} />
+
+          <Route
+            path='/change-password'
+            element={
+              <ProtectedRoute
+                component={<ChangePasswordPage />}
+                isAllowed={isAuth}                
+              />}
+          />
+          <Route
+            path='/change-email'
+            element={
+              <ProtectedRoute
+                component={<ChangeEmailPage />}
+                isAllowed={isAuth}                
+              />}
+          />
 
           <Route path='/conditions' element={<ConditionsPage />} />
           <Route path='/policy' element={<PolicyPage />} />
