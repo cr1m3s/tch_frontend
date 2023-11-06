@@ -12,6 +12,7 @@ import {
 import {
     Section,
     RegisterFormContainer,
+    UnauthorizedMessage,
     LoginLink,
     LoginLinkBox,
     InputBox,
@@ -39,18 +40,23 @@ export const RegisterForm = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const [isChecked, setIsChecked] = useState(false);
+    const [isError, setIsError] = useState(false);
     const { register } = useAuthStore();
     const navigate = useNavigate();
 
-
     const handleSubmit = async (values, { resetForm }) => {
-        if (isChecked) {
-            await register(values);
-
+        try {
+            if (isChecked) {
+                await register(values);
+                resetForm();
+                setIsChecked(false);
+                handleNavigateToLogin();
+            }            
+        } catch (error) {
+            setIsError(true);
             resetForm();
             setIsChecked(false);
-
-            handleNavigateToLogin();
+            throw error;
         }
     };
 
@@ -91,14 +97,20 @@ export const RegisterForm = () => {
                 }) => (
                     <RegisterFormContainer>
                         <FormTitle>Sign up</FormTitle>
+
+                        {
+                            isError && <UnauthorizedMessage>Fail. Try again!</UnauthorizedMessage>
+                        }
+
                         <LoginLinkBox>
                             Already have an account?
                             <LoginLink to='/login'>Log in</LoginLink>
                         </LoginLinkBox>
                         <Form>
                             <InputBox>
-                                <label>Name</label>
+                                <label htmlFor='name'>Name</label>
                                 <Input
+                                    id='name'
                                     type='text'
                                     name='name'
                                     placeholder='Enter your name'
@@ -112,9 +124,10 @@ export const RegisterForm = () => {
 
 
                             <InputBox>
-                                <label>Email</label>
+                                <label htmlFor='email'>Email</label>
                                 <Input
-                                    type='text'
+                                    id='email'
+                                    type='email'
                                     name='email'
                                     value={values.email}
                                     placeholder='Enter email'
@@ -127,8 +140,9 @@ export const RegisterForm = () => {
 
 
                             <InputBox>
-                                <label>Password</label>
+                                <label htmlFor='password'>Password</label>
                                 <Input
+                                    id='password'
                                     type={showPassword ? 'text' : 'password'}
                                     name='password'
                                     value={values.password}
@@ -152,8 +166,9 @@ export const RegisterForm = () => {
                             
 
                             <InputBox>
-                                <label>Confirm password</label>
+                                <label htmlFor='confirmPassword'>Confirm password</label>
                                 <Input
+                                    id='confirmPassword'
                                     type={showConfirmPassword ? 'text' : 'password'}
                                     name='confirmPassword'
                                     value={values.confirmPassword}
@@ -178,14 +193,14 @@ export const RegisterForm = () => {
                             
 
                             <CheckboxContainer>
-                                <label>
+                                <label htmlFor='confirmation'>
                                     <Checkbox>
                                         <Field
+                                            id='confirmation'
                                             name='confirmation'
-                                            type='checkbox'
+                                            type='hidden'
                                             onClick={handleToggleCheck}
                                             value={isChecked}
-                                            style={{ display: 'none' }}
                                         />
                                         <div>
                                             <Icon

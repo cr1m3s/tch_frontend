@@ -18,20 +18,22 @@ import ChangePasswordPage from './pages/ChangePasswordPage';
 import CreateNewPasswordPage from './pages/CreateNewPasswordPage';
 import CoursesPage from './pages/CoursesPage';
 import ProfilePage from './pages/ProfilePage';
-import MyAdvertPage from './pages/MyAdvertPage';
+import MyAdvertPage from './pages/MyAdvertsPage';
+import AddAdvertPage from './pages/AddAdvertPage';
 
 
 const App = () => {
-  const { isAuth, setToken, refresh, token } = useAuthStore();
+  const { isAuth, setToken, setProfile, token } = useAuthStore();
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     const fetchUserData = async () => {
-      await refresh();
+      await setProfile();
     };
 
     if (token) fetchUserData();
-  }, [refresh, token]);
+  }, [setProfile, token]);
 
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -53,19 +55,28 @@ const App = () => {
           <Route index element={<CoursesPage />} />
           
           <Route
+            path='/profile'
+            element={
+              <ProtectedRoute
+                component={<ProfilePage />}
+                isAllowed={isAuth}                
+              />}
+          />
+
+          <Route
             path='/my-advert'
             element={
               <ProtectedRoute
                 component={<MyAdvertPage />}
                 isAllowed={isAuth}                
               />}
-          />
+          />          
 
           <Route
-            path='/profile'
+            path='/add-advert'
             element={
               <ProtectedRoute
-                component={<ProfilePage />}
+                component={<AddAdvertPage />}
                 isAllowed={isAuth}                
               />}
           />
