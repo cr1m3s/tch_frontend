@@ -3,6 +3,42 @@ import { TOKEN } from '../../shared';
 
 
 /*
+ * GET @ /protected/advertisement-getall
+ * headers: Authorization: token (without Bearer)
+ */
+export const fetchAllAdverts = async () => {
+    try {
+        const response = await axios.get(
+            `/protected/advertisement-getall`,
+            { headers: { 'Authorization': TOKEN } }
+        );
+
+        return response.data.data;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
+/*
+ * GET @ /protected/advertisement-getall
+ * headers: Authorization: token (without Bearer)
+ */
+export const fetchAdvertById = async () => {
+    try {
+        const response = await axios.get(
+            `/protected/advertisement-getall`,
+            { headers: { 'Authorization': TOKEN } }
+        );
+
+        return response.data.data;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
+/*
  * POST @ /protected/advertisement-create
  * headers: Authorization: token
  * body: { data }
