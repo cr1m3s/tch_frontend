@@ -1,8 +1,6 @@
 import axios from 'axios';
-import {
-    getDataFromLocalStorage
-} from './localStorage';
-import { STATUS_CODES } from '../shared';
+import { getDataFromLocalStorage } from '../localStorage';
+import { STATUS_CODES } from '../../shared';
 
 
 axios.defaults.baseURL = 'https://dev-backend-b4vo.onrender.com';
