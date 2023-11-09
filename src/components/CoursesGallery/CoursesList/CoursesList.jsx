@@ -24,6 +24,7 @@ const CoursesList = ({isVisible}) => {
                 }) =>
                 <CourseCard
                     key={id}
+                    advertId={id}
                     title={title}
                     author={author}
                     experience={experience}

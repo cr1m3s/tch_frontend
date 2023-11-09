@@ -11,9 +11,11 @@ import {
     CourseDetails,
     CourseDescr
 } from './CourseCard.styled';
+import { Link } from 'react-router-dom';
 
 
 const CourseCard = ({
+    advertId,
     title,
     author,
     experience,
@@ -29,52 +31,54 @@ const CourseCard = ({
     const isMobileScreenSize = window.matchMedia('(max-width: 768px)').matches;
 
     return (
-        <Card>
-            <CardHeader>
-                <CardTitleWrapper>
-                    <TitleBox>
-                        <Title indent={10} size={[24, 32]} weight={600} >{title}</Title>
-                        <Message>Provider:</Message> <Message>{author}</Message>
-                        {
-                            !isMobileScreenSize &&
+        // <Card>
+            <Card to={`/courses/${advertId}`}>
+                <CardHeader>
+                    <CardTitleWrapper>
+                        <TitleBox>
+                            <Title indent={10} size={[24, 32]} weight={600} >{title}</Title>
+                            <Message>Provider:</Message> <Message>{author}</Message>
+                            {
+                                !isMobileScreenSize &&
+                                <TimeInfo $isRow={isMobileScreenSize}>
+                                        <Message>{experience}</Message> <Message>of experience</Message>
+                                        <Message>1 day ago</Message>
+                                    </TimeInfo> 
+                            }                        
+                        </TitleBox>
+
+                        <Avatar src={avatar} alt='avatar' width='140px'/>
+                    </CardTitleWrapper>
+
+                    {
+                        isMobileScreenSize &&
                             <TimeInfo $isRow={isMobileScreenSize}>
-                                    <Message>{experience}</Message> <Message>of experience</Message>
-                                    <Message>1 day ago</Message>
-                                </TimeInfo> 
-                        }                        
-                    </TitleBox>
-
-                    <Avatar src={avatar} alt='avatar' width='140px'/>
-                </CardTitleWrapper>
-
-                {
-                    isMobileScreenSize &&
-                        <TimeInfo $isRow={isMobileScreenSize}>
-                            <Message>{experience}</Message> <Message>of experience</Message>
-                            <Message>1 day ago</Message>
-                        </TimeInfo> 
-                }
-            </CardHeader>
+                                <Message>{experience}</Message> <Message>of experience</Message>
+                                <Message>1 day ago</Message>
+                            </TimeInfo> 
+                    }
+                </CardHeader>
 
 
-            <AboutTitle>
-                <Title size={[24, 32]} weight={600}>
-                    About
-                </Title>
-                <Icon name='info' size={24} />
-            </AboutTitle>
+                <AboutTitle>
+                    <Title size={[24, 32]} weight={600}>
+                        About
+                    </Title>
+                    <Icon name='info' size={24} />
+                </AboutTitle>
 
-            <CourseDetails>
-                <Message>{duration}</Message>
-                <Message>${price} per lesson</Message>
-                <Message>{lessonFormat}</Message>
-                <Message>Lesson in {lessonLenguage}</Message>
-            </CourseDetails> 
-            
-            <CourseDescr>
-                <Message>{content}</Message>
-            </CourseDescr>
-        </Card>
+                <CourseDetails>
+                    <Message>{duration}</Message>
+                    <Message>${price} per lesson</Message>
+                    <Message>{lessonFormat}</Message>
+                    <Message>Lesson in {lessonLenguage}</Message>
+                </CourseDetails> 
+                
+                <CourseDescr>
+                    <Message>{content}</Message>
+                </CourseDescr>
+            </Card>    
+        // </Card>
     );
 };
 

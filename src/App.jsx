@@ -20,6 +20,7 @@ import CoursesPage from './pages/CoursesPage';
 import ProfilePage from './pages/ProfilePage';
 import MyAdvertPage from './pages/MyAdvertsPage';
 import AddAdvertPage from './pages/AddAdvertPage';
+import AdvertDetailsPage from './pages/AdvertDetailsPage';
 
 
 const App = () => {
@@ -53,6 +54,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<SharedLayout />}>
           <Route index element={<CoursesPage />} />
+          <Route path='/courses/:advertId' element={<AdvertDetailsPage />} />
           
           <Route
             path='/profile'
