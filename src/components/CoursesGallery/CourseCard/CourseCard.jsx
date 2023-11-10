@@ -69,19 +69,19 @@ const CourseCard = ({ advert }) => {
 
 CourseCard.propTypes = {
     advert: PropTypes.object.isRequired,
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    provider: PropTypes.string.isRequired,
-    provider_id: PropTypes.number.isRequired,
-    experience: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    format: PropTypes.string.isRequired,
-    language: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    created_at: PropTypes.string.isRequired,
-    mobile_phone: PropTypes.string.isRequired,
-    telegram: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    provider: PropTypes.string,
+    provider_id: PropTypes.number,
+    experience: PropTypes.string,
+    time: PropTypes.string,
+    price: PropTypes.number,
+    format: PropTypes.string,
+    language: PropTypes.string,
+    description: PropTypes.string,
+    created_at: PropTypes.string,
+    mobile_phone: PropTypes.string,
+    telegram: PropTypes.string,
 };
 
 export default CourseCard;
