@@ -1,6 +1,9 @@
+import { MyAdvertsContainer } from '../components/MyAdverts';
+
+
 const MyAdvertsPage = () => {
     return (
-        <div></div>
+        <MyAdvertsContainer/>
     );
 };
 
