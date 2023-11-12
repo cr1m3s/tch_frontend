@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 
-export const Card = styled(Link)`
+export const Card = styled.div`
     background-color: ${props => props.theme.colors.card};
     padding: 25px 16px 45px 16px;
     border-bottom: 1px solid ${props => props.theme.colors.primaryText};

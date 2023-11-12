@@ -7,17 +7,18 @@ import {
     SortWrapper,
     MainContentWrapper,
 } from "./Gallery.styled";
+import PropTypes from 'prop-types';
 
 
-const Gallery = () => {
+const Gallery = ({adverts}) => {
     const [isFiltersShown, setIsFiltersShown] = useState(false);
 
-
+    
     const handleToggleFiltersList = () => {
         setIsFiltersShown(!isFiltersShown);
     };
-
     
+
     return (
         <Section>
             <SortWrapper>
@@ -29,11 +30,20 @@ const Gallery = () => {
                             isVisible={isFiltersShown}
                             onClick={handleToggleFiltersList}
                 />
-                < CoursesList isVisible={!isFiltersShown}/>  
+                < CoursesList
+                    isVisible={!isFiltersShown}
+                    adverts={adverts}
+                />  
             </MainContentWrapper>
 
         </Section>
     );
 };
+
+
+Gallery.propTypes = {
+    adverts: PropTypes.array,
+};
+
 
 export default Gallery;

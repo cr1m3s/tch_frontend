@@ -21,12 +21,13 @@ import ProfilePage from './pages/ProfilePage';
 import MyAdvertPage from './pages/MyAdvertsPage';
 import AddAdvertPage from './pages/AddAdvertPage';
 import AdvertDetailsPage from './pages/AdvertDetailsPage';
+import { ActiveAdverts, InReviewAdverts } from './components/MyAdverts';
 
 
 const App = () => {
   const { isAuth, setToken, setProfile, token } = useAuthStore();
   const navigate = useNavigate();
-
+  
   
   useEffect(() => {
     const fetchUserData = async () => {
@@ -71,8 +72,25 @@ const App = () => {
               <ProtectedRoute
                 component={<MyAdvertPage />}
                 isAllowed={isAuth}                
-              />}
-          />          
+              />}          
+          >
+            <Route
+              path='active'
+              element={
+                <ProtectedRoute
+                  component={<ActiveAdverts />}
+                  isAllowed={isAuth}                
+                />}
+            />
+            <Route
+              path='in-review'
+              element={
+                <ProtectedRoute
+                  component={<InReviewAdverts />}
+                  isAllowed={isAuth}                
+                />}
+            />            
+          </Route>
 
           <Route
             path='/add-advert'

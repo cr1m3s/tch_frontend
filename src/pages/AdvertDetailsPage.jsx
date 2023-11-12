@@ -1,19 +1,32 @@
-import { Link } from "react-router-dom";
-import { CourseCard } from "../components/CoursesGallery/CourseCard";
-import courses from '../courses.json';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { fetchAdvertById } from "../services";
+import { AdvertDetailsContainer } from '../components/AdvertDetails';
 
-const AdvertCardPage = () => {
+
+const AdvertDetailsPage = () => {
+    const { advertId } = useParams();
+    const [advert, setAdvert] = useState({});
+
+    useEffect(() => {
+        getAdvert(advertId);
+    }, [advertId])
+
+    async function getAdvert(advertId) {
+        try {
+            const response = await fetchAdvertById(advertId);
+            setAdvert(response);
+            return response;
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
     return (
         <>
-            {
-                courses.map((course) => {
-                        console.log(course.id);
-                    }
-                )
-    
-            }
+            <AdvertDetailsContainer advert={advert} />
         </>
     );
 }
 
-export default AdvertCardPage;
+export default AdvertDetailsPage;
