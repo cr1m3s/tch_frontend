@@ -51,7 +51,7 @@ const initialValues = {
 
 const AddAdvertForm = () => {
     const { user } = useAuthStore();
-    const [isChoosenCategory, setIsChoosenCategory] = useState(false);
+    const [isChosenCategory, setIsChosenCategory] = useState(false);
 
 
     const handleSubmit = (values, { resetForm }) => {
@@ -64,9 +64,9 @@ const AddAdvertForm = () => {
         const category = e.currentTarget.value;
 
         if (category !== '') {
-            setIsChoosenCategory(true);
+            setIsChosenCategory(true);
         } else {
-            setIsChoosenCategory(false);
+            setIsChosenCategory(false);
         }
     };
 
@@ -159,7 +159,7 @@ const AddAdvertForm = () => {
                                 </CategoryContainer>
 
                                 {
-                                    isChoosenCategory && (
+                                    isChosenCategory && (
                                         <CategoryContainer>
                                             <Label htmlFor='subcategory'>Subcategory</Label>
                                             <CategoryInput
