@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Gallery } from '../components/CoursesGallery/Gallery';
 import { fetchAllAdverts } from '../services';
+import { useAuthStore } from '../store/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 const CoursesPage = () => {
-    const [adverts, setAdverts] = useState([]);
+    const [adverts, setAdverts] = useState(null);
+    const { token } = useAuthStore();
+    const navigate = useNavigate();
+    
     
     useEffect(() => {
-        getAdverts();
-    }, []);
+        if (token) {
+            getAdverts();
+        } else {
+            navigate('/login');
+        }
+    }, [token, navigate]);
+
 
     async function getAdverts() {
         try {
@@ -19,7 +29,7 @@ const CoursesPage = () => {
         } catch(error) {
             console.log(error.message);
         }
-    }    
+    }
 
     return (
         <>

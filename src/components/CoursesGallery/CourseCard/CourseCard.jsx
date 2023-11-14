@@ -11,59 +11,64 @@ import {
     CourseDetails,
     CourseDescr
 } from './CourseCard.styled';
+import { Link } from 'react-router-dom';
+
 
 
 const CourseCard = ({ advert }) => {
     const isMobileScreenSize = window.matchMedia('(max-width: 768px)').matches;
-    const { title, attachment, created_at, description, experience, format, language, price, provider, time } = advert;
+    const { id, title, attachment, created_at, description, experience, format, language, price, provider, time } = advert;
 
     return (
-        <Card>
-            <CardHeader>
-                <CardTitleWrapper>
-                    <TitleBox>
-                        <Title indent={10} size={[24, 32]} weight={600} >{title}</Title>
-                        <Message>Provider:</Message> <Message>{provider}</Message>
-                        {
-                            !isMobileScreenSize &&
+        <Link to={`/courses/${id}`}>
+            <Card>
+                <CardHeader>
+                    <CardTitleWrapper>
+                        <TitleBox>
+                            <Title indent={10} size={[24, 32]} weight={600} >{title}</Title>
+                            <Message>Provider:</Message> <Message>{provider}</Message>
+                            {
+                                !isMobileScreenSize &&
+                                <TimeInfo $isRow={isMobileScreenSize}>
+                                        <Message>{experience}</Message> <Message>of experience</Message>
+                                        <Message>{created_at} day ago</Message>
+                                    </TimeInfo> 
+                            }                        
+                        </TitleBox>
+
+                        <Avatar src={attachment} alt='avatar' width='140px'/>
+                    </CardTitleWrapper>
+
+                    {
+                        isMobileScreenSize &&
                             <TimeInfo $isRow={isMobileScreenSize}>
-                                    <Message>{experience}</Message> <Message>of experience</Message>
-                                    <Message>{created_at} day ago</Message>
-                                </TimeInfo> 
-                        }                        
-                    </TitleBox>
+                                <Message>{experience}</Message> <Message>of experience</Message>
+                                <Message>{created_at} day ago</Message>
+                            </TimeInfo> 
+                    }
+                </CardHeader>
 
-                    <Avatar src={attachment} alt='avatar' width='140px'/>
-                </CardTitleWrapper>
-
-                {
-                    isMobileScreenSize &&
-                        <TimeInfo $isRow={isMobileScreenSize}>
-                            <Message>{experience}</Message> <Message>of experience</Message>
-                            <Message>{created_at} day ago</Message>
-                        </TimeInfo> 
-                }
-            </CardHeader>
+                <AboutTitle>
+                    <Title size={[24, 32]} weight={600}>
+                        About
+                    </Title>
+                    <Icon name='info' size={24} />
+                </AboutTitle>
 
 
-            <AboutTitle>
-                <Title size={[24, 32]} weight={600}>
-                    About
-                </Title>
-                <Icon name='info' size={24} />
-            </AboutTitle>
+                <CourseDetails>
+                    <Message>{time}</Message>
+                    <Message>${price} per lesson</Message>
+                    <Message>{format}</Message>
+                    <Message>Lesson in {language}</Message>
+                </CourseDetails>
+                
+                <CourseDescr>
+                    <Message>{description}</Message>
+                </CourseDescr>
+            </Card>        
+        </Link>
 
-            <CourseDetails>
-                <Message>{time}</Message>
-                <Message>${price} per lesson</Message>
-                <Message>{format}</Message>
-                <Message>Lesson in {language}</Message>
-            </CourseDetails> 
-            
-            <CourseDescr>
-                <Message>{description}</Message>
-            </CourseDescr>
-        </Card>
     );
 };
 

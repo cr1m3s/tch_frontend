@@ -24,12 +24,14 @@ export const fetchAllAdverts = async () => {
  * POST @ /protected/advertisement-getbyid
  * headers: Authorization: token (without Bearer)
  */
-export const fetchAdvertById = async (id) => {
+export const fetchAdvertById = async (advertId) => {
+    const body = { id: Number(advertId) };
+
     try {
         const response = await axios.post(
             `/protected/advertisement-getbyid`,
-            { id: id },
-            { headers: { 'Authorization': TOKEN } }
+            body,
+            { headers: { 'Authorization': TOKEN } },
         );
 
         return response.data.data;
