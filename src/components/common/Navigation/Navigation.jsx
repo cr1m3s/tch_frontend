@@ -17,4 +17,3 @@ export const Navigation = ({ className }) => {
 Navigation.propTypes = {
     className: PropTypes.string,
 };
-

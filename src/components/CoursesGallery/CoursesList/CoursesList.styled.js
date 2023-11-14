@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const List = styled.ul`
+export const List = styled.div`
     display: ${({ $isVisible }) => $isVisible ? 'block' : 'none'};
     background-color: ${({theme: {colors}}) => colors.card};
     border-top: 1px solid ${({theme: {colors}}) => colors.primaryText};

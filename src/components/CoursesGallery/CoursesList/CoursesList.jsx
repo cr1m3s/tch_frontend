@@ -1,21 +1,31 @@
 import PropTypes from 'prop-types';
 import { CourseCard } from '../CourseCard';
 import { List } from './CoursesList.styled';
+import Loader from '../../common/Loader/Loader';
 
 
-const CoursesList = ({isVisible, adverts}) => {
+const CoursesList = ({ isVisible, adverts }) => {
+
+
     return (
-        <List $isVisible={isVisible}>
+        <>
             {
-                adverts.map((advert) =>
-                    <CourseCard
-                        key={advert.id}
-                        advert={advert}
-                    />
-            )
-            }
-            
-        </List>
+                !adverts
+                    ? <Loader/>
+                    : (
+                        <List $isVisible={isVisible}>
+                        {
+                            adverts.map((advert) =>
+                                <CourseCard
+                                    key={advert.id}
+                                    advert={advert}
+                                />
+                            )
+                        }
+                        </List >
+                    )
+            }        
+        </>
     );
 };
 
