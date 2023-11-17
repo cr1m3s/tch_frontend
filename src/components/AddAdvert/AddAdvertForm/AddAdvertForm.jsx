@@ -2,7 +2,8 @@ import { Formik, ErrorMessage } from 'formik';
 import { Button, Text } from '../../common';
 import { fetchCreateAdvert } from '../../../services';
 import { useAuthStore } from '../../../store/auth';
-import Avatar from '../../../assets/images/default-avatar.png'
+import Avatar from '../../../assets/images/default-avatar.png';
+import filterData from '../../../filterData.json';
 import {
     Section,
     StyledForm,
@@ -41,7 +42,7 @@ const initialValues = {
     subcategory: '',
     time: '',
     format: '',
-    price: null,
+    price: 0,
     language: '',
     description: '',
     mobile_phone: '',
@@ -51,7 +52,7 @@ const initialValues = {
 
 const AddAdvertForm = () => {
     const { user } = useAuthStore();
-    const [isChosenCategory, setIsChosenCategory] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
 
     const handleSubmit = (values, { resetForm }) => {
@@ -61,12 +62,12 @@ const AddAdvertForm = () => {
 
 
     const handleCategoryChange = (e) => {
-        const category = e.currentTarget.value;
+        const data = e.currentTarget.value;
 
-        if (category !== '') {
-            setIsChosenCategory(true);
+        if (data) {
+            setSelectedCategory(data);
         } else {
-            setIsChosenCategory(false);
+            setSelectedCategory(null);
         }
     };
 
@@ -142,36 +143,76 @@ const AddAdvertForm = () => {
                             <CategoriesAllInfoContainer>
                                 <CategoryContainer>
                                     <Label htmlFor='category'>Category</Label>
-                                        <CategoryInput
-                                            id='category'
-                                            type='text'
-                                            name='category'
-                                            placeholder='Select match category'
-                                            value={values.category}
-                                            onChange={(e) => {
-                                                handleCategoryChange(e);
-                                                handleChange(e)
-                                            }}
-                                            onBlur={handleBlur}
-                                            border={touched.category && errors.category}
-                                        />
+                                    <CategoryInput
+                                        id='category'
+                                        component='select'
+                                        name='category'
+                                        placeholder='Select match category'
+                                        value={values.category}
+                                        onChange={(e) => {
+                                            handleCategoryChange(e);
+                                            handleChange(e)
+                                        }}
+                                        onBlur={handleBlur}
+                                        border={touched.category && errors.category}
+                                    >
+                                        <option value={null}></option>
+                                        {
+                                            filterData.map(({ id, title }) => {
+                                                if (
+                                                    title !== 'Lesson language' && 
+                                                    title !== 'Teacher’s experience' &&
+                                                    title !== 'Lesson format' &&
+                                                    title !== 'Duration of a lesson' &&
+                                                    title !== 'Price for a lesson'
+                                                ) {
+                                                    return (
+                                                        <option
+                                                            key={id}
+                                                            value={title}>
+                                                            {title}
+                                                        </option>  
+                                                    )
+                                            }
+                                            })
+                                        }
+                                    </CategoryInput>
                                     <ErrorMessage name='category' component='div' />                                
                                 </CategoryContainer>
 
                                 {
-                                    isChosenCategory && (
+                                    selectedCategory && (
                                         <CategoryContainer>
                                             <Label htmlFor='subcategory'>Subcategory</Label>
                                             <CategoryInput
                                                 id='subcategory'
-                                                type='text'
+                                                component='select'
                                                 name='subcategory'
                                                 placeholder='Select match subcategory'
                                                 value={values.subcategory}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 border={touched.subcategory && errors.subcategory}
-                                            />
+                                            >
+                                                <option value={null}></option>
+                                                {
+                                                    filterData.map(({ id, categories, title }) => {
+                                                        if (selectedCategory === title) {
+                                                            return categories.map((subcategory) => {
+                                                                return (
+                                                                    <option
+                                                                        key={`${id}_${subcategory}`}
+                                                                        value={subcategory}>
+                                                                        {subcategory}
+                                                                    </option>                                                                       
+                                                                )
+                                                            }
+                                                            )
+                                                        }
+                                                    }
+                                                    )
+                                                }
+                                            </CategoryInput>    
                                             <ErrorMessage name='subcategory' component='div' />                                
                                         </CategoryContainer>
                                     )
@@ -192,6 +233,7 @@ const AddAdvertForm = () => {
                                         onBlur={handleBlur}
                                         border={touched.time && errors.time}
                                     >
+                                        <option value={null}></option>
                                         <option value='30 min'>30 min</option>
                                         <option value='45 min'>45 min</option>
                                         <option value='60 min'>60 min</option>
@@ -215,6 +257,7 @@ const AddAdvertForm = () => {
                                         onBlur={handleBlur}
                                         border={touched.format && errors.format}
                                     >
+                                        <option value={null}></option>
                                         <option value='Online'>Online</option>
                                         <option value='Offline'>Offline</option>
                                     </OptionInput>
@@ -248,6 +291,7 @@ const AddAdvertForm = () => {
                                         onBlur={handleBlur}
                                         border={touched.language && errors.language}
                                     >
+                                        <option value={null}></option>
                                         <option value='English'>English</option>
                                         <option value='Arabic'>Arabic</option>
                                         <option value='French'>French</option>
@@ -272,7 +316,7 @@ const AddAdvertForm = () => {
                                     value={values.description}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    maxlength='400'
+                                    maxLength='400'
                                     rows='5'
                                     border={touched.description && errors.description}
                                 />
