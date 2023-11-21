@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Icon, Message, Title } from '../../common';
@@ -27,21 +27,18 @@ const CourseCard = ({ advert }) => {
 
 
     useEffect(() => {
-        if (pathname === `/courses/${id}`) {
-            setIsFullAdvertInfo(true);
-            return;
-        }
-        setIsFullAdvertInfo(false);
+        setIsFullAdvertInfo(pathname === `/courses/${id}`);
     }, [pathname, id])
+    
     
     const getAgeOfAdvert = () => {
         const creationDate = new Date(created_at);
         const currentDate = new Date();
         const ageOfAdvertInDays = (currentDate - creationDate) / 86400000 ^ 0;
-        const message = `${ageOfAdvertInDays} ${(ageOfAdvertInDays === 1) ? 'day' : 'days'} ago`
-        
-        return message;
+        return ageOfAdvertInDays;
     };
+
+    const cashedAgeOfAdvertInDays = useMemo(getAgeOfAdvert, [created_at]);
 
 
     return (
@@ -56,7 +53,7 @@ const CourseCard = ({ advert }) => {
                                     <div>
                                         <Message>{experience}</Message> <Message>of experience</Message>
                                     </div>
-                                    <Message>{getAgeOfAdvert()}</Message>
+                                    <Message>{`${cashedAgeOfAdvertInDays} ${(cashedAgeOfAdvertInDays === 1) ? 'day' : 'days'} ago`}</Message>
                                 </LargeSizeTimeInfo>                       
                         </TitleBox>
 

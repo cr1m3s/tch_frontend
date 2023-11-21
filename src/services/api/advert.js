@@ -9,8 +9,8 @@ import { TOKEN } from '../../shared';
 export const fetchAllAdverts = async () => {
     try {
         const response = await axios.get(
-            `/protected/advertisement-getall`,
-            { headers: { 'Authorization': TOKEN } }
+            `/open/advertisements/getall`,
+            // { headers: { 'Authorization': TOKEN } }
         );
 
         return response.data.data;
