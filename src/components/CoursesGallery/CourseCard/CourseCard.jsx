@@ -30,15 +30,12 @@ const CourseCard = ({ advert }) => {
         setIsFullAdvertInfo(pathname === `/courses/${id}`);
     }, [pathname, id])
     
-    
-    const getAgeOfAdvert = () => {
+
+    const advertAgeInDays = useMemo(() => {
         const creationDate = new Date(created_at);
         const currentDate = new Date();
-        const ageOfAdvertInDays = (currentDate - creationDate) / 86400000 ^ 0;
-        return ageOfAdvertInDays;
-    };
-
-    const cashedAgeOfAdvertInDays = useMemo(getAgeOfAdvert, [created_at]);
+        return (currentDate - creationDate) / 86400000 ^ 0;        
+    }, [created_at]);
 
 
     return (
@@ -53,7 +50,7 @@ const CourseCard = ({ advert }) => {
                                     <div>
                                         <Message>{experience}</Message> <Message>of experience</Message>
                                     </div>
-                                    <Message>{`${cashedAgeOfAdvertInDays} ${(cashedAgeOfAdvertInDays === 1) ? 'day' : 'days'} ago`}</Message>
+                                    <Message>{`${advertAgeInDays} ${(advertAgeInDays === 1) ? 'day' : 'days'} ago`}</Message>
                                 </LargeSizeTimeInfo>                       
                         </TitleBox>
 
@@ -64,7 +61,7 @@ const CourseCard = ({ advert }) => {
                         <div>
                             <Message>{experience}</Message> <Message>of experience</Message>
                         </div>
-                        <Message>{getAgeOfAdvert()}</Message>
+                        <Message>{`${advertAgeInDays} ${(advertAgeInDays === 1) ? 'day' : 'days'} ago`}</Message>
                     </MobileSizeTimeInfo>
                 </CardHeader>
 
