@@ -3,14 +3,12 @@ import { TOKEN } from '../../shared';
 
 
 /*
- * GET @ /protected/advertisement-getall
- * headers: Authorization: token (without Bearer)
+ * GET @ /open/advertisements/getall
  */
 export const fetchAllAdverts = async () => {
     try {
         const response = await axios.get(
-            `/protected/advertisement-getall`,
-            { headers: { 'Authorization': TOKEN } }
+            `/open/advertisements/getall`,
         );
 
         return response.data.data;
@@ -21,17 +19,15 @@ export const fetchAllAdverts = async () => {
 
 
 /*
- * POST @ /protected/advertisement-getbyid
- * headers: Authorization: token (without Bearer)
+ * GET @ /open/advertisements/getbyid/{id}
  */
 export const fetchAdvertById = async (advertId) => {
     const body = { id: Number(advertId) };
 
     try {
-        const response = await axios.post(
-            `/protected/advertisement-getbyid`,
+        const response = await axios.get(
+            `/open/advertisements/getbyid/${advertId}`,
             body,
-            { headers: { 'Authorization': TOKEN } },
         );
 
         return response.data.data;
