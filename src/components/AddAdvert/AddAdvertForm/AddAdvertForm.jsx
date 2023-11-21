@@ -62,12 +62,7 @@ const AddAdvertForm = () => {
 
     const handleCategoryChange = (e) => {
         const category = e.currentTarget.value;
-
-        if (category !== '') {
-            setIsChosenCategory(true);
-        } else {
-            setIsChosenCategory(false);
-        }
+        setIsChosenCategory(category !== '');
     };
 
 
