@@ -97,3 +97,21 @@ export const fetchUpdateAdvert = async (data) => {
         console.log(error.message);
     }
 }
+
+
+/*
+ * GET @ /protected/advertisement-getmy
+ * headers: Authorization: token
+ */
+export const fetchMyAdverts = async () => {
+    try {
+        const response = await axios.get(
+            `/protected/advertisement-getmy`,
+            { headers: {'Authorization': TOKEN} }
+        );
+
+        return response.data.data;
+    } catch (error) {
+        console.log(error.message);
+    }
+}

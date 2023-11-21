@@ -4,9 +4,7 @@ import { List } from './CoursesList.styled';
 import Loader from '../../common/Loader/Loader';
 
 
-const CoursesList = ({ isVisible, adverts }) => {
-
-
+const CoursesList = ({ isVisible = true, adverts }) => {
     return (
         <>
             {
@@ -14,14 +12,14 @@ const CoursesList = ({ isVisible, adverts }) => {
                     ? <Loader/>
                     : (
                         <List $isVisible={isVisible}>
-                        {
-                            adverts.map((advert) =>
-                                <CourseCard
-                                    key={advert.id}
-                                    advert={advert}
-                                />
-                            )
-                        }
+                            {
+                                adverts.map((advert) =>
+                                    <CourseCard
+                                        key={advert.id}
+                                        advert={advert}
+                                    />
+                                )
+                            }
                         </List >
                     )
             }        
