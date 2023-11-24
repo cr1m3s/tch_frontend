@@ -61,7 +61,8 @@ export const fetchRefresh = async () => {
             `/protected/userinfo`,
             { headers: { 'Authorization': token } }
         );
-        return response.data.data;
+
+        return response;
     } catch (error) {
         const faildStatus = error.response.data.status;
         return faildStatus;

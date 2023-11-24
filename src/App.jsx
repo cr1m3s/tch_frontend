@@ -28,14 +28,14 @@ const App = () => {
   const { isAuth, setToken, setProfile, token } = useAuthStore();
   const navigate = useNavigate();
   
-  
   useEffect(() => {
     const fetchUserData = async () => {
       await setProfile();
     };
 
-    if (token) fetchUserData();
-  }, [setProfile, token]);
+    if (token && isAuth === true) fetchUserData();
+  }, [setProfile, token, isAuth]);
+
 
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search);
