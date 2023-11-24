@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { Button, Text } from '../../common';
-import { fetchCreateAdvert } from '../../../services';
+import { fetchAllCategories, fetchCreateAdvert } from '../../../services';
 import { useAuthStore } from '../../../store/auth';
 import Avatar from '../../../assets/images/default-avatar.png';
-import filterData from '../../../filterData.json';
 import {
     Section,
     StyledForm,
@@ -33,7 +33,7 @@ import {
     ContactLabel,
     ContactInfoInput,
 } from './AddAdvertForm.styled';
-import { useState } from 'react';
+
 
 const initialValues = {
     title: '',
@@ -50,9 +50,28 @@ const initialValues = {
     telegram: ''
 };
 
+
 const AddAdvertForm = () => {
     const { user } = useAuthStore();
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [categories, setCategories] = useState([]);
+
+
+    useEffect(() => {
+        getCategories();
+    }, []);
+
+
+    async function getCategories() {
+        try {
+            const data = await fetchAllCategories();
+            setCategories(data);
+            
+            return data;
+        } catch(error) {
+            console.log(error.message);
+        }
+    }
 
 
     const handleSubmit = (values, { resetForm }) => {
@@ -158,22 +177,14 @@ const AddAdvertForm = () => {
                                     >
                                         <option value={null}></option>
                                         {
-                                            filterData.map(({ id, title }) => {
-                                                if (
-                                                    title !== 'Lesson language' && 
-                                                    title !== 'Teacher’s experience' &&
-                                                    title !== 'Lesson format' &&
-                                                    title !== 'Duration of a lesson' &&
-                                                    title !== 'Price for a lesson'
-                                                ) {
+                                            categories.map(({parent_id, parent_name}) => {
                                                     return (
                                                         <option
-                                                            key={id}
-                                                            value={title}>
-                                                            {title}
+                                                            key={parent_id}
+                                                            value={parent_name}>
+                                                            {parent_name}
                                                         </option>  
                                                     )
-                                            }
                                             })
                                         }
                                     </CategoryInput>
@@ -196,14 +207,14 @@ const AddAdvertForm = () => {
                                             >
                                                 <option value={null}></option>
                                                 {
-                                                    filterData.map(({ id, categories, title }) => {
-                                                        if (selectedCategory === title) {
-                                                            return categories.map((subcategory) => {
+                                                    categories.map(({ children, parent_name }) => {
+                                                        if (selectedCategory === parent_name) {
+                                                            return children.map(({ id, name }) => {
                                                                 return (
                                                                     <option
-                                                                        key={`${id}_${subcategory}`}
-                                                                        value={subcategory}>
-                                                                        {subcategory}
+                                                                        key={id}
+                                                                        value={name}>
+                                                                        {name}
                                                                     </option>                                                                       
                                                                 )
                                                             }
