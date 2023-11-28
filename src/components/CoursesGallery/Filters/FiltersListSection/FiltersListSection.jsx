@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid/non-secure';
 import { CategoryItem } from '../CategoryItem';
 import PropTypes from 'prop-types';
 
@@ -8,17 +7,38 @@ import {
     SectionHeader,
     Title,
     StyledIcon,
-    CategoriesList
+    CategoriesList,
+    PriceInputsContainer,
+    PriceInput,
+    Line,
 } from './FiltersListSection.styled';
 
 
-const FiltersListSection = ({ title, categories }) => {
+const FiltersListSection = ({ title, subcategories, options }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const id = nanoid();
+    const [minPrice, setMinPrice] = useState('');
+    const [maxPrice, setMaxPrice] = useState('');
+
 
     const handleToggleItemContainer = () => {
         setIsOpen(!isOpen);
     };
+
+
+    const handleChangePrice = ({ target: { name, value } }) => {
+        switch (name) {
+            case 'minPrice':
+                setMinPrice(value);
+                break;
+            case 'maxPrice':
+                setMaxPrice(value);
+                break;    
+        
+            default:
+                break;
+        }
+    }
+    
 
     return (
         <ItemWrapper>
@@ -30,19 +50,60 @@ const FiltersListSection = ({ title, categories }) => {
             </SectionHeader>
 
             {
-                isOpen &&
-                    <CategoriesList>
+                isOpen && (
+                    <>
                         {
-                            categories
-                                ? categories.map((category) => (
-                                    <CategoryItem
-                                        key={id}
-                                        category={category}
-                                    />                             
-                                ))
-                                : <div>sort prise</div>    
-                        }
-                    </CategoriesList>
+                            <CategoriesList>
+                                {
+                                    subcategories && (
+                                        subcategories.map(({ id, name }) => (
+                                            <CategoryItem
+                                                key={id}
+                                                category={name}
+                                            />                             
+                                        ))
+                                    )
+                                }
+                                {
+                                    options && (
+                                        options.map(({ id, option_name }) => (
+                                            <CategoryItem
+                                                key={id}
+                                                category={option_name}
+                                            />                             
+                                        ))
+                                    )
+                                }
+                                {
+                                    title === 'Price for a lesson' && (
+                                        <PriceInputsContainer>
+                                                <PriceInput
+                                                    name='minPrice'
+                                                    type="number"
+                                                    value={minPrice}
+                                                    onChange={handleChangePrice}
+                                                    min={1}
+                                                    max={100}
+                                                />
+
+                                                <Line />
+                                                
+                                                <PriceInput
+                                                    name='maxPrice'
+                                                    type="number"
+                                                    value={maxPrice}
+                                                    onChange={handleChangePrice}
+                                                    min={0}
+                                                    max={100}
+                                                />
+                                        </PriceInputsContainer>
+                                        
+                                    )
+                                }
+                            </CategoriesList>                        
+                        }                    
+                    </>
+                )
             }
         </ItemWrapper>
     );
@@ -51,7 +112,8 @@ const FiltersListSection = ({ title, categories }) => {
 
 FiltersListSection.propTypes = {
     title: PropTypes.string.isRequired,
-    categories: PropTypes.array
+    subcategories: PropTypes.array,
+    options: PropTypes.array,
 };
 
 

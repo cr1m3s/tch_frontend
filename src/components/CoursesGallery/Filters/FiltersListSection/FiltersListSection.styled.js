@@ -42,3 +42,29 @@ export const CategoriesList = styled.div`
     line-height: 24px;
     margin-bottom: 30px;
 `;
+
+export const PriceInputsContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+`;
+
+export const PriceInput = styled.input`
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+
+    border: 1px solid ${({ theme: { colors } }) => colors.primaryText};
+    border-radius: 6px;
+    width: 90px;
+    height: 36px;
+    background-color: ${({ theme: { colors } }) => colors.disabled};
+    padding-left: 16px;
+`;
+
+export const Line = styled.div`
+    width: 10px;
+    height: 1px;
+    background-color: ${({ theme: { colors } }) => colors.disabled};
+`;

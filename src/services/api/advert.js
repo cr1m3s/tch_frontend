@@ -111,3 +111,18 @@ export const fetchMyAdverts = async () => {
         console.log(error.message);
     }
 }
+
+/*
+ * GET @ /open/categories/getall
+ */
+export const fetchAllCategories = async () => {
+    try {
+        const response = await axios.get(
+            `/open/categories/getall`,
+        );
+
+        return response.data.data;
+    } catch (error) {
+        console.log(error.message);
+    }
+}

@@ -110,7 +110,7 @@ export const AdvertTitleInput = styled(Field)`
 
     @media screen and (min-width: ${({ theme: { sizes } }) => sizes.large}) { 
         min-width: 837px;
-    }    
+    }
 `;
 
 
