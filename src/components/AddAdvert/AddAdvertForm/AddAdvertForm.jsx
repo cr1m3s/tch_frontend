@@ -1,8 +1,9 @@
+import { useEffect, useState } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { Button, Text } from '../../common';
-import { fetchCreateAdvert } from '../../../services';
+import { fetchAllCategories, fetchCreateAdvert } from '../../../services';
 import { useAuthStore } from '../../../store/auth';
-import Avatar from '../../../assets/images/default-avatar.png'
+import Avatar from '../../../assets/images/default-avatar.png';
 import {
     Section,
     StyledForm,
@@ -32,7 +33,7 @@ import {
     ContactLabel,
     ContactInfoInput,
 } from './AddAdvertForm.styled';
-import { useState } from 'react';
+
 
 const initialValues = {
     title: '',
@@ -41,7 +42,7 @@ const initialValues = {
     subcategory: '',
     time: '',
     format: '',
-    price: null,
+    price: 0,
     language: '',
     description: '',
     mobile_phone: '',
@@ -49,9 +50,28 @@ const initialValues = {
     telegram: ''
 };
 
+
 const AddAdvertForm = () => {
     const { user } = useAuthStore();
-    const [isChosenCategory, setIsChosenCategory] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [categories, setCategories] = useState([]);
+
+
+    useEffect(() => {
+        getCategories();
+    }, []);
+
+
+    async function getCategories() {
+        try {
+            const data = await fetchAllCategories();
+            setCategories(data);
+            
+            return data;
+        } catch(error) {
+            console.log(error.message);
+        }
+    }
 
 
     const handleSubmit = (values, { resetForm }) => {
@@ -61,8 +81,8 @@ const AddAdvertForm = () => {
 
 
     const handleCategoryChange = (e) => {
-        const category = e.currentTarget.value;
-        setIsChosenCategory(category !== '');
+        const data = e.currentTarget.value;
+        setSelectedCategory(data || null);
     };
 
 
@@ -137,36 +157,68 @@ const AddAdvertForm = () => {
                             <CategoriesAllInfoContainer>
                                 <CategoryContainer>
                                     <Label htmlFor='category'>Category</Label>
-                                        <CategoryInput
-                                            id='category'
-                                            type='text'
-                                            name='category'
-                                            placeholder='Select match category'
-                                            value={values.category}
-                                            onChange={(e) => {
-                                                handleCategoryChange(e);
-                                                handleChange(e)
-                                            }}
-                                            onBlur={handleBlur}
-                                            border={touched.category && errors.category}
-                                        />
+                                    <CategoryInput
+                                        id='category'
+                                        component='select'
+                                        name='category'
+                                        placeholder='Select match category'
+                                        value={values.category}
+                                        onChange={(e) => {
+                                            handleCategoryChange(e);
+                                            handleChange(e)
+                                        }}
+                                        onBlur={handleBlur}
+                                        border={touched.category && errors.category}
+                                    >
+                                        <option value={null}></option>
+                                        {
+                                            categories.map(({parent_id, parent_name}) => {
+                                                    return (
+                                                        <option
+                                                            key={parent_id}
+                                                            value={parent_name}>
+                                                            {parent_name}
+                                                        </option>  
+                                                    )
+                                            })
+                                        }
+                                    </CategoryInput>
                                     <ErrorMessage name='category' component='div' />                                
                                 </CategoryContainer>
 
                                 {
-                                    isChosenCategory && (
+                                    selectedCategory && (
                                         <CategoryContainer>
                                             <Label htmlFor='subcategory'>Subcategory</Label>
                                             <CategoryInput
                                                 id='subcategory'
-                                                type='text'
+                                                component='select'
                                                 name='subcategory'
                                                 placeholder='Select match subcategory'
                                                 value={values.subcategory}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 border={touched.subcategory && errors.subcategory}
-                                            />
+                                            >
+                                                <option value={null}></option>
+                                                {
+                                                    categories.map(({ children, parent_name }) => {
+                                                        if (selectedCategory === parent_name) {
+                                                            return children.map(({ id, name }) => {
+                                                                return (
+                                                                    <option
+                                                                        key={id}
+                                                                        value={name}>
+                                                                        {name}
+                                                                    </option>                                                                       
+                                                                )
+                                                            }
+                                                            )
+                                                        }
+                                                    }
+                                                    )
+                                                }
+                                            </CategoryInput>    
                                             <ErrorMessage name='subcategory' component='div' />                                
                                         </CategoryContainer>
                                     )
@@ -187,6 +239,7 @@ const AddAdvertForm = () => {
                                         onBlur={handleBlur}
                                         border={touched.time && errors.time}
                                     >
+                                        <option value={null}></option>
                                         <option value='30 min'>30 min</option>
                                         <option value='45 min'>45 min</option>
                                         <option value='60 min'>60 min</option>
@@ -210,6 +263,7 @@ const AddAdvertForm = () => {
                                         onBlur={handleBlur}
                                         border={touched.format && errors.format}
                                     >
+                                        <option value={null}></option>
                                         <option value='Online'>Online</option>
                                         <option value='Offline'>Offline</option>
                                     </OptionInput>
@@ -243,6 +297,7 @@ const AddAdvertForm = () => {
                                         onBlur={handleBlur}
                                         border={touched.language && errors.language}
                                     >
+                                        <option value={null}></option>
                                         <option value='English'>English</option>
                                         <option value='Arabic'>Arabic</option>
                                         <option value='French'>French</option>
@@ -267,7 +322,7 @@ const AddAdvertForm = () => {
                                     value={values.description}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    maxlength='400'
+                                    maxLength='400'
                                     rows='5'
                                     border={touched.description && errors.description}
                                 />
