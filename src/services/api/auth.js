@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getDataFromLocalStorage } from '../localStorage';
-import { STATUS_CODES } from '../../shared';
+import { STATUS_CODES, TOKEN } from '../../shared';
 
 
 axios.defaults.baseURL = 'https://dev-backend-b4vo.onrender.com';
@@ -54,12 +54,10 @@ export const fetchLogin = async (values) => {
  * headers: Authorization: Bearer token
  */
 export const fetchRefresh = async () => {
-    const token = getDataFromLocalStorage('auth').state.token;
-
     try {
         const response = await axios.get(
             `/protected/userinfo`,
-            { headers: { 'Authorization': token } }
+            { headers: { 'Authorization': TOKEN } }
         );
 
         return response;
@@ -94,13 +92,11 @@ export const fetchResetPassword = async (values) => {
  * body: { updateData }
  */
 export const fetchUpdateUserData = async (updateData, currentPassword) => {
-    const token = getDataFromLocalStorage('auth').state.token;
-
     try {
         const response = await axios.patch(
             `/protected/user-patch`,
             updateData,
-            { headers: { 'Authorization': `${token}:${currentPassword}` } }
+            { headers: { 'Authorization': `${TOKEN}:${currentPassword}` } }
         );
 
         return response.data.data;
@@ -115,13 +111,11 @@ export const fetchUpdateUserData = async (updateData, currentPassword) => {
  * headers: Authorization: Bearer token
  */
 export const fetchCreateNewPassword = async (newPassword) => {
-    const token = getDataFromLocalStorage('auth').state.token;
-
     try {
         const response = await axios.patch(
             `/protected/create-password`,
             newPassword,
-            { headers: {'Authorization': token} }
+            { headers: {'Authorization': TOKEN} }
         );
 
         return response.data.data;
