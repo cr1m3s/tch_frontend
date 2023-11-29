@@ -19,6 +19,7 @@ const userState = {
     role: 'user'
 };
 
+
 export const useAuthStore = create(
     persist(
         (set) => ({
@@ -71,9 +72,16 @@ export const useAuthStore = create(
                 try {
                     const response = await fetchRefresh();
                     
-                    set(() => ({
-                        user: {...response},
-                    }));      
+                    if (response === 'failed') {
+                        set(() => ({
+                            token: null,
+                            isAuth: false
+                        }));
+                    } else {
+                        set(() => ({
+                            user: {...response.data.data},
+                        }));
+                    }
                 } catch (error) {
                     if (error.response) {
                         set(() => ({
