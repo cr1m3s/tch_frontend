@@ -82,12 +82,7 @@ const AddAdvertForm = () => {
 
     const handleCategoryChange = (e) => {
         const data = e.currentTarget.value;
-
-        if (data) {
-            setSelectedCategory(data);
-        } else {
-            setSelectedCategory(null);
-        }
+        setSelectedCategory(data || null);
     };
 
 
