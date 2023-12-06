@@ -1,28 +1,36 @@
-import { useEffect, useState } from "react";
+import { useState, useCallback } from "react";
 import { fetchMyAdverts } from "../../../services";
 import CoursesList from '../../CoursesGallery/CoursesList/CoursesList';
+import { NoAdversInfo } from "./ActiveAdverts.styled";
 
 
 const ActiveAdverts = () => {
-    const [ adverts, setAdverts ] = useState([]);
+    const [adverts, setAdverts] = useState([]);
 
-    useEffect(() => {
-        getMyAdverts();
-    }, []);
 
-    async function getMyAdverts() {
-        try {
-            const response = await fetchMyAdverts();
-            setAdverts(response);
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
+    const getMyAdverts = useCallback(        
+        async () => {
+            try {
+                const response = await fetchMyAdverts();
+                setAdverts(response);
+            } catch (error) {
+                console.log(error.message);
+            }
+        },
+        []
+    );
 
-    
+    getMyAdverts();
 
     return (
-        <CoursesList adverts={adverts} />
+        <>
+            {
+                adverts
+                    ? <CoursesList adverts={adverts} />
+                    : <NoAdversInfo>You do not have any ads of your own yet!</NoAdversInfo>
+                    
+            }            
+        </>
     );
 };
 

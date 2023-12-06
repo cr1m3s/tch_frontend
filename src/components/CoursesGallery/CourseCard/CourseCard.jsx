@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useAuthStore } from '../../../store/auth';
+import { fetchDeleteAdvert } from '../../../services';
 import { Icon, Message, Title } from '../../common';
 import defaultImg from '../../../assets/images/default-avatar.png';
 import {
@@ -17,14 +18,17 @@ import {
     CategoryContainer,
     EducationContainer,
     ContactsList,
+    StyledDeleteButton,
 } from './CourseCard.styled';
+import PropTypes from 'prop-types';
 
 
 const CourseCard = ({ advert }) => {
-    const { id, title, attachment, created_at, description, experience, format, language, price, provider, time, mobile_phone, telegram, email, category } = advert;
     const pathname = useLocation().pathname;
+    const { id, title, attachment, created_at, description, experience, format, language, price, provider, provider_id, time, mobile_phone, telegram, email, category } = advert;
+    const { user } = useAuthStore();
+    const userId = user.id;
     const [isFullAdvertInfo, setIsFullAdvertInfo] = useState(false);
-
 
     useEffect(() => {
         setIsFullAdvertInfo(pathname === `/courses/${id}`);
@@ -37,8 +41,16 @@ const CourseCard = ({ advert }) => {
         return (currentDate - creationDate) / 86400000 ^ 0;        
     }, [created_at]);
 
+    const handleDeleteAdvert = async(e) => {
+        e.preventDefault();
+
+        const data = { id };
+        await fetchDeleteAdvert(data);
+    };
+
 
     return (
+
         <Link to={`/courses/${id}`}>
             <Card $isFullAdvertInfo={isFullAdvertInfo}>
                 <CardHeader>
@@ -123,8 +135,23 @@ const CourseCard = ({ advert }) => {
                         </div>
                     )
                 }
+
+                {
+                    provider_id === userId && (
+                        <div>
+                            <StyledDeleteButton
+                                type='button'
+                                variant='secondary'
+                                onClick={handleDeleteAdvert}
+                            >
+                                Delete
+                            </StyledDeleteButton>
+                        </div>
+
+                    )
+                }
             </Card>
-        </Link>
+        </Link>        
 
     );
 };

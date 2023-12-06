@@ -77,12 +77,14 @@ export const fetchCreateAdvert = async (data) => {
  * headers: Authorization: token
  * body: { id }
  */
-export const fetchDeleteAdvert = async (id) => {
+export const fetchDeleteAdvert = async (data) => {
     try {
         const response = await axios.delete(
             `/protected/advertisement-delete`,
-            id,
-            { headers: {'Authorization': TOKEN} }
+            {
+                headers: { 'Authorization': TOKEN },
+                data: data
+            }
         );
 
         return response;
