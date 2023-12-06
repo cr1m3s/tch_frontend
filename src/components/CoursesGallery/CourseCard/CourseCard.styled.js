@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '../../common';
 
 
 export const Card = styled.div`
@@ -127,3 +128,6 @@ export const ContactsList = styled.div`
 `;
 
 
+export const StyledDeleteButton = styled(Button)`
+    background-color: transparent;
+`;

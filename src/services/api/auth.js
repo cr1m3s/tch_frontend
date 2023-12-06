@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { getDataFromLocalStorage } from '../localStorage';
 import { STATUS_CODES, TOKEN } from '../../shared';
 
 
