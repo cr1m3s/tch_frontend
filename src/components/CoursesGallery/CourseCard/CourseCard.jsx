@@ -44,10 +44,7 @@ const CourseCard = ({ advert }) => {
     const handleDeleteAdvert = async(e) => {
         e.preventDefault();
 
-        const data = {
-            "id": id
-        }
-
+        const data = { id };
         await fetchDeleteAdvert(data);
     };
 
