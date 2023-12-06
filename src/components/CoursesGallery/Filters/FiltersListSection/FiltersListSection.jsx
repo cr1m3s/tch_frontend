@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { CategoryItem } from '../CategoryItem';
 import PropTypes from 'prop-types';
-
 import {
     ItemWrapper,
     SectionHeader,
@@ -11,13 +10,15 @@ import {
     PriceInputsContainer,
     PriceInput,
     Line,
+    RangeFieldContainer,
+    StyledRangeSlider,
 } from './FiltersListSection.styled';
 
 
 const FiltersListSection = ({ title, subcategories, options }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [minPrice, setMinPrice] = useState('');
-    const [maxPrice, setMaxPrice] = useState('');
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(100);
 
 
     const handleToggleItemContainer = () => {
@@ -38,7 +39,12 @@ const FiltersListSection = ({ title, subcategories, options }) => {
                 break;
         }
     }
-    
+
+    const handleChangePriceRange = (value) => {
+        setMinPrice(value[0]);
+        setMaxPrice(value[1]);
+    }
+
 
     return (
         <ItemWrapper>
@@ -76,28 +82,39 @@ const FiltersListSection = ({ title, subcategories, options }) => {
                                 }
                                 {
                                     title === 'Price for a lesson' && (
-                                        <PriceInputsContainer>
-                                                <PriceInput
-                                                    name='minPrice'
-                                                    type="number"
-                                                    value={minPrice}
-                                                    onChange={handleChangePrice}
-                                                    min={1}
-                                                    max={100}
-                                                />
+                                        <RangeFieldContainer>
+                                            <PriceInputsContainer>
+                                                    <PriceInput
+                                                        name='minPrice'
+                                                        type='number'
+                                                        value={minPrice}
+                                                        onChange={handleChangePrice}
+                                                        min={1}
+                                                        max={100}
+                                                    />
 
-                                                <Line />
-                                                
-                                                <PriceInput
-                                                    name='maxPrice'
-                                                    type="number"
-                                                    value={maxPrice}
-                                                    onChange={handleChangePrice}
-                                                    min={0}
-                                                    max={100}
-                                                />
-                                        </PriceInputsContainer>
-                                        
+                                                    <Line />
+                                                    
+                                                    <PriceInput
+                                                    
+                                                        name='maxPrice'
+                                                        type='number'
+                                                        value={maxPrice}
+                                                        onChange={handleChangePrice}
+                                                        min={0}
+                                                        max={100}
+                                                    />
+                                            </PriceInputsContainer>
+
+                                            <StyledRangeSlider
+                                                id="range-slider-gradient"
+                                                className="range-slider"
+                                                step={1}
+                                                min={0}
+                                                max={100}
+                                                onInput={handleChangePriceRange}                                                
+                                            />
+                                        </RangeFieldContainer>
                                     )
                                 }
                             </CategoriesList>                        
