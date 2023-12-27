@@ -2,9 +2,6 @@ import axios from 'axios';
 import { STATUS_CODES, TOKEN } from '../../shared';
 
 
-axios.defaults.baseURL = 'https://dev-backend-b4vo.onrender.com';
-
-
 /*
  * POST @ /api/auth/register
  * body: { name, email, password }
