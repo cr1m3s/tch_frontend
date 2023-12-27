@@ -74,6 +74,7 @@ export const RegisterForm = () => {
 
     const handleToggleCheck = () => {
         setIsChecked(!isChecked);
+        return isChecked;
     };
 
     const handleNavigateToLogin = () => {
@@ -198,9 +199,9 @@ export const RegisterForm = () => {
                                         <Field
                                             id='confirmation'
                                             name='confirmation'
-                                            type='hidden'
+                                            type='checkbox'
+                                            style={{display: 'none'}}
                                             onClick={handleToggleCheck}
-                                            value={isChecked}
                                         />
                                         <div>
                                             <Icon
