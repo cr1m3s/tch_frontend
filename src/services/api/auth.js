@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { STATUS_CODES, TOKEN } from '../../shared';
-
-
-axios.defaults.baseURL = 'https://dev-backend-b4vo.onrender.com';
+import { getDataFromLocalStorage } from '../localStorage';
 
 
 /*
@@ -19,7 +17,7 @@ export const fetchRegister = async (values) => {
         if (response.status === STATUS_CODES.created) {
             return response.data.data;
         }
-    } catch(error) {
+    } catch (error) {
         if (error.response.status === STATUS_CODES.unauthorized) {
             throw error;
         }
@@ -37,9 +35,7 @@ export const fetchLogin = async (values) => {
             values
         );
 
-        if (response.status === STATUS_CODES.success) {
-            return response.data.data;
-        }
+        return response.data.data;
     } catch (error) {
         if (error.response.status === STATUS_CODES.unauthorized) {
             throw error;
@@ -53,10 +49,12 @@ export const fetchLogin = async (values) => {
  * headers: Authorization: Bearer token
  */
 export const fetchRefresh = async () => {
+    const token = getDataFromLocalStorage('auth').state?.token || null;
+
     try {
         const response = await axios.get(
             `/protected/userinfo`,
-            { headers: { 'Authorization': TOKEN } }
+            { headers: { 'Authorization': `Bearer ${token}` } }
         );
 
         return response;
